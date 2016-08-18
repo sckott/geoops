@@ -1,8 +1,8 @@
 Package: geoops
 Type: Package
-Title: GeoJSON Manipulation Operations
-Description: GeoJSON Manipulation.
-Version: 0.0.1.9000
+Title: 'GeoJSON' Manipulation Operations
+Description: 'GeoJSON' Manipulation.
+Version: 0.0.1.9100
 Authors@R: c(person("Scott", "Chamberlain", role = c("aut", "cre"),
     email = "myrmecocystus@gmail.com"))
 License: MIT + file LICENSE

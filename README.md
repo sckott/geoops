@@ -1,39 +1,7 @@
 geoops
 =======
 
-```{r echo=FALSE}
-library("knitr")
-hook_output <- knitr::knit_hooks$get("output")
-knitr::knit_hooks$set(output = function(x, options) {
-   lines <- options$output.lines
-   if (is.null(lines)) {
-     return(hook_output(x, options))  # pass to default hook
-   }
-   x <- unlist(strsplit(x, "\n"))
-   more <- "..."
-   if (length(lines)==1) {        # first n lines
-     if (length(x) > lines) {
-       # truncate the output, but add ....
-       x <- c(head(x, lines), more)
-     }
-   } else {
-     x <- c(if (abs(lines[1])>1) more else NULL,
-            x[lines],
-            if (length(x)>lines[abs(length(lines))]) more else NULL
-           )
-   }
-   # paste these lines together
-   x <- paste(c(x, ""), collapse = "\n")
-   hook_output(x, options)
- })
 
-knitr::opts_chunk$set(
-  comment = "#>",
-  collapse = TRUE,
-  warning = FALSE,
-  message = FALSE
-)
-```
 
 
 `geoops` does spatial operations on geojson
@@ -46,33 +14,39 @@ This package is alpha stage, expect bugs and changes.
 
 ## Installation
 
-```{r eval=FALSE}
+
+```r
 devtools::install_github(c("ropenscilabs/geojson", "ropenscilabs/geoops"))
 ```
 
-```{r}
+
+```r
 library("geoops")
 ```
 
 ## filter geojson
 
-```{r}
+
+```r
 x <- "{\"type\":\"FeatureCollection\",\"features\":[{\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[-99.74,32.45]},\"properties\":{}}]}"
 x <- as.geojson(x)
 sift_client(x, ".features[].geometry[]")
+#> [1] "[\"Point\", [-99.74,32.45]]"
 ```
 
 ## sifting with jq
 
 Using Zillow data, plot all data
 
-```{r}
+
+```r
 library("leaflet")
 file <- system.file("examples", "zillow_or.geojson", package = "geoops")
 dat <- jsonlite::fromJSON(file, FALSE)
 ```
 
-```{r eval=FALSE}
+
+```r
 library("leaflet")
 leaflet() %>%
   addTiles() %>%
@@ -84,22 +58,36 @@ leaflet() %>%
 
 Filter to features in Multnomah County only
 
-```{r}
+
+```r
 json <- paste0(readLines(file), collapse = "")
 res <- sifter(json, COUNTY == Multnomah)
 ```
 
 Check that only Multnomah County came back
 
-```{r output.lines=1:10}
+
+```r
 res %>%
   jqr::index() %>%
   jqr::dotstr(properties.COUNTY)
+#> [
+#>     "Multnomah",
+#>     "Multnomah",
+#>     "Multnomah",
+#>     "Multnomah",
+#>     "Multnomah",
+#>     "Multnomah",
+#>     "Multnomah",
+#>     "Multnomah",
+#>     "Multnomah",
+...
 ```
 
 Plot it
 
-```{r eval=FALSE}
+
+```r
 leaflet() %>%
   addTiles() %>%
   addGeoJSON(res) %>%
