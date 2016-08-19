@@ -18,4 +18,5 @@ Imports:
 Suggests:
     testthat,
     leaflet
+Remotes: ropenscilabs/geojson
 RoxygenNote: 5.0.1
