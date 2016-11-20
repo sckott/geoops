@@ -18,5 +18,4 @@ Suggests:
     covr,
     testthat,
     leaflet
-Remotes: ropensci/geojson
 RoxygenNote: 5.0.1
