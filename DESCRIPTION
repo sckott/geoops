@@ -1,22 +1,22 @@
 Package: geoops
 Type: Package
 Title: 'GeoJSON' Manipulation Operations
-Description: 'GeoJSON' Manipulation.
-Version: 0.0.1.9100
+Description: 'GeoJSON' manipulation operations.
+Version: 0.0.2.9100
 Authors@R: c(person("Scott", "Chamberlain", role = c("aut", "cre"),
     email = "myrmecocystus@gmail.com"))
 License: MIT + file LICENSE
 URL: https://github.com/ropenscilabs/geoops
 BugReports: https://github.com/ropenscilabs/geoops/issues
 Imports:
-    geojson,
-    jsonlite (>= 0.9.19),
-    jqr (>= 0.2.0),
+    geojson (>= 0.1.0),
+    jsonlite (>= 1.1),
+    jqr (>= 0.2.4),
     lawn (>= 0.1.6),
-    lazyeval,
-    covr
+    lazyeval
 Suggests:
+    covr,
     testthat,
     leaflet
-Remotes: ropenscilabs/geojson
+Remotes: ropensci/geojson
 RoxygenNote: 5.0.1

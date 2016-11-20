@@ -12,11 +12,15 @@ overlay(points, polygons)
 \item{polygons}{geojson polygons}
 }
 \description{
-Overlay
+Clip a set of points to a polygon
 }
 \examples{
 library("lawn")
 lawn_data$points_within \%>\% view
-overlay(lawn_data$points_within, lawn_data$polygons_within) \%>\% view
+overlay(
+  points = lawn_data$points_within,
+  polygons = lawn_data$polygons_within) \%>\% view
+
+
 }
 

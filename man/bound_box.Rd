@@ -16,5 +16,8 @@ Bounding box
 library("lawn")
 library("geojson")
 bound_box(as.geojson(lawn_data$polygons_count))
+
+x <- as.geojson(lawn_data$polygons_count)
+geojson::geo_bbox(x)
 }
 

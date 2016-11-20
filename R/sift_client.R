@@ -44,6 +44,12 @@ sift_client <- function(x, query) {
 
 #' @export
 #' @rdname sift_client
+sift_client.default <- function(x, query) {
+  stop("no 'sift_client' method for ", class(x), call. = FALSE)
+}
+
+#' @export
+#' @rdname sift_client
 sift_client.character <- function(x, query) {
   unclassattr(jqr::combine(jqr::jq(x, query)))
 }
