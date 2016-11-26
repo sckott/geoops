@@ -35,7 +35,7 @@ Sift geojson - high level DSL
 library("leaflet")
 
 # get sample data
-file <- system.file("examples", "zillow_or.geojson", package = "siftgeojson")
+file <- system.file("examples", "zillow_or.geojson", package = "geoops")
 
 # plot as is
 dat <- jsonlite::fromJSON(file, FALSE)
@@ -51,5 +51,9 @@ json <- paste0(readLines(file), collapse = "")
 res <- sifter(json, COUNTY == Multnomah)
 ## check that only Multnomah County came back
 res \%>\% jqr::index() \%>\% jqr::dotstr(properties.COUNTY)
+leaflet() \%>\%
+  addTiles() \%>\%
+  addGeoJSON(jsonlite::fromJSON(res, FALSE)) \%>\%
+  setView(-122.8, 44.8, zoom = 8)
 }
 

@@ -238,15 +238,15 @@ in_ring <- function(pt, ring) {
 
 # get_coord ------------------------
 
-# obj <- '{
-#  "type": "Feature",
-#  "geometry": {
-#    "type": "Point",
-#    "coordinates": [1, 2]
-#  },
-#  "properties": {}
-# }'
-#
+obj <- '{
+ "type": "Feature",
+ "geometry": {
+   "type": "Point",
+   "coordinates": [1, 2]
+ },
+ "properties": {}
+}'
+
 # obj <- '{
 #   "type": "Point",
 #   "coordinates": [1, 2]

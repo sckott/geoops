@@ -9,7 +9,7 @@
 #' library("geojson")
 #'
 #' # get sample data
-#' file <- system.file("examples", "zillow_or.geojson", package = "siftgeojson")
+#' file <- system.file("examples", "zillow_or.geojson", package = "geoops")
 #'
 #' # plot as is
 #' dat <- jsonlite::fromJSON(file, FALSE)
