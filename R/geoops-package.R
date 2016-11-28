@@ -1,5 +1,7 @@
 #' geoops
 #'
+#' @useDynLib geoops
+#' @importFrom Rcpp sourceCpp
 #' @import geojson
 #' @importFrom jqr jq
 #' @importFrom lawn lawn_within
