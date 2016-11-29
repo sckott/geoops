@@ -65,7 +65,7 @@ bool in_ring(String pt, String ring) {
 
 
 // [[Rcpp::export]]
-String inside_cpp(String point, String polygon) {
+bool inside_cpp(String point, String polygon) {
   std::string xx = get_coord(point);
   std::string polygons = polygon;
   auto poly = json::parse(polygons);
@@ -81,28 +81,59 @@ String inside_cpp(String point, String polygon) {
     // return zz;
   }
 
-  std::string vv = polys.dump();
-  return vv;
+  // std::string vv = polys.dump();
+  // return vv;
 
-  // bool inside_poly = false;
-  // for (int i = 0; i < polys.size() && !inside_poly; i++) {
-  //   // check if it is in the outer ring first
-  //   if (in_ring(xx, polys[i][0].dump())) {
-  //     bool in_hole = false;
-  //     int k = 1;
-  //     // check for the point in any of the holes
-  //     while (k < polys[i].size() && !in_hole) {
-  //       if (in_ring(xx, polys[i][k].dump())) {
-  //         in_hole = true;
-  //       }
-  //       k++;
-  //     }
-  //     if (!in_hole) {
-  //       inside_poly = true;
-  //     }
-  //   }
-  // }
-  // return inside_poly;
+  bool inside_poly = false;
+  for (int i = 0; i < polys.size() && !inside_poly; i++) {
+    Rprintf("iterator: %d\n", i);
+
+    // check if it is in the outer ring first
+    json fart = polys[0];
+    std::string yy = fart[1].dump();
+    // Rprintf("%s", yy)
+    if (in_ring(xx, yy)) {
+      // Rprintf("here");
+      bool in_hole = false;
+      int k = 1;
+      // check for the point in any of the holes
+      while (k < polys[i].size() && !in_hole) {
+        // Rprintf("fart");
+        if (in_ring(xx, polys[i][k].dump())) {
+          in_hole = true;
+        }
+        k++;
+      }
+      if (!in_hole) {
+        inside_poly = true;
+      }
+    }
+  }
+  return inside_poly;
+}
+
+
+// [[Rcpp::export]]
+bool fart_cpp(String point, String polygon) {
+  std::string xx = get_coord(point);
+  std::string polygons = polygon;
+  auto poly = json::parse(polygons);
+
+  json polys = poly["geometry"]["coordinates"];
+
+  // normalize to multipolygon
+  if (poly["geometry"]["type"].dump() == "\"Polygon\"") {
+    json polysa;
+    polysa.push_back(polys);
+    json polys = polysa;
+    // std::string zz = polys.dump();
+    // return zz;
+  }
+
+  json fart = polys[0];
+  bool vv = fart.is_array();
+  // std::string vv = fart[0].dump();
+  return vv;
 }
 
 // for (var i = 0, insidePoly = false; i < polys.length && !insidePoly; i++) {

@@ -5,6 +5,18 @@
 
 using namespace Rcpp;
 
+// bearing
+double bearing(std::string start, std::string end);
+RcppExport SEXP geoops_bearing(SEXP startSEXP, SEXP endSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< std::string >::type start(startSEXP);
+    Rcpp::traits::input_parameter< std::string >::type end(endSEXP);
+    rcpp_result_gen = Rcpp::wrap(bearing(start, end));
+    return rcpp_result_gen;
+END_RCPP
+}
 // get_coord
 String get_coord(String x);
 RcppExport SEXP geoops_get_coord(SEXP xSEXP) {
@@ -29,7 +41,7 @@ BEGIN_RCPP
 END_RCPP
 }
 // inside_cpp
-String inside_cpp(String point, String polygon);
+bool inside_cpp(String point, String polygon);
 RcppExport SEXP geoops_inside_cpp(SEXP pointSEXP, SEXP polygonSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
@@ -37,6 +49,18 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< String >::type point(pointSEXP);
     Rcpp::traits::input_parameter< String >::type polygon(polygonSEXP);
     rcpp_result_gen = Rcpp::wrap(inside_cpp(point, polygon));
+    return rcpp_result_gen;
+END_RCPP
+}
+// fart_cpp
+bool fart_cpp(String point, String polygon);
+RcppExport SEXP geoops_fart_cpp(SEXP pointSEXP, SEXP polygonSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< String >::type point(pointSEXP);
+    Rcpp::traits::input_parameter< String >::type polygon(polygonSEXP);
+    rcpp_result_gen = Rcpp::wrap(fart_cpp(point, polygon));
     return rcpp_result_gen;
 END_RCPP
 }

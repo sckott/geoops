@@ -1,5 +1,6 @@
 .Rproj.user
 .Rhistory
 .RData
-oldtravis.yml
-
+src/*.o
+src/*.so
+src/*.a

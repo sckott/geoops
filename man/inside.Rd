@@ -58,6 +58,7 @@ polygon <- '{
     ]]
   }
 }'
+stuff(point, polygon)
 inside(point, polygon)
 }
 

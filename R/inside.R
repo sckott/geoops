@@ -47,7 +47,13 @@
 #'     ]]
 #'   }
 #' }'
+#' stuff(point, polygon)
 #' inside(point, polygon)
 inside <- function(point, polygon) {
-  .Call("geoops_inside_cpp", PACKAGE = "geoops", point, polygon)
+  # .Call("geoops_inside_cpp", PACKAGE = "geoops", point, polygon)
+  stop("not working quite yet", call. = FALSE)
 }
+
+# stuff <- function(point, polygon) {
+#   .Call("geoops_fart_cpp", PACKAGE = "geoops", point, polygon)
+# }
