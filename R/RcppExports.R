@@ -5,6 +5,14 @@ bearing <- function(start, end) {
     .Call('geoops_bearing', PACKAGE = 'geoops', start, end)
 }
 
+distance <- function(start, end, units) {
+    .Call('geoops_distance', PACKAGE = 'geoops', start, end, units)
+}
+
+nearest <- function(target_point, points) {
+    .Call('geoops_nearest', PACKAGE = 'geoops', target_point, points)
+}
+
 get_coord <- function(x) {
     .Call('geoops_get_coord', PACKAGE = 'geoops', x)
 }
@@ -19,17 +27,5 @@ inside_cpp <- function(point, polygon) {
 
 fart_cpp <- function(point, polygon) {
     .Call('geoops_fart_cpp', PACKAGE = 'geoops', point, polygon)
-}
-
-rcpp_hello <- function() {
-    .Call('geoops_rcpp_hello', PACKAGE = 'geoops')
-}
-
-rcpp_str <- function(x) {
-    .Call('geoops_rcpp_str', PACKAGE = 'geoops', x)
-}
-
-rcpp_json <- function() {
-    .Call('geoops_rcpp_json', PACKAGE = 'geoops')
 }
 

@@ -27,7 +27,7 @@
 #'     }
 #' }'
 #'
-#' bearing(point1, point2)
-bearing <- function(point1, point2) {
-  .Call("geoops_bearing", PACKAGE = "geoops", point1, point2)
+#' geo_bearing(point1, point2)
+geo_bearing <- function(point1, point2) {
+  bearing(point1, point2)
 }

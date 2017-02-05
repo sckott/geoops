@@ -22,7 +22,7 @@
 #'     ]]
 #'   }
 #' }'
-#' inside(point, polygon)
+#' geo_inside(point, polygon)
 #'
 #' point <- "[-77, 44]"
 #' point <- '{
@@ -48,8 +48,8 @@
 #'   }
 #' }'
 #' stuff(point, polygon)
-#' inside(point, polygon)
-inside <- function(point, polygon) {
+#' geo_inside(point, polygon)
+geo_inside <- function(point, polygon) {
   # .Call("geoops_inside_cpp", PACKAGE = "geoops", point, polygon)
   stop("not working quite yet", call. = FALSE)
 }

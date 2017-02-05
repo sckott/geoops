@@ -17,6 +17,31 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// distance
+double distance(std::string start, std::string end, std::string units);
+RcppExport SEXP geoops_distance(SEXP startSEXP, SEXP endSEXP, SEXP unitsSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< std::string >::type start(startSEXP);
+    Rcpp::traits::input_parameter< std::string >::type end(endSEXP);
+    Rcpp::traits::input_parameter< std::string >::type units(unitsSEXP);
+    rcpp_result_gen = Rcpp::wrap(distance(start, end, units));
+    return rcpp_result_gen;
+END_RCPP
+}
+// nearest
+std::string nearest(std::string target_point, std::string points);
+RcppExport SEXP geoops_nearest(SEXP target_pointSEXP, SEXP pointsSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< std::string >::type target_point(target_pointSEXP);
+    Rcpp::traits::input_parameter< std::string >::type points(pointsSEXP);
+    rcpp_result_gen = Rcpp::wrap(nearest(target_point, points));
+    return rcpp_result_gen;
+END_RCPP
+}
 // get_coord
 String get_coord(String x);
 RcppExport SEXP geoops_get_coord(SEXP xSEXP) {
@@ -61,37 +86,6 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< String >::type point(pointSEXP);
     Rcpp::traits::input_parameter< String >::type polygon(polygonSEXP);
     rcpp_result_gen = Rcpp::wrap(fart_cpp(point, polygon));
-    return rcpp_result_gen;
-END_RCPP
-}
-// rcpp_hello
-List rcpp_hello();
-RcppExport SEXP geoops_rcpp_hello() {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    rcpp_result_gen = Rcpp::wrap(rcpp_hello());
-    return rcpp_result_gen;
-END_RCPP
-}
-// rcpp_str
-String rcpp_str(String x);
-RcppExport SEXP geoops_rcpp_str(SEXP xSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< String >::type x(xSEXP);
-    rcpp_result_gen = Rcpp::wrap(rcpp_str(x));
-    return rcpp_result_gen;
-END_RCPP
-}
-// rcpp_json
-String rcpp_json();
-RcppExport SEXP geoops_rcpp_json() {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    rcpp_result_gen = Rcpp::wrap(rcpp_json());
     return rcpp_result_gen;
 END_RCPP
 }

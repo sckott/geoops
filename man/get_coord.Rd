@@ -2,27 +2,9 @@
 % Please edit documentation in R/cpp_play.R, R/get_coord.R
 \name{get_coord}
 \alias{get_coord}
-\alias{get_json}
-\alias{get_str}
-\alias{in_ring}
-\alias{parse_bools}
-\alias{parse_ifelse}
-\alias{parse_type}
 \title{Get coordinates}
 \usage{
 get_coord(x)
-
-get_str(x)
-
-get_json()
-
-parse_type(x)
-
-parse_ifelse(x)
-
-parse_bools(x)
-
-in_ring(pt, ring)
 
 get_coord(x)
 }

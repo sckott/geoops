@@ -29,38 +29,26 @@ get_coord <- function(x) {
   .Call("geoops_get_coord", PACKAGE = "geoops", x)
 }
 
-#' @export
-#' @rdname get_coord
 get_str <- function(x) {
   .Call("geoops_rcpp_str", PACKAGE = "geoops", x)
 }
 
-#' @export
-#' @rdname get_coord
 get_json <- function() {
   .Call("geoops_rcpp_json", PACKAGE = "geoops")
 }
 
-#' @export
-#' @rdname get_coord
 parse_type <- function(x) {
   .Call("geoops_rcpp_type", PACKAGE = "geoops", x)
 }
 
-#' @export
-#' @rdname get_coord
 parse_ifelse <- function(x) {
   .Call("geoops_rcpp_ifelse", PACKAGE = "geoops", x)
 }
 
-#' @export
-#' @rdname get_coord
 parse_bools <- function(x) {
   .Call("geoops_rcpp_bools", PACKAGE = "geoops", x)
 }
 
-#' @export
-#' @rdname get_coord
 in_ring <- function(x, y) {
   .Call("geoops_in_ring", PACKAGE = "geoops", x, y)
 }

@@ -6,7 +6,7 @@ using namespace Rcpp;
 #include "json.h"
 using json = nlohmann::json;
 
-std::string get_coord(std::string x) {
+std::string get_coords(std::string x) {
   std::string z = x;
   auto j = json::parse(z);
 
@@ -30,13 +30,14 @@ std::string get_coord(std::string x) {
   }
 }
 
+
 // [[Rcpp::export]]
 double bearing(std::string start, std::string end) {
   const double pie = std::atan(1)*4;
   const double degrees2radians = pie / 180;
   const double radians2degrees = 180 / pie;
-  std::string coordinates1 = get_coord(start);
-  std::string coordinates2 = get_coord(end);
+  std::string coordinates1 = get_coords(start);
+  std::string coordinates2 = get_coords(end);
 
   auto c1 = json::parse(coordinates1);
   auto c2 = json::parse(coordinates2);
