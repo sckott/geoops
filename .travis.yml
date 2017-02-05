@@ -2,6 +2,14 @@ language: r
 sudo: false
 cache: packages
 
+addons:
+  apt:
+    packages:
+      - libprotobuf-dev
+      - libprotoc-dev
+      - protobuf-compiler
+      - valgrind
+
 after_success:
   - Rscript -e 'covr::codecov()'
 
