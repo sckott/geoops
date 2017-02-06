@@ -2,6 +2,12 @@ language: r
 sudo: false
 cache: packages
 
+compiler:
+  - gcc
+
+install:
+  - if [ "$CXX" = "g++" ]; then export CXX="g++-4.8" CC="gcc-4.8"; fi
+
 addons:
   apt:
     packages:
@@ -9,6 +15,10 @@ addons:
       - libprotoc-dev
       - protobuf-compiler
       - valgrind
+      - gcc-4.9
+      - g++-4.9
+    sources:
+      - ubuntu-toolchain-r-test
 
 after_success:
   - Rscript -e 'covr::codecov()'
