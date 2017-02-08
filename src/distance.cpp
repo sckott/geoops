@@ -28,7 +28,7 @@ std::string get_coordss(std::string x) {
       return out;
     }
   }
-}
+};
 
 // Convert a distance measurement from radians to a more friendly unit.
 // @param radians (number) distance in radians across the sphere
@@ -98,3 +98,89 @@ std::string nearest(std::string target_point, std::string points) {
   };
   return nearestPoint;
 }
+
+// std::string point(std::string coordinates, std::string properties) {
+//   if (!Array.isArray(coordinates)) throw new Error('Coordinates must be an array');
+//   if (coordinates.length < 2) throw new Error('Coordinates must be at least 2 numbers long');
+//   return feature({
+//     type: 'Point',
+//     coordinates: coordinates.slice()
+//   }, properties);
+// };
+
+// double length(coords, units) {
+//   double travelled = 0;
+//   double prevCoords = point(coords[0]);
+//   double curCoords = point(coords[0]);
+//   double temp;
+//   for (int i = 1; i < coords.length; i++) {
+//     curCoords.geometry.coordinates = coords[i];
+//     travelled += distance(prevCoords, curCoords, units);
+//     temp = prevCoords;
+//     prevCoords = curCoords;
+//     curCoords = temp;
+//   }
+//   return travelled;
+// };
+
+// std::string lineDistance(std::string line, std::string units) {
+//   std::string ln = line;
+//   auto lnj = json::parse(ln);
+//
+//   if (lnj['type'] == "FeatureCollection") {
+//     std::reduce(lineDistance, 0)
+//     return out;
+//   };
+//
+//   if (lnj['type'] == "Feature") {
+//     geometry = lnj['type']
+//   } else {
+//     geometry = lnj;
+//   };
+//
+//   double d;
+//   double i;
+//
+//   if (geometry['type'] == "LineString") {
+//     return length(geometry['coordinates'], units);
+//   } else if (geometry['type'] == "Polygon"|| geometry['type'] == "MultiLineString") {
+//     double d = 0;
+//     for (int i = 0; i < geometry['coordinates'].size(); i++) {
+//       d += length(geometry['coordinates'][i], units);
+//     };
+//     return d;
+//   } else if (geometry['type'] == "MultiPolygon") {
+//     double d = 0;
+//     for (int i = 0; i < geometry['coordinates'].size(); i++) {
+//       for (int j = 0; j < geometry['coordinates'][i].size(); j++) {
+//         d += length(geometry['coordinates'][i][j], units)
+//       };
+//     };
+//     return d;
+//   } else {
+//     throw std::runtime_error("input must be a LineString, MultiLineString, Polygon, or MultiPolygon Feature or Geometry (or a FeatureCollection containing only those types)")
+//   };
+// }
+
+// std::string foobar(std::string line, std::string units) {
+//   std::string ln = line;
+//   auto lnj = json::parse(ln);
+//
+//   // if (lnj['type'] == "FeatureCollection") {
+//   //   std::reduce(lineDistance, 0)
+//   //   return out;
+//   // };
+//
+//   auto geometry = json::empty();
+//
+//   if (lnj['type'] == "Feature") {
+//     auto geometry = lnj['type'];
+//   } else {
+//     auto geometry = lnj;
+//   };
+//
+//   double d;
+//   double i;
+//
+//   return geometry['coordinates'];
+// }

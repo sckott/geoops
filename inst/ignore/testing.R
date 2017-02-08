@@ -128,3 +128,14 @@ fart(0.5)
 fart2(0.5)
 fart(0.4)
 fart(0.3)
+
+cppFunction('
+  std::string thing(std::string x){
+    if (x == "a") {
+      throw std::invalid_argument("input must");
+    } else {
+      return "fart";
+    }
+  };
+')
+thing()
