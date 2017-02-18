@@ -12,7 +12,6 @@ addons:
   apt:
     packages:
       - valgrind
-      - gcc-4.9
       - g++-4.9
 
 notifications:
