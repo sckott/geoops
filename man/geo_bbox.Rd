@@ -84,5 +84,5 @@ x <- '{
        }
    ]
 }'
-geo_bbox(x)
+# geo_bbox(x)
 }

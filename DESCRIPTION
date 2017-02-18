@@ -2,21 +2,18 @@ Package: geoops
 Type: Package
 Title: 'GeoJSON' Manipulation Operations
 Description: 'GeoJSON' manipulation operations.
-Version: 0.0.4.9130
+Version: 0.0.4.9135
 Authors@R: c(person("Scott", "Chamberlain", role = c("aut", "cre"),
     email = "myrmecocystus@gmail.com"))
 License: MIT + file LICENSE
 URL: https://github.com/ropenscilabs/geoops
 BugReports: https://github.com/ropenscilabs/geoops/issues
 Imports:
-    geojson (>= 0.1.0),
-    jsonlite (>= 1.1),
-    Rcpp (>= 0.12.8)
+    Rcpp (>= 0.12.9)
 Suggests:
     roxygen2 (>= 6.0.1),
     testthat,
-    covr,
-    leaflet
+    covr
 LinkingTo: Rcpp
 SystemRequirements: C++11
 RoxygenNote: 6.0.1

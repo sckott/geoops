@@ -74,7 +74,7 @@
 #'        }
 #'    ]
 #' }'
-#' geo_bbox(x)
+#' # geo_bbox(x)
 geo_bbox <- function(x) {
-  geojson::geo_bbox(unclass(x))
+  #geojson::geo_bbox(unclass(x))
 }
