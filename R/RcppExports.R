@@ -29,3 +29,7 @@ fart_cpp <- function(point, polygon) {
     .Call('geoops_fart_cpp', PACKAGE = 'geoops', point, polygon)
 }
 
+version <- function() {
+    .Call('geoops_version', PACKAGE = 'geoops')
+}
+
