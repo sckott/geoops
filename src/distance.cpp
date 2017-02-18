@@ -6,29 +6,7 @@ using namespace Rcpp;
 #include "json.h"
 using json = nlohmann::json;
 
-std::string get_coordss(std::string x) {
-  std::string z = x;
-  auto j = json::parse(z);
-
-  if (j.is_array()) {
-    return z;
-  } else {
-    if ( j["type"].dump() == "\"Feature\"" &&
-         j.count("geometry") != 0 &&
-         j["geometry"]["type"].dump() == "\"Point\"" &&
-         j["geometry"]["coordinates"].is_array()
-    ) {
-      std::string out = j["geometry"]["coordinates"].dump();
-      return out;
-    } else if (
-        j["type"].dump() == "\"Point\"" &&
-          j["coordinates"].is_array()
-    ) {
-      std::string out = j["coordinates"].dump();
-      return out;
-    }
-  }
-};
+#include "get_coords.h"
 
 // Convert a distance measurement from radians to a more friendly unit.
 // @param radians (number) distance in radians across the sphere
@@ -56,8 +34,8 @@ double radiansToDistance(double radians, std::string units = "kilometers") {
 double distance(std::string start, std::string end, std::string units) {
   const double pie = std::atan(1)*4;
   const double degrees2radians = pie / 180;
-  std::string coordinates1 = get_coordss(start);
-  std::string coordinates2 = get_coordss(end);
+  std::string coordinates1 = get_coords(start);
+  std::string coordinates2 = get_coords(end);
 
   auto c1 = json::parse(coordinates1);
   auto c2 = json::parse(coordinates2);

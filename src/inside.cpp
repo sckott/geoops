@@ -6,30 +6,7 @@ using namespace Rcpp;
 #include "json.h"
 using json = nlohmann::json;
 
-// [[Rcpp::export]]
-String get_coord(String x) {
-  std::string z = x;
-  auto j = json::parse(z);
-
-  if (j.is_array()) {
-    return z;
-  } else {
-    if ( j["type"].dump() == "\"Feature\"" &&
-         j.count("geometry") != 0 &&
-         j["geometry"]["type"].dump() == "\"Point\"" &&
-         j["geometry"]["coordinates"].is_array()
-    ) {
-      std::string out = j["geometry"]["coordinates"].dump();
-      return out;
-    } else if (
-        j["type"].dump() == "\"Point\"" &&
-          j["coordinates"].is_array()
-    ) {
-      std::string out = j["coordinates"].dump();
-      return out;
-    }
-  }
-}
+#include "get_coords.h"
 
 // [[Rcpp::export]]
 bool in_ring(String pt, String ring) {
@@ -66,7 +43,7 @@ bool in_ring(String pt, String ring) {
 
 // [[Rcpp::export]]
 bool inside_cpp(String point, String polygon) {
-  std::string xx = get_coord(point);
+  std::string xx = get_coords(point);
   std::string polygons = polygon;
   auto poly = json::parse(polygons);
 
@@ -115,7 +92,7 @@ bool inside_cpp(String point, String polygon) {
 
 // [[Rcpp::export]]
 bool fart_cpp(String point, String polygon) {
-  std::string xx = get_coord(point);
+  std::string xx = get_coords(point);
   std::string polygons = polygon;
   auto poly = json::parse(polygons);
 

@@ -7,9 +7,9 @@
 geo_nearest(target_point, points)
 }
 \arguments{
-\item{points}{against input point set (FeatureCollection<Point>)}
+\item{target_point}{the reference point (Feature<Point>)}
 
-\item{targetPoint}{the reference point (Feature<Point>)}
+\item{points}{against input point set (FeatureCollection<Point>)}
 }
 \value{
 A (Feature<Point>) the closest point in the set to the reference

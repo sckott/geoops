@@ -42,14 +42,14 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// get_coord
-String get_coord(String x);
-RcppExport SEXP geoops_get_coord(SEXP xSEXP) {
+// get_coords
+std::string get_coords(std::string x);
+RcppExport SEXP geoops_get_coords(SEXP xSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< String >::type x(xSEXP);
-    rcpp_result_gen = Rcpp::wrap(get_coord(x));
+    Rcpp::traits::input_parameter< std::string >::type x(xSEXP);
+    rcpp_result_gen = Rcpp::wrap(get_coords(x));
     return rcpp_result_gen;
 END_RCPP
 }

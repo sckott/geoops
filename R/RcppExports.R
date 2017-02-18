@@ -13,8 +13,8 @@ nearest <- function(target_point, points) {
     .Call('geoops_nearest', PACKAGE = 'geoops', target_point, points)
 }
 
-get_coord <- function(x) {
-    .Call('geoops_get_coord', PACKAGE = 'geoops', x)
+get_coords <- function(x) {
+    .Call('geoops_get_coords', PACKAGE = 'geoops', x)
 }
 
 in_ring <- function(pt, ring) {
