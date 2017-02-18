@@ -2,11 +2,10 @@
 % Please edit documentation in R/geoops-package.R
 \docType{package}
 \name{geoops-package}
-\alias{geoops}
 \alias{geoops-package}
+\alias{geoops}
 \title{geoops}
 \description{
 geoops
 }
 \keyword{package}
-

@@ -5,9 +5,10 @@
 #' closest to the reference. This calculation is geodesic.
 #'
 #' @export
-#' @param {Feature<Point>} targetPoint the reference point
-#' @param {FeatureCollection<Point>} points against input point set
-#' @return {Feature<Point>} the closest point in the set to the reference point
+#' @param targetPoint the reference point (Feature<Point>)
+#' @param points against input point set (FeatureCollection<Point>)
+#' @return A (Feature<Point>) the closest point in the set to the reference
+#' point
 #' @examples
 #' point1 <- '{
 #'   "type": "Feature",

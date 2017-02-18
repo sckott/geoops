@@ -1,6 +1,7 @@
 #' Get coordinates
 #'
 #' @export
+#' @name playing
 #' @param x stuff
 #' @examples \dontrun{
 #' x <- '{"type": "Feature", "geometry": {"type": "Point","coordinates": [1, 2]},"properties": {}}'
@@ -25,13 +26,13 @@
 #' in_ring(pt, ring)
 #' }
 
-get_coord <- function(x) {
-  .Call("geoops_get_coord", PACKAGE = "geoops", x)
-}
-
 get_str <- function(x) {
   .Call("geoops_rcpp_str", PACKAGE = "geoops", x)
 }
+
+# get_coord <- function(x) {
+#   .Call("geoops_get_coord", PACKAGE = "geoops", x)
+# }
 
 get_json <- function() {
   .Call("geoops_rcpp_json", PACKAGE = "geoops")

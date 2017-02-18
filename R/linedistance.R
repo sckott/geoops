@@ -1,4 +1,4 @@
-#' Takes a \code{LineString} or \link{Polygon} and measures its length in
+#' Takes a \code{LineString} or \code{Polygon} and measures its length in
 #' the specified units.
 #'
 #' @export

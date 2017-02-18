@@ -52,18 +52,6 @@
 #' }'
 #'
 #' geo_distance(pt1, pt2, units = "miles")
-#'
-#' # comparison to rgeos
-#' # the geojson points and WKT points are the same, just diff. formats
-#' library(rgeos)
-#' library(microbenchmark)
-#' rgeospt1 <- readWKT("POINT(0.5 0.5)")
-#' rgeospt2 <- readWKT("POINT(2 2)")
-#' microbenchmark::microbenchmark(
-#'   rgeos = rgeos::gDistance(rgeospt1, rgeospt2),
-#'   geoops = geoops::geo_distance(pt1, pt2, units = "miles"),
-#'   times = 1000L
-#' )
 geo_distance <- function(from, to, units) {
   distance(from, to, units)
 }

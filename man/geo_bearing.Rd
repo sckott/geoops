@@ -42,4 +42,3 @@ point2 <- '{
 
 geo_bearing(point1, point2)
 }
-

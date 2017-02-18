@@ -2,7 +2,7 @@
 % Please edit documentation in R/linedistance.R
 \name{geo_line_distance}
 \alias{geo_line_distance}
-\title{Takes a \code{LineString} or \link{Polygon} and measures its length in
+\title{Takes a \code{LineString} or \code{Polygon} and measures its length in
 the specified units.}
 \usage{
 geo_line_distance(line, units)
@@ -18,7 +18,7 @@ kilometers}
 (number) length of the input line
 }
 \description{
-Takes a \code{LineString} or \link{Polygon} and measures its length in
+Takes a \code{LineString} or \code{Polygon} and measures its length in
 the specified units.
 }
 \examples{
@@ -39,4 +39,3 @@ line <- '{
 }'
 len <- geo_line_distance(line, 'miles');
 }
-

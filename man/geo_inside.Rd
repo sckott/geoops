@@ -33,7 +33,7 @@ polygon <- '{
     ]]
   }
 }'
-geo_inside(point, polygon)
+# geo_inside(point, polygon)
 
 point <- "[-77, 44]"
 point <- '{
@@ -58,7 +58,6 @@ polygon <- '{
     ]]
   }
 }'
-stuff(point, polygon)
-geo_inside(point, polygon)
+# stuff(point, polygon)
+# geo_inside(point, polygon)
 }
-
