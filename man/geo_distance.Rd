@@ -4,14 +4,15 @@
 \alias{geo_distance}
 \title{Calculate distance between two GeoJSON points}
 \usage{
-geo_distance(from, to, units)
+geo_distance(from, to, units = "kilometers")
 }
 \arguments{
 \item{from}{Origin point}
 
 \item{to}{Destination point}
 
-\item{units}{(character) Can be degrees, radians, miles, or kilometers}
+\item{units}{(character) Can be degrees, radians, miles, or
+kilometers (default)}
 }
 \value{
 Single numeric value
@@ -42,8 +43,9 @@ point2 <- '{
     }
 }'
 
+geo_distance(point1, point2)
 geo_distance(point1, point2, units = "miles")
-geo_distance(point1, point2, units = "kilometers")
+geo_distance(point1, point2, units = "degrees")
 geo_distance(point1, point2, units = "radians")
 
 pt1 <- '{

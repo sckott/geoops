@@ -89,6 +89,18 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// lineDistance
+double lineDistance(std::string line, std::string units);
+RcppExport SEXP geoops_lineDistance(SEXP lineSEXP, SEXP unitsSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< std::string >::type line(lineSEXP);
+    Rcpp::traits::input_parameter< std::string >::type units(unitsSEXP);
+    rcpp_result_gen = Rcpp::wrap(lineDistance(line, units));
+    return rcpp_result_gen;
+END_RCPP
+}
 // version
 std::string version();
 RcppExport SEXP geoops_version() {

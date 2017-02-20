@@ -1,4 +1,46 @@
 library(Rcpp)
+
+cppFunction('
+  double foo() {
+    NumericVector xx = NumericVector::create(1.0, 2.0, 3.0, 4.0);
+    double f = 0;
+    for (int i = 0; i < xx.size(); i++) {
+      f += xx[i];
+    };
+    return f;
+  };
+')
+foo()
+
+cppFunction("
+  double fart() {
+    return std::vector<double> v(10'000'007, 0.5);
+  };
+")
+fart()
+
+
+cppFunction('
+  std::string fff(std::string p = "") {
+    if (p.size() == 0) {
+      std::string f = "fart";
+    } else {
+      std::string f = "poo";
+    };
+    return f;
+  };
+')
+
+fff('{"a": 5}')
+
+
+cppFunction('
+  double fff(std::string p = "") {
+    return p.size();
+  };
+')
+fff()
+
 cppFunction("
             NumericVector exfun(NumericVector x, int i){
             x = x*i;
@@ -139,3 +181,4 @@ cppFunction('
   };
 ')
 thing()
+
