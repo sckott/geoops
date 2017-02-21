@@ -4,7 +4,7 @@ line <- '{
   "type": "Feature",
   "properties": {},
   "geometry": {
-    "type": "LineString",
+    "type": "Linestring",
     "coordinates": [
       [-77.031669, 38.878605],
       [-77.029609, 38.881946],
@@ -16,9 +16,23 @@ line <- '{
   }
 }'
 
+test_that("destination works well", {
+  expect_is(geo_line_distance(line), "numeric")
+  expect_type(geo_line_distance(line), "double")
+  expect_gt(geo_line_distance(line), 0)
+
+  expect_gte(geo_line_distance(line, 'miles'), 1.6)
+  expect_lte(geo_line_distance(line, 'radians'), 0.001)
+})
+
 test_that("line_distance fails well", {
   expect_error(
     geo_line_distance(line),
     "input must be a LineString, "
+  )
+
+  expect_error(
+    geo_line_distance(),
+    "argument \"line\" is missing"
   )
 })
