@@ -1,6 +1,28 @@
 library(Rcpp)
 
 cppFunction('
+  std::string foo() {
+    List v;
+    v.push_back(5);
+    v.push_back(9);
+    std::string ff = String.Join(String.empty, v.ToArray());
+    return ff;
+  };
+')
+foo()
+
+
+cppFunction('
+  std::vector foo() {
+    std::vector<int> v = {7, 5};
+    std::vector<int> w = {7, 5};
+    std::vector<std::vector<int>> z = {v, w};
+    return z;
+  };
+')
+foo()
+
+cppFunction('
   double foo(std::string y) {
     std::map<std::string,double> xx;
     xx["miles"] = 3960;

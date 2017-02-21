@@ -53,3 +53,38 @@ parse_bools <- function(x) {
 in_ring <- function(x, y) {
   .Call("geoops_in_ring", PACKAGE = "geoops", x, y)
 }
+
+polygon <- function(coordinates, properties = "{}") {
+  .Call("geoops_polygon", PACKAGE = "geoops", coordinates, properties)
+}
+
+point <- function(coordinates, properties = "{}") {
+  .Call("geoops_point", PACKAGE = "geoops", coordinates, properties)
+}
+
+x = '[[
+  [-2.275543, 53.464547],
+  [-2.275543, 53.489271],
+  [-2.215118, 53.489271],
+  [-2.215118, 53.464547],
+  [-2.275543, 53.464547]
+]]'
+prop = '{"name": "poly1", "population": 400}'
+polygon(gsub("\n|\\s+", "", x), prop)
+
+
+circle2 <- function() {
+  .Call("geoops_circle2", PACKAGE = "geoops")
+}
+circle2()
+
+circle3 <- function() {
+  .Call("geoops_circle3", PACKAGE = "geoops")
+}
+circle3()
+
+circle <- function(center, radius, steps, units) {
+  .Call("geoops_circle", PACKAGE = "geoops", center, radius, steps, units)
+}
+circle()
+

@@ -5,6 +5,10 @@ bearing <- function(start, end) {
     .Call('geoops_bearing', PACKAGE = 'geoops', start, end)
 }
 
+circle3 <- function() {
+    .Call('geoops_circle3', PACKAGE = 'geoops')
+}
+
 destination <- function(from, distance, bearing, units) {
     .Call('geoops_destination', PACKAGE = 'geoops', from, distance, bearing, units)
 }
@@ -15,6 +19,10 @@ distance <- function(start, end, units) {
 
 nearest <- function(target_point, points) {
     .Call('geoops_nearest', PACKAGE = 'geoops', target_point, points)
+}
+
+point <- function(coordinates, properties = "{}") {
+    .Call('geoops_point', PACKAGE = 'geoops', coordinates, properties)
 }
 
 get_coords <- function(x) {

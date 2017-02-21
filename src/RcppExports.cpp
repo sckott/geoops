@@ -17,6 +17,16 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// circle3
+std::string circle3();
+RcppExport SEXP geoops_circle3() {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    rcpp_result_gen = Rcpp::wrap(circle3());
+    return rcpp_result_gen;
+END_RCPP
+}
 // destination
 std::string destination(std::string from, double distance, double bearing, std::string units);
 RcppExport SEXP geoops_destination(SEXP fromSEXP, SEXP distanceSEXP, SEXP bearingSEXP, SEXP unitsSEXP) {
@@ -53,6 +63,18 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< std::string >::type target_point(target_pointSEXP);
     Rcpp::traits::input_parameter< std::string >::type points(pointsSEXP);
     rcpp_result_gen = Rcpp::wrap(nearest(target_point, points));
+    return rcpp_result_gen;
+END_RCPP
+}
+// point
+std::string point(std::string coordinates, std::string properties);
+RcppExport SEXP geoops_point(SEXP coordinatesSEXP, SEXP propertiesSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< std::string >::type coordinates(coordinatesSEXP);
+    Rcpp::traits::input_parameter< std::string >::type properties(propertiesSEXP);
+    rcpp_result_gen = Rcpp::wrap(point(coordinates, properties));
     return rcpp_result_gen;
 END_RCPP
 }

@@ -18,6 +18,7 @@ std::string feature(std::string geometry, std::string properties = "{}") {
   return out;
 };
 
+// [[Rcpp::export]]
 std::string point(std::string coordinates, std::string properties = "{}") {
   auto coords = json::parse(coordinates);
   json j;
@@ -25,6 +26,25 @@ std::string point(std::string coordinates, std::string properties = "{}") {
   j["coordinates"] = coords;
   std::string x = j.dump();
   std::string out = feature(x, properties);
+  return out;
+};
+
+std::string polygon(std::string coordinates, std::string properties = "{}") {
+  auto coords = json::parse(coordinates);
+  for (int i = 0; i < coords.size(); i++) {
+    json ring = coords[i];
+    if (ring.size() < 5) {
+      throw std::runtime_error("Each LinearRing of a Polygon must have 4 or more Positions");
+    };
+    for (int j = 0; j < ring[ring.size() - 1].size(); j++) {
+      if (ring[ring.size() - 1][j] != ring[0][j]) {
+        throw std::runtime_error("First and last Position are not equivalent");
+      };
+    };
+  };
+
+  std::string polystr = "{\"type\": \"Polygon\", \"coordinates\": " + coordinates + "}";
+  std::string out = feature(polystr, properties);
   return out;
 };
 
