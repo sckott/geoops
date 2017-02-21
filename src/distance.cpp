@@ -7,29 +7,8 @@ using namespace Rcpp;
 #include "json.h"
 using json = nlohmann::json;
 
+#include "geojson_helpers.h"
 #include "get_coords.h"
-
-// Convert a distance measurement from radians to a more friendly unit.
-// @param radians (number) distance in radians across the sphere
-// @param units (string) can be degrees, radians, miles, inches, yards,
-// metres, meters, kilometres or kilometers (default: kilometers)
-// @return {number} distance
-double radiansToDistance(double radians, std::string units = "kilometers") {
-  std::map<std::string,double> factor;
-  factor["miles"] = 3960;
-  factor["nauticalmiles"] = 3441.145;
-  factor["degrees"] = 57.2957795;
-  factor["radians"] = 1;
-  factor["inches"] = 250905600;
-  factor["yards"] = 6969600;
-  factor["meters"] = 6373000;
-  factor["metres"] = 6373000;
-  factor["kilometers"] = 6373;
-  factor["kilometres"] = 6373;
-  factor["feet"] = 20908792.65;
-  double unit = factor[units];
-  return radians * unit;
-}
 
 // [[Rcpp::export]]
 double distance(std::string start, std::string end, std::string units) {

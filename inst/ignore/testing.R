@@ -1,16 +1,15 @@
 library(Rcpp)
 
 cppFunction('
-  double foo() {
-    NumericVector xx = NumericVector::create(1.0, 2.0, 3.0, 4.0);
-    double f = 0;
-    for (int i = 0; i < xx.size(); i++) {
-      f += xx[i];
-    };
+  double foo(std::string y) {
+    std::map<std::string,double> xx;
+    xx["miles"] = 3960;
+    xx["nauticalmiles"] = 3441.145;
+    double f = xx[y];
     return f;
   };
 ')
-foo()
+foo('nauticalmiles')
 
 cppFunction("
   double fart() {
@@ -35,8 +34,11 @@ fff('{"a": 5}')
 
 
 cppFunction('
-  double fff(std::string p = "") {
-    return p.size();
+  std::string fff() {
+    std::string x = std::to_string(1.0);
+    std::string y = std::to_string(2.0);
+    std::string xx = "[" + x + ", " + y + "]";
+    return xx;
   };
 ')
 fff()

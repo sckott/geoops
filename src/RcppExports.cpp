@@ -17,6 +17,20 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// destination
+std::string destination(std::string from, double distance, double bearing, std::string units);
+RcppExport SEXP geoops_destination(SEXP fromSEXP, SEXP distanceSEXP, SEXP bearingSEXP, SEXP unitsSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< std::string >::type from(fromSEXP);
+    Rcpp::traits::input_parameter< double >::type distance(distanceSEXP);
+    Rcpp::traits::input_parameter< double >::type bearing(bearingSEXP);
+    Rcpp::traits::input_parameter< std::string >::type units(unitsSEXP);
+    rcpp_result_gen = Rcpp::wrap(destination(from, distance, bearing, units));
+    return rcpp_result_gen;
+END_RCPP
+}
 // distance
 double distance(std::string start, std::string end, std::string units);
 RcppExport SEXP geoops_distance(SEXP startSEXP, SEXP endSEXP, SEXP unitsSEXP) {

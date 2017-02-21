@@ -5,6 +5,10 @@ bearing <- function(start, end) {
     .Call('geoops_bearing', PACKAGE = 'geoops', start, end)
 }
 
+destination <- function(from, distance, bearing, units) {
+    .Call('geoops_destination', PACKAGE = 'geoops', from, distance, bearing, units)
+}
+
 distance <- function(start, end, units) {
     .Call('geoops_distance', PACKAGE = 'geoops', start, end, units)
 }
