@@ -1,14 +1,39 @@
+# R for travis: see documentation at https://docs.travis-ci.com/user/languages/r
+
 language: r
-sudo: false
 cache: packages
+
+matrix:
+  include:
+    - os: linux
+      r: oldrel
+    - os: linux
+      r: release
+    - os: linux
+      r: devel
+      env: R_CODECOV=true
+    - os: osx
+      osx_image: xcode8.1
+      latex: false
+      before_install: echo "this is OSX"
 
 addons:
   apt:
+    sources:
+    - ubuntu-toolchain-r-test
     packages:
-      - libv8-dev
+    - gcc-4.9
+    - g++-4.9
+
+before_install:
+  - mkdir -p ~/.R
+  - echo "CC = gcc-4.9 -std=gnu99"    >> ~/.R/Makevars
+  - echo "CXX = g++-4.9"              >> ~/.R/Makevars
+  - echo "CXX1X = g++-4.9 -std=c++11" >> ~/.R/Makevars
+  - echo "CXX1XSTD = -std=c++11"      >> ~/.R/Makevars
 
 after_success:
-  - Rscript -e 'covr::codecov()'
+  - if [[ "${R_CODECOV}" ]]; then R -e 'covr::codecov()'; fi
 
 notifications:
   email:
