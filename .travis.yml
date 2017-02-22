@@ -1,18 +1,7 @@
 language: r
-sudo: false
+sudo: required
+dist: trusty
 cache: packages
-
-compiler:
-  - gcc
-
-install:
-  - if [ "$CXX" = "g++" ]; then export CXX="g++-4.9" CC="gcc-4.9"; fi
-
-addons:
-  apt:
-    packages:
-      - valgrind
-      - g++-4.9
 
 notifications:
   email:
