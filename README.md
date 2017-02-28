@@ -2,7 +2,7 @@ geoops
 =======
 
 
-
+[![Build Status](https://travis-ci.org/ropenscilabs/geoops.svg?branch=master)](https://travis-ci.org/ropenscilabs/geoops)
 
 `geoops` does spatial operations on geojson
 
