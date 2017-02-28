@@ -1,7 +1,7 @@
 /*
     __ _____ _____ _____
  __|  |   __|     |   | |  JSON for Modern C++
-|  |  |__   |  |  | | | |  version 2.1.0
+|  |  |__   |  |  | | | |  version 2.1.1
 |_____|_____|_____|_|___|  https://github.com/nlohmann/json
 
 Licensed under the MIT License <http://opensource.org/licenses/MIT>.
@@ -29,22 +29,23 @@ SOFTWARE.
 #ifndef NLOHMANN_JSON_HPP
 #define NLOHMANN_JSON_HPP
 
-#include <algorithm> // all_of, for_each, transform
+#include <algorithm> // all_of, copy, fill, find, for_each, none_of, remove, reverse, transform
 #include <array> // array
 #include <cassert> // assert
 #include <cctype> // isdigit
 #include <ciso646> // and, not, or
-#include <cmath> // isfinite, ldexp, signbit
+#include <clocale> // lconv, localeconv
+#include <cmath> // isfinite, labs, ldexp, signbit
 #include <cstddef> // nullptr_t, ptrdiff_t, size_t
 #include <cstdint> // int64_t, uint64_t
-#include <cstdlib> // strtod, strtof, strtold, strtoul
+#include <cstdlib> // abort, strtod, strtof, strtold, strtoul, strtoll, strtoull
 #include <cstring> // strlen
 #include <forward_list> // forward_list
 #include <functional> // function, hash, less
 #include <initializer_list> // initializer_list
 #include <iomanip> // setw
 #include <iostream> // istream, ostream
-#include <iterator> // advance, begin, bidirectional_iterator_tag, distance, end, inserter, iterator, iterator_traits, next, random_access_iterator_tag, reverse_iterator
+#include <iterator> // advance, begin, back_inserter, bidirectional_iterator_tag, distance, end, inserter, iterator, iterator_traits, next, random_access_iterator_tag, reverse_iterator
 #include <limits> // numeric_limits
 #include <locale> // locale
 #include <map> // map
@@ -53,7 +54,7 @@ SOFTWARE.
 #include <sstream> // stringstream
 #include <stdexcept> // domain_error, invalid_argument, out_of_range
 #include <string> // getline, stoi, string, to_string
-#include <type_traits> // add_pointer, enable_if, is_arithmetic, is_base_of, is_const, is_constructible, is_convertible, is_floating_point, is_integral, is_nothrow_move_assignable, std::is_nothrow_move_constructible, std::is_pointer, std::is_reference, std::is_same, remove_const, remove_pointer, remove_reference
+#include <type_traits> // add_pointer, conditional, decay, enable_if, false_type, integral_constant, is_arithmetic, is_base_of, is_const, is_constructible, is_convertible, is_default_constructible, is_enum, is_floating_point, is_integral, is_nothrow_move_assignable, is_nothrow_move_constructible, is_pointer, is_reference, is_same, is_scalar, is_signed, remove_const, remove_cv, remove_pointer, remove_reference, true_type, underlying_type
 #include <utility> // declval, forward, make_pair, move, pair, swap
 #include <vector> // vector
 
@@ -523,8 +524,9 @@ struct has_to_json
 // to_json //
 /////////////
 
-template<typename BasicJsonType>
-void to_json(BasicJsonType& j, typename BasicJsonType::boolean_t b) noexcept
+template<typename BasicJsonType, typename T, enable_if_t<
+             std::is_same<T, typename BasicJsonType::boolean_t>::value, int> = 0>
+void to_json(BasicJsonType& j, T b) noexcept
 {
     external_constructor<value_t::boolean>::construct(j, b);
 }
@@ -672,7 +674,7 @@ template<typename BasicJsonType, typename UnscopedEnumType,
          enable_if_t<is_unscoped_enum<UnscopedEnumType>::value, int> = 0>
 void from_json(const BasicJsonType& j, UnscopedEnumType& e)
 {
-    typename std::underlying_type<UnscopedEnumType>::type val = e;
+    typename std::underlying_type<UnscopedEnumType>::type val;
     get_arithmetic_value(j, val);
     e = static_cast<UnscopedEnumType>(val);
 }
@@ -916,7 +918,7 @@ struct adl_serializer
     @ref basic_json class (either explicit or via conversion operators).
 
     @param[in] j         JSON value to read from
-    @param[in, out] val  value to write to
+    @param[in,out] val  value to write to
     */
     template<typename BasicJsonType, typename ValueType>
     static void from_json(BasicJsonType&& j, ValueType& val) noexcept(
@@ -931,7 +933,7 @@ struct adl_serializer
     This function is usually called by the constructors of the @ref basic_json
     class.
 
-    @param[in, out] j  JSON value to write to
+    @param[in,out] j  JSON value to write to
     @param[in] val     value to read from
     */
     template<typename BasicJsonType, typename ValueType>
@@ -1135,10 +1137,7 @@ class basic_json
         result["url"] = "https://github.com/nlohmann/json";
         result["version"] =
         {
-            {"string", "2.1.0"},
-            {"major", 2},
-            {"minor", 1},
-            {"patch", 0},
+            {"string", "2.1.1"}, {"major", 2}, {"minor", 1}, {"patch", 1}
         };
 
 #ifdef _WIN32
@@ -1746,7 +1745,7 @@ class basic_json
                 {
                     if (t == value_t::null)
                     {
-                        JSON_THROW(std::domain_error("961c151d2e87f2686a955a9be24d316f1362bf21 2.1.0")); // LCOV_EXCL_LINE
+                        JSON_THROW(std::domain_error("961c151d2e87f2686a955a9be24d316f1362bf21 2.1.1")); // LCOV_EXCL_LINE
                     }
                     break;
                 }
@@ -2646,22 +2645,15 @@ class basic_json
     string_t dump(const int indent = -1) const
     {
         std::stringstream ss;
-        // fix locale problems
-        ss.imbue(std::locale::classic());
-
-        // 6, 15 or 16 digits of precision allows round-trip IEEE 754
-        // string->float->string, string->double->string or string->long
-        // double->string; to be safe, we read this value from
-        // std::numeric_limits<number_float_t>::digits10
-        ss.precision(std::numeric_limits<double>::digits10);
+        serializer s(ss);
 
         if (indent >= 0)
         {
-            dump(ss, true, static_cast<unsigned int>(indent));
+            s.dump(*this, true, static_cast<unsigned int>(indent));
         }
         else
         {
-            dump(ss, false, 0);
+            s.dump(*this, false, 0);
         }
 
         return ss.str();
@@ -6204,6 +6196,582 @@ class basic_json
     /// @name serialization
     /// @{
 
+  private:
+    /*!
+    @brief wrapper around the serialization functions
+    */
+    class serializer
+    {
+      public:
+        /*!
+        @param[in] s  output stream to serialize to
+        */
+        serializer(std::ostream& s)
+            : o(s), loc(std::localeconv()),
+              thousands_sep(!loc->thousands_sep ? '\0' : loc->thousands_sep[0]),
+              decimal_point(!loc->decimal_point ? '\0' : loc->decimal_point[0])
+        {}
+
+        /*!
+        @brief internal implementation of the serialization function
+
+        This function is called by the public member function dump and
+        organizes the serialization internally. The indentation level is
+        propagated as additional parameter. In case of arrays and objects, the
+        function is called recursively.
+
+        - strings and object keys are escaped using `escape_string()`
+        - integer numbers are converted implicitly via `operator<<`
+        - floating-point numbers are converted to a string using `"%g"` format
+
+        @param[in] val             value to serialize
+        @param[in] pretty_print    whether the output shall be pretty-printed
+        @param[in] indent_step     the indent level
+        @param[in] current_indent  the current indent level (only used internally)
+        */
+        void dump(const basic_json& val,
+                  const bool pretty_print,
+                  const unsigned int indent_step,
+                  const unsigned int current_indent = 0)
+        {
+            switch (val.m_type)
+            {
+                case value_t::object:
+                {
+                    if (val.m_value.object->empty())
+                    {
+                        o.write("{}", 2);
+                        return;
+                    }
+
+                    if (pretty_print)
+                    {
+                        o.write("{\n", 2);
+
+                        // variable to hold indentation for recursive calls
+                        const auto new_indent = current_indent + indent_step;
+                        if (indent_string.size() < new_indent)
+                        {
+                            indent_string.resize(new_indent, ' ');
+                        }
+
+                        // first n-1 elements
+                        auto i = val.m_value.object->cbegin();
+                        for (size_t cnt = 0; cnt < val.m_value.object->size() - 1; ++cnt, ++i)
+                        {
+                            o.write(indent_string.c_str(), new_indent);
+                            o.put('\"');
+                            dump_escaped(i->first);
+                            o.write("\": ", 3);
+                            dump(i->second, true, indent_step, new_indent);
+                            o.write(",\n", 2);
+                        }
+
+                        // last element
+                        assert(i != val.m_value.object->cend());
+                        o.write(indent_string.c_str(), new_indent);
+                        o.put('\"');
+                        dump_escaped(i->first);
+                        o.write("\": ", 3);
+                        dump(i->second, true, indent_step, new_indent);
+
+                        o.put('\n');
+                        o.write(indent_string.c_str(), current_indent);
+                        o.put('}');
+                    }
+                    else
+                    {
+                        o.put('{');
+
+                        // first n-1 elements
+                        auto i = val.m_value.object->cbegin();
+                        for (size_t cnt = 0; cnt < val.m_value.object->size() - 1; ++cnt, ++i)
+                        {
+                            o.put('\"');
+                            dump_escaped(i->first);
+                            o.write("\":", 2);
+                            dump(i->second, false, indent_step, current_indent);
+                            o.put(',');
+                        }
+
+                        // last element
+                        assert(i != val.m_value.object->cend());
+                        o.put('\"');
+                        dump_escaped(i->first);
+                        o.write("\":", 2);
+                        dump(i->second, false, indent_step, current_indent);
+
+                        o.put('}');
+                    }
+
+                    return;
+                }
+
+                case value_t::array:
+                {
+                    if (val.m_value.array->empty())
+                    {
+                        o.write("[]", 2);
+                        return;
+                    }
+
+                    if (pretty_print)
+                    {
+                        o.write("[\n", 2);
+
+                        // variable to hold indentation for recursive calls
+                        const auto new_indent = current_indent + indent_step;
+                        if (indent_string.size() < new_indent)
+                        {
+                            indent_string.resize(new_indent, ' ');
+                        }
+
+                        // first n-1 elements
+                        for (auto i = val.m_value.array->cbegin(); i != val.m_value.array->cend() - 1; ++i)
+                        {
+                            o.write(indent_string.c_str(), new_indent);
+                            dump(*i, true, indent_step, new_indent);
+                            o.write(",\n", 2);
+                        }
+
+                        // last element
+                        assert(not val.m_value.array->empty());
+                        o.write(indent_string.c_str(), new_indent);
+                        dump(val.m_value.array->back(), true, indent_step, new_indent);
+
+                        o.put('\n');
+                        o.write(indent_string.c_str(), current_indent);
+                        o.put(']');
+                    }
+                    else
+                    {
+                        o.put('[');
+
+                        // first n-1 elements
+                        for (auto i = val.m_value.array->cbegin(); i != val.m_value.array->cend() - 1; ++i)
+                        {
+                            dump(*i, false, indent_step, current_indent);
+                            o.put(',');
+                        }
+
+                        // last element
+                        assert(not val.m_value.array->empty());
+                        dump(val.m_value.array->back(), false, indent_step, current_indent);
+
+                        o.put(']');
+                    }
+
+                    return;
+                }
+
+                case value_t::string:
+                {
+                    o.put('\"');
+                    dump_escaped(*val.m_value.string);
+                    o.put('\"');
+                    return;
+                }
+
+                case value_t::boolean:
+                {
+                    if (val.m_value.boolean)
+                    {
+                        o.write("true", 4);
+                    }
+                    else
+                    {
+                        o.write("false", 5);
+                    }
+                    return;
+                }
+
+                case value_t::number_integer:
+                {
+                    dump_integer(val.m_value.number_integer);
+                    return;
+                }
+
+                case value_t::number_unsigned:
+                {
+                    dump_integer(val.m_value.number_unsigned);
+                    return;
+                }
+
+                case value_t::number_float:
+                {
+                    dump_float(val.m_value.number_float);
+                    return;
+                }
+
+                case value_t::discarded:
+                {
+                    o.write("<discarded>", 11);
+                    return;
+                }
+
+                case value_t::null:
+                {
+                    o.write("null", 4);
+                    return;
+                }
+            }
+        }
+
+      private:
+        /*!
+        @brief calculates the extra space to escape a JSON string
+
+        @param[in] s  the string to escape
+        @return the number of characters required to escape string @a s
+
+        @complexity Linear in the length of string @a s.
+        */
+        static std::size_t extra_space(const string_t& s) noexcept
+        {
+            return std::accumulate(s.begin(), s.end(), size_t{},
+                                   [](size_t res, typename string_t::value_type c)
+            {
+                switch (c)
+                {
+                    case '"':
+                    case '\\':
+                    case '\b':
+                    case '\f':
+                    case '\n':
+                    case '\r':
+                    case '\t':
+                    {
+                        // from c (1 byte) to \x (2 bytes)
+                        return res + 1;
+                    }
+
+                    case 0x00:
+                    case 0x01:
+                    case 0x02:
+                    case 0x03:
+                    case 0x04:
+                    case 0x05:
+                    case 0x06:
+                    case 0x07:
+                    case 0x0b:
+                    case 0x0e:
+                    case 0x0f:
+                    case 0x10:
+                    case 0x11:
+                    case 0x12:
+                    case 0x13:
+                    case 0x14:
+                    case 0x15:
+                    case 0x16:
+                    case 0x17:
+                    case 0x18:
+                    case 0x19:
+                    case 0x1a:
+                    case 0x1b:
+                    case 0x1c:
+                    case 0x1d:
+                    case 0x1e:
+                    case 0x1f:
+                    {
+                        // from c (1 byte) to \uxxxx (6 bytes)
+                        return res + 5;
+                    }
+
+                    default:
+                    {
+                        return res;
+                    }
+                }
+            });
+        }
+
+        /*!
+        @brief dump escaped string
+
+        Escape a string by replacing certain special characters by a sequence
+        of an escape character (backslash) and another character and other
+        control characters by a sequence of "\u" followed by a four-digit hex
+        representation. The escaped string is written to output stream @a o.
+
+        @param[in] s  the string to escape
+
+        @complexity Linear in the length of string @a s.
+        */
+        void dump_escaped(const string_t& s) const
+        {
+            const auto space = extra_space(s);
+            if (space == 0)
+            {
+                o.write(s.c_str(), static_cast<std::streamsize>(s.size()));
+                return;
+            }
+
+            // create a result string of necessary size
+            string_t result(s.size() + space, '\\');
+            std::size_t pos = 0;
+
+            for (const auto& c : s)
+            {
+                switch (c)
+                {
+                    // quotation mark (0x22)
+                    case '"':
+                    {
+                        result[pos + 1] = '"';
+                        pos += 2;
+                        break;
+                    }
+
+                    // reverse solidus (0x5c)
+                    case '\\':
+                    {
+                        // nothing to change
+                        pos += 2;
+                        break;
+                    }
+
+                    // backspace (0x08)
+                    case '\b':
+                    {
+                        result[pos + 1] = 'b';
+                        pos += 2;
+                        break;
+                    }
+
+                    // formfeed (0x0c)
+                    case '\f':
+                    {
+                        result[pos + 1] = 'f';
+                        pos += 2;
+                        break;
+                    }
+
+                    // newline (0x0a)
+                    case '\n':
+                    {
+                        result[pos + 1] = 'n';
+                        pos += 2;
+                        break;
+                    }
+
+                    // carriage return (0x0d)
+                    case '\r':
+                    {
+                        result[pos + 1] = 'r';
+                        pos += 2;
+                        break;
+                    }
+
+                    // horizontal tab (0x09)
+                    case '\t':
+                    {
+                        result[pos + 1] = 't';
+                        pos += 2;
+                        break;
+                    }
+
+                    case 0x00:
+                    case 0x01:
+                    case 0x02:
+                    case 0x03:
+                    case 0x04:
+                    case 0x05:
+                    case 0x06:
+                    case 0x07:
+                    case 0x0b:
+                    case 0x0e:
+                    case 0x0f:
+                    case 0x10:
+                    case 0x11:
+                    case 0x12:
+                    case 0x13:
+                    case 0x14:
+                    case 0x15:
+                    case 0x16:
+                    case 0x17:
+                    case 0x18:
+                    case 0x19:
+                    case 0x1a:
+                    case 0x1b:
+                    case 0x1c:
+                    case 0x1d:
+                    case 0x1e:
+                    case 0x1f:
+                    {
+                        // convert a number 0..15 to its hex representation
+                        // (0..f)
+                        static const char hexify[16] =
+                        {
+                            '0', '1', '2', '3', '4', '5', '6', '7',
+                            '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'
+                        };
+
+                        // print character c as \uxxxx
+                        for (const char m :
+                    { 'u', '0', '0', hexify[c >> 4], hexify[c & 0x0f]
+                        })
+                        {
+                            result[++pos] = m;
+                        }
+
+                        ++pos;
+                        break;
+                    }
+
+                    default:
+                    {
+                        // all other characters are added as-is
+                        result[pos++] = c;
+                        break;
+                    }
+                }
+            }
+
+            assert(pos == s.size() + space);
+            o.write(result.c_str(), static_cast<std::streamsize>(result.size()));
+        }
+
+        /*!
+        @brief dump an integer
+
+        Dump a given integer to output stream @a o. Works internally with
+        @a number_buffer.
+
+        @param[in] x  integer number (signed or unsigned) to dump
+        @tparam NumberType either @a number_integer_t or @a number_unsigned_t
+        */
+        template<typename NumberType, detail::enable_if_t <
+                     std::is_same<NumberType, number_unsigned_t>::value or
+                     std::is_same<NumberType, number_integer_t>::value, int> = 0>
+        void dump_integer(NumberType x)
+        {
+            // special case for "0"
+            if (x == 0)
+            {
+                o.put('0');
+                return;
+            }
+
+            const bool is_negative = x < 0;
+            size_t i = 0;
+
+            // spare 1 byte for '\0'
+            while (x != 0 and i < number_buffer.size() - 1)
+            {
+                const auto digit = std::labs(static_cast<long>(x % 10));
+                number_buffer[i++] = static_cast<char>('0' + digit);
+                x /= 10;
+            }
+
+            // make sure the number has been processed completely
+            assert(x == 0);
+
+            if (is_negative)
+            {
+                // make sure there is capacity for the '-'
+                assert(i < number_buffer.size() - 2);
+                number_buffer[i++] = '-';
+            }
+
+            std::reverse(number_buffer.begin(), number_buffer.begin() + i);
+            o.write(number_buffer.data(), static_cast<std::streamsize>(i));
+        }
+
+        /*!
+        @brief dump a floating-point number
+
+        Dump a given floating-point number to output stream @a o. Works
+        internally with @a number_buffer.
+
+        @param[in] x  floating-point number to dump
+        */
+        void dump_float(number_float_t x)
+        {
+            // special case for 0.0 and -0.0
+            if (x == 0)
+            {
+                if (std::signbit(x))
+                {
+                    o.write("-0.0", 4);
+                }
+                else
+                {
+                    o.write("0.0", 3);
+                }
+                return;
+            }
+
+            // get number of digits for a text -> float -> text round-trip
+            static constexpr auto d = std::numeric_limits<number_float_t>::digits10;
+
+            // the actual conversion
+            long len = snprintf(number_buffer.data(), number_buffer.size(),
+                                "%.*g", d, x);
+
+            // negative value indicates an error
+            assert(len > 0);
+            // check if buffer was large enough
+            assert(static_cast<size_t>(len) < number_buffer.size());
+
+            // erase thousands separator
+            if (thousands_sep != '\0')
+            {
+                const auto end = std::remove(number_buffer.begin(),
+                                             number_buffer.begin() + len,
+                                             thousands_sep);
+                std::fill(end, number_buffer.end(), '\0');
+                assert((end - number_buffer.begin()) <= len);
+                len = (end - number_buffer.begin());
+            }
+
+            // convert decimal point to '.'
+            if (decimal_point != '\0' and decimal_point != '.')
+            {
+                for (auto& c : number_buffer)
+                {
+                    if (c == decimal_point)
+                    {
+                        c = '.';
+                        break;
+                    }
+                }
+            }
+
+            o.write(number_buffer.data(), static_cast<std::streamsize>(len));
+
+            // determine if need to append ".0"
+            const bool value_is_int_like = std::none_of(number_buffer.begin(),
+                                           number_buffer.begin() + len + 1,
+                                           [](char c)
+            {
+                return c == '.' or c == 'e';
+            });
+
+            if (value_is_int_like)
+            {
+                o.write(".0", 2);
+            }
+        }
+
+      private:
+        /// the output of the serializer
+        std::ostream& o;
+
+        /// a (hopefully) large enough character buffer
+        std::array<char, 64> number_buffer{{}};
+
+        /// the locale
+        const std::lconv* loc = nullptr;
+        /// the locale's thousand separator character
+        const char thousands_sep = '\0';
+        /// the locale's decimal point character
+        const char decimal_point = '\0';
+
+        /// the indentation string
+        string_t indent_string = string_t(512, ' ');
+    };
+
+  public:
     /*!
     @brief serialize to stream
 
@@ -6213,10 +6781,6 @@ class basic_json
     `width` of the output stream @a o. For instance, using the manipulator
     `std::setw(4)` on @a o sets the indentation level to `4` and the
     serialization result is the same as calling `dump(4)`.
-
-    @note During serialization, the locale and the precision of the output
-    stream @a o are changed. The original values are restored when the
-    function returns.
 
     @param[in,out] o  stream to serialize to
     @param[in] j  JSON value to serialize
@@ -6239,22 +6803,9 @@ class basic_json
         // reset width to 0 for subsequent calls to this stream
         o.width(0);
 
-        // fix locale problems
-        const auto old_locale = o.imbue(std::locale::classic());
-        // set precision
-
-        // 6, 15 or 16 digits of precision allows round-trip IEEE 754
-        // string->float->string, string->double->string or string->long
-        // double->string; to be safe, we read this value from
-        // std::numeric_limits<number_float_t>::digits10
-        const auto old_precision = o.precision(std::numeric_limits<double>::digits10);
-
         // do the actual serialization
-        j.dump(o, pretty_print, static_cast<unsigned int>(indentation));
-
-        // reset locale and precision
-        o.imbue(old_locale);
-        o.precision(old_precision);
+        serializer s(o);
+        s.dump(j, pretty_print, static_cast<unsigned int>(indentation));
         return o;
     }
 
@@ -6561,6 +7112,11 @@ class basic_json
     /// @{
 
   private:
+    /*!
+    @note Some code in the switch cases has been copied, because otherwise
+          copilers would complain about implicit fallthrough and there is no
+          portable attribute to mute such warnings.
+    */
     template<typename T>
     static void add_to_vector(std::vector<uint8_t>& vec, size_t bytes, const T number)
     {
@@ -6570,24 +7126,31 @@ class basic_json
         {
             case 8:
             {
-                vec.push_back(static_cast<uint8_t>((number >> 070) & 0xff));
-                vec.push_back(static_cast<uint8_t>((number >> 060) & 0xff));
-                vec.push_back(static_cast<uint8_t>((number >> 050) & 0xff));
-                vec.push_back(static_cast<uint8_t>((number >> 040) & 0xff));
-                // intentional fall-through
+                vec.push_back(static_cast<uint8_t>((static_cast<uint64_t>(number) >> 070) & 0xff));
+                vec.push_back(static_cast<uint8_t>((static_cast<uint64_t>(number) >> 060) & 0xff));
+                vec.push_back(static_cast<uint8_t>((static_cast<uint64_t>(number) >> 050) & 0xff));
+                vec.push_back(static_cast<uint8_t>((static_cast<uint64_t>(number) >> 040) & 0xff));
+                vec.push_back(static_cast<uint8_t>((number >> 030) & 0xff));
+                vec.push_back(static_cast<uint8_t>((number >> 020) & 0xff));
+                vec.push_back(static_cast<uint8_t>((number >> 010) & 0xff));
+                vec.push_back(static_cast<uint8_t>(number & 0xff));
+                break;
             }
 
             case 4:
             {
                 vec.push_back(static_cast<uint8_t>((number >> 030) & 0xff));
                 vec.push_back(static_cast<uint8_t>((number >> 020) & 0xff));
-                // intentional fall-through
+                vec.push_back(static_cast<uint8_t>((number >> 010) & 0xff));
+                vec.push_back(static_cast<uint8_t>(number & 0xff));
+                break;
             }
 
             case 2:
             {
                 vec.push_back(static_cast<uint8_t>((number >> 010) & 0xff));
-                // intentional fall-through
+                vec.push_back(static_cast<uint8_t>(number & 0xff));
+                break;
             }
 
             case 1:
@@ -7889,7 +8452,9 @@ class basic_json
                 }
                 else
                 {
-                    val = mant == 0 ? INFINITY : NAN;
+                    val = mant == 0
+                          ? std::numeric_limits<double>::infinity()
+                          : std::numeric_limits<double>::quiet_NaN();
                 }
                 return (half & 0x8000) != 0 ? -val : val;
             }
@@ -7942,9 +8507,11 @@ class basic_json
     vector in MessagePack format.,to_msgpack}
 
     @sa http://msgpack.org
-    @sa @ref from_msgpack(const std::vector<uint8_t>&) for the analogous
-        deserialization
+    @sa @ref from_msgpack(const std::vector<uint8_t>&, const size_t) for the
+        analogous deserialization
     @sa @ref to_cbor(const basic_json& for the related CBOR format
+
+    @since version 2.0.9
     */
     static std::vector<uint8_t> to_msgpack(const basic_json& j)
     {
@@ -7960,6 +8527,7 @@ class basic_json
     serialization format.
 
     @param[in] v  a byte vector in MessagePack format
+    @param[in] start_index the index to start reading from @a v (0 by default)
     @return deserialized JSON value
 
     @throw std::invalid_argument if unsupported features from MessagePack were
@@ -7973,11 +8541,15 @@ class basic_json
 
     @sa http://msgpack.org
     @sa @ref to_msgpack(const basic_json&) for the analogous serialization
-    @sa @ref from_cbor(const std::vector<uint8_t>&) for the related CBOR format
+    @sa @ref from_cbor(const std::vector<uint8_t>&, const size_t) for the
+        related CBOR format
+
+    @since version 2.0.9, parameter @a start_index since 2.1.1
     */
-    static basic_json from_msgpack(const std::vector<uint8_t>& v)
+    static basic_json from_msgpack(const std::vector<uint8_t>& v,
+                                   const size_t start_index = 0)
     {
-        size_t i = 0;
+        size_t i = start_index;
         return from_msgpack_internal(v, i);
     }
 
@@ -7998,9 +8570,11 @@ class basic_json
     vector in CBOR format.,to_cbor}
 
     @sa http://cbor.io
-    @sa @ref from_cbor(const std::vector<uint8_t>&) for the analogous
-        deserialization
+    @sa @ref from_cbor(const std::vector<uint8_t>&, const size_t) for the
+        analogous deserialization
     @sa @ref to_msgpack(const basic_json& for the related MessagePack format
+
+    @since version 2.0.9
     */
     static std::vector<uint8_t> to_cbor(const basic_json& j)
     {
@@ -8016,6 +8590,7 @@ class basic_json
     (Concise Binary Object Representation) serialization format.
 
     @param[in] v  a byte vector in CBOR format
+    @param[in] start_index the index to start reading from @a v (0 by default)
     @return deserialized JSON value
 
     @throw std::invalid_argument if unsupported features from CBOR were used in
@@ -8029,12 +8604,15 @@ class basic_json
 
     @sa http://cbor.io
     @sa @ref to_cbor(const basic_json&) for the analogous serialization
-    @sa @ref from_msgpack(const std::vector<uint8_t>&) for the related
-        MessagePack format
+    @sa @ref from_msgpack(const std::vector<uint8_t>&, const size_t) for the
+        related MessagePack format
+
+    @since version 2.0.9, parameter @a start_index since 2.1.1
     */
-    static basic_json from_cbor(const std::vector<uint8_t>& v)
+    static basic_json from_cbor(const std::vector<uint8_t>& v,
+                                const size_t start_index = 0)
     {
-        size_t i = 0;
+        size_t i = start_index;
         return from_cbor_internal(v, i);
     }
 
@@ -8082,324 +8660,6 @@ class basic_json
         }
     }
 
-  private:
-    /*!
-    @brief calculates the extra space to escape a JSON string
-
-    @param[in] s  the string to escape
-    @return the number of characters required to escape string @a s
-
-    @complexity Linear in the length of string @a s.
-    */
-    static std::size_t extra_space(const string_t& s) noexcept
-    {
-        return std::accumulate(s.begin(), s.end(), size_t{},
-                               [](size_t res, typename string_t::value_type c)
-        {
-            switch (c)
-            {
-                case '"':
-                case '\\':
-                case '\b':
-                case '\f':
-                case '\n':
-                case '\r':
-                case '\t':
-                {
-                    // from c (1 byte) to \x (2 bytes)
-                    return res + 1;
-                }
-
-                default:
-                {
-                    if (c >= 0x00 and c <= 0x1f)
-                    {
-                        // from c (1 byte) to \uxxxx (6 bytes)
-                        return res + 5;
-                    }
-
-                    return res;
-                }
-            }
-        });
-    }
-
-    /*!
-    @brief escape a string
-
-    Escape a string by replacing certain special characters by a sequence of
-    an escape character (backslash) and another character and other control
-    characters by a sequence of "\u" followed by a four-digit hex
-    representation.
-
-    @param[in] s  the string to escape
-    @return  the escaped string
-
-    @complexity Linear in the length of string @a s.
-    */
-    static string_t escape_string(const string_t& s)
-    {
-        const auto space = extra_space(s);
-        if (space == 0)
-        {
-            return s;
-        }
-
-        // create a result string of necessary size
-        string_t result(s.size() + space, '\\');
-        std::size_t pos = 0;
-
-        for (const auto& c : s)
-        {
-            switch (c)
-            {
-                // quotation mark (0x22)
-                case '"':
-                {
-                    result[pos + 1] = '"';
-                    pos += 2;
-                    break;
-                }
-
-                // reverse solidus (0x5c)
-                case '\\':
-                {
-                    // nothing to change
-                    pos += 2;
-                    break;
-                }
-
-                // backspace (0x08)
-                case '\b':
-                {
-                    result[pos + 1] = 'b';
-                    pos += 2;
-                    break;
-                }
-
-                // formfeed (0x0c)
-                case '\f':
-                {
-                    result[pos + 1] = 'f';
-                    pos += 2;
-                    break;
-                }
-
-                // newline (0x0a)
-                case '\n':
-                {
-                    result[pos + 1] = 'n';
-                    pos += 2;
-                    break;
-                }
-
-                // carriage return (0x0d)
-                case '\r':
-                {
-                    result[pos + 1] = 'r';
-                    pos += 2;
-                    break;
-                }
-
-                // horizontal tab (0x09)
-                case '\t':
-                {
-                    result[pos + 1] = 't';
-                    pos += 2;
-                    break;
-                }
-
-                default:
-                {
-                    if (c >= 0x00 and c <= 0x1f)
-                    {
-                        // convert a number 0..15 to its hex representation
-                        // (0..f)
-                        static const char hexify[16] =
-                        {
-                            '0', '1', '2', '3', '4', '5', '6', '7',
-                            '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'
-                        };
-
-                        // print character c as \uxxxx
-                        for (const char m :
-                    { 'u', '0', '0', hexify[c >> 4], hexify[c & 0x0f]
-                        })
-                        {
-                            result[++pos] = m;
-                        }
-
-                        ++pos;
-                    }
-                    else
-                    {
-                        // all other characters are added as-is
-                        result[pos++] = c;
-                    }
-                    break;
-                }
-            }
-        }
-
-        return result;
-    }
-
-    /*!
-    @brief internal implementation of the serialization function
-
-    This function is called by the public member function dump and organizes
-    the serialization internally. The indentation level is propagated as
-    additional parameter. In case of arrays and objects, the function is
-    called recursively. Note that
-
-    - strings and object keys are escaped using `escape_string()`
-    - integer numbers are converted implicitly via `operator<<`
-    - floating-point numbers are converted to a string using `"%g"` format
-
-    @param[out] o              stream to write to
-    @param[in] pretty_print    whether the output shall be pretty-printed
-    @param[in] indent_step     the indent level
-    @param[in] current_indent  the current indent level (only used internally)
-    */
-    void dump(std::ostream& o,
-              const bool pretty_print,
-              const unsigned int indent_step,
-              const unsigned int current_indent = 0) const
-    {
-        // variable to hold indentation for recursive calls
-        unsigned int new_indent = current_indent;
-
-        switch (m_type)
-        {
-            case value_t::object:
-            {
-                if (m_value.object->empty())
-                {
-                    o << "{}";
-                    return;
-                }
-
-                o << "{";
-
-                // increase indentation
-                if (pretty_print)
-                {
-                    new_indent += indent_step;
-                    o << "\n";
-                }
-
-                for (auto i = m_value.object->cbegin(); i != m_value.object->cend(); ++i)
-                {
-                    if (i != m_value.object->cbegin())
-                    {
-                        o << (pretty_print ? ",\n" : ",");
-                    }
-                    o << string_t(new_indent, ' ') << "\""
-                      << escape_string(i->first) << "\":"
-                      << (pretty_print ? " " : "");
-                    i->second.dump(o, pretty_print, indent_step, new_indent);
-                }
-
-                // decrease indentation
-                if (pretty_print)
-                {
-                    new_indent -= indent_step;
-                    o << "\n";
-                }
-
-                o << string_t(new_indent, ' ') + "}";
-                return;
-            }
-
-            case value_t::array:
-            {
-                if (m_value.array->empty())
-                {
-                    o << "[]";
-                    return;
-                }
-
-                o << "[";
-
-                // increase indentation
-                if (pretty_print)
-                {
-                    new_indent += indent_step;
-                    o << "\n";
-                }
-
-                for (auto i = m_value.array->cbegin(); i != m_value.array->cend(); ++i)
-                {
-                    if (i != m_value.array->cbegin())
-                    {
-                        o << (pretty_print ? ",\n" : ",");
-                    }
-                    o << string_t(new_indent, ' ');
-                    i->dump(o, pretty_print, indent_step, new_indent);
-                }
-
-                // decrease indentation
-                if (pretty_print)
-                {
-                    new_indent -= indent_step;
-                    o << "\n";
-                }
-
-                o << string_t(new_indent, ' ') << "]";
-                return;
-            }
-
-            case value_t::string:
-            {
-                o << string_t("\"") << escape_string(*m_value.string) << "\"";
-                return;
-            }
-
-            case value_t::boolean:
-            {
-                o << (m_value.boolean ? "true" : "false");
-                return;
-            }
-
-            case value_t::number_integer:
-            {
-                o << m_value.number_integer;
-                return;
-            }
-
-            case value_t::number_unsigned:
-            {
-                o << m_value.number_unsigned;
-                return;
-            }
-
-            case value_t::number_float:
-            {
-                if (m_value.number_float == 0)
-                {
-                    // special case for zero to get "0.0"/"-0.0"
-                    o << (std::signbit(m_value.number_float) ? "-0.0" : "0.0");
-                }
-                else
-                {
-                    o << m_value.number_float;
-                }
-                return;
-            }
-
-            case value_t::discarded:
-            {
-                o << "<discarded>";
-                return;
-            }
-
-            case value_t::null:
-            {
-                o << "null";
-                return;
-            }
-        }
-    }
 
   private:
     //////////////////////
@@ -11029,7 +11289,7 @@ basic_json_parser_74:
                         // update data to point to the modified bytes
                         if ((len + 1) < buf.size())
                         {
-                            std::copy(m_start, m_end, buf.data());
+                            std::copy(m_start, m_end, buf.begin());
                             buf[len] = 0;
                             buf[ds_pos] = decimal_point_char;
                             data = buf.data();
@@ -11052,7 +11312,7 @@ basic_json_parser_74:
                 // of characters determined by the lexer (len)
                 const bool ok = (endptr == (data + len));
 
-                if (ok and (value == 0.0) and (*data == '-'))
+                if (ok and (value == static_cast<T>(0.0)) and (*data == '-'))
                 {
                     // some implementations forget to negate the zero
                     value = -0.0;
@@ -12334,7 +12594,7 @@ basic_json_parser_74:
         // the valid JSON Patch operations
         enum class patch_operations {add, remove, replace, move, copy, test, invalid};
 
-        const auto get_op = [](const std::string op)
+        const auto get_op = [](const std::string & op)
         {
             if (op == "add")
             {
