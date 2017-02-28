@@ -26,7 +26,7 @@ test_that("destination works well", {
 })
 
 badline <- '{
-  "type": "Feature",
+  "type": "feature",
   "properties": {},
   "geometry": {
     "type": "LineString",
