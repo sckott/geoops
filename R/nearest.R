@@ -1,4 +1,4 @@
-#' Calculate distance between two GeoJSON points
+#' Calculate nearest point to a reference point
 #'
 #' Takes a reference {@link Point|point} and a FeatureCollection of Features
 #' with Point geometries and returns the point from the FeatureCollection
