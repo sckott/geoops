@@ -1,14 +1,42 @@
+# R for travis: see documentation at https://docs.travis-ci.com/user/languages/r
+
 language: r
-sudo: false
 cache: packages
+sudo: required
+dist: trusty
+
+matrix:
+  include:
+    - os: linux
+      r: oldrel
+    - os: linux
+      r: release
+    - os: linux
+      r: devel
+      env: R_CODECOV=true
+    - os: osx
+      osx_image: xcode8.1
+      latex: false
+    - os: osx
+      osx_image: xcode6.4
+      latex: false
 
 addons:
   apt:
+    sources:
+    - ubuntu-toolchain-r-test
     packages:
-      - libv8-dev
+    - r-cran-roxygen2
+    - r-cran-testthat
+    - r-cran-covr
+    - g++-6
+
+before_install:
+  - mkdir -p ~/.R
+  - if [ "${TRAVIS_OS_NAME}" == "linux" ]; then echo "CXX1X = g++-6" >> ~/.R/Makevars; fi
 
 after_success:
-  - Rscript -e 'covr::codecov()'
+  - if [[ "${R_CODECOV}" ]]; then R -e 'covr::codecov()'; fi
 
 notifications:
   email:
