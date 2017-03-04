@@ -2,7 +2,7 @@
 % Please edit documentation in R/nearest.R
 \name{geo_nearest}
 \alias{geo_nearest}
-\title{Calculate distance between two GeoJSON points}
+\title{Calculate nearest point to a reference point}
 \usage{
 geo_nearest(target_point, points)
 }

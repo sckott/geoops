@@ -1,9 +1,10 @@
 #' Takes one or more features and returns their area
 #' in square meters.
 #'
-#' @param {(Feature|FeatureCollection)} input input features
-#' @return {number} area in square meters
-#' @example
+#' @export
+#' @param x (character) a [data-Feature] or [data-FeatureCollection]
+#' @return (numeric) area in square meters
+#' @examples
 #' polygons <- '{
 #'   "type": "FeatureCollection",
 #'   "features": [
@@ -37,6 +38,4 @@
 #'   ]
 #' }'
 #' geo_area(polygons)
-geo_area <- function(x) {
-  area(x)
-}
+geo_area <- function(x) area(x)
