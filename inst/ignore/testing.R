@@ -1,15 +1,20 @@
 library(Rcpp)
 
+double wgs84_RADIUS = 6378137;
+double wgs84_FLATTENING_DENOM = 298.257223563;
+double wgs84_FLATTENING = 1/wgs84_FLATTENING_DENOM;
+double wgs84_POLAR_RADIUS = wgs84_RADIUS * (1 - wgs84_FLATTENING);
+
 cppFunction('
-  std::string foo() {
-    List v;
-    v.push_back(5);
-    v.push_back(9);
-    std::string ff = String.Join(String.empty, v.ToArray());
-    return ff;
-  };
+  double fart() {
+    double wgs84_RADIUS = 6378137;
+    double wgs84_FLATTENING_DENOM = 298.257223563;
+    double wgs84_FLATTENING = 1/wgs84_FLATTENING_DENOM;
+    double wgs84_POLAR_RADIUS = wgs84_RADIUS * (1 - wgs84_FLATTENING);
+    return wgs84_POLAR_RADIUS;
+  }
 ')
-foo()
+fart()
 
 
 cppFunction('

@@ -5,6 +5,39 @@
 
 using namespace Rcpp;
 
+// ringArea
+double ringArea(std::string x);
+RcppExport SEXP geoops_ringArea(SEXP xSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< std::string >::type x(xSEXP);
+    rcpp_result_gen = Rcpp::wrap(ringArea(x));
+    return rcpp_result_gen;
+END_RCPP
+}
+// geometry
+double geometry(std::string x);
+RcppExport SEXP geoops_geometry(SEXP xSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< std::string >::type x(xSEXP);
+    rcpp_result_gen = Rcpp::wrap(geometry(x));
+    return rcpp_result_gen;
+END_RCPP
+}
+// area
+double area(std::string inp);
+RcppExport SEXP geoops_area(SEXP inpSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< std::string >::type inp(inpSEXP);
+    rcpp_result_gen = Rcpp::wrap(area(inp));
+    return rcpp_result_gen;
+END_RCPP
+}
 // bearing
 double bearing(std::string start, std::string end);
 RcppExport SEXP geoops_bearing(SEXP startSEXP, SEXP endSEXP) {
