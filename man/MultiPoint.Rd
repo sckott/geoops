@@ -8,13 +8,13 @@ For type "MultiPoint", the "coordinates" member must be an array of
 positions.
 }
 \examples{
-{
+'{
 "type": "MultiPoint",
 "coordinates": [
    [100.0, 0.0],
    [101.0, 1.0]
  ]
-}
+}'
 }
 \seealso{
 Other geo types: \code{\link{FeatureCollection}},

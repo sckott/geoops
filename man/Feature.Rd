@@ -17,7 +17,7 @@ be included as a member of the feature object with the name "id".
 }
 }
 \examples{
-{
+'{
   "type": "Feature",
   "properties": {
     "population": 200
@@ -26,7 +26,7 @@ be included as a member of the feature object with the name "id".
     "type": "Point",
     "coordinates": [10.724029, 59.926807]
   }
-}
+}'
 }
 \seealso{
 Other geo types: \code{\link{FeatureCollection}},

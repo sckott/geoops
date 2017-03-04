@@ -6,11 +6,11 @@
 #' @name MultiPoint
 #' @family geo types
 #' @examples
-#' {
+#' '{
 #' "type": "MultiPoint",
 #' "coordinates": [
 #'    [100.0, 0.0],
 #'    [101.0, 1.0]
 #'  ]
-#' }
+#' }'
 NULL

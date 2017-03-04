@@ -15,7 +15,7 @@
 #' @name Feature
 #' @family geo types
 #' @examples
-#' {
+#' '{
 #'   "type": "Feature",
 #'   "properties": {
 #'     "population": 200
@@ -24,5 +24,5 @@
 #'     "type": "Point",
 #'     "coordinates": [10.724029, 59.926807]
 #'   }
-#' }
+#' }'
 NULL

@@ -8,7 +8,7 @@
 #' @name FeatureCollection
 #' @family geo types
 #' @examples
-#' {
+#' '{
 #'   "type": "FeatureCollection",
 #'   "features": [
 #'     {
@@ -22,5 +22,5 @@
 #'       }
 #'     }
 #'   ]
-#' }
+#' }'
 NULL

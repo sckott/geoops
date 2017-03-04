@@ -9,11 +9,11 @@
 #' @name LineString
 #' @family geo types
 #' @examples
-#' {
+#' '{
 #' "type": "LineString",
 #' "coordinates": [
 #'    [100.0, 0.0],
 #'    [101.0, 1.0]
 #'  ]
-#' }
+#' }'
 NULL

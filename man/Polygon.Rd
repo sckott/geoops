@@ -9,7 +9,7 @@ coordinate arrays. For Polygons with multiple rings, the first must be the
 exterior ring and any others must be interior rings or holes.
 }
 \examples{
-{
+'{
 "type": "Polygon",
 "coordinates": [
   [
@@ -20,7 +20,7 @@ exterior ring and any others must be interior rings or holes.
     [100.0, 0.0]
    ]
  ]
-}
+}'
 }
 \seealso{
 Other geo types: \code{\link{FeatureCollection}},

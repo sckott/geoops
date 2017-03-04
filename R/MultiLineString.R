@@ -6,11 +6,11 @@
 #' @name MultiLineString
 #' @family geo types
 #' @examples
-#' {
+#' '{
 #'  "type": "MultiLineString",
 #'  "coordinates": [
 #'      [[ -105, 39 ], [ -105, 39 ]],
 #'      [[ -105, 39 ], [ -105, 39 ]]
 #'   ]
-#' }
+#' }'
 NULL

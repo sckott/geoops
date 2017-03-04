@@ -6,7 +6,7 @@
 #' @name GeometryCollection
 #' @family geo types
 #' @examples
-#' {
+#' '{
 #'    "type": "GeometryCollection",
 #'    "geometries": [ {
 #'      "type": "Point",
@@ -16,5 +16,5 @@
 #'    "coordinates": [ [101.0, 0.0], [102.0, 1.0] ]
 #'    }
 #'  ]
-#' }
+#' }'
 NULL

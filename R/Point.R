@@ -4,9 +4,9 @@
 #'
 #' @name Point
 #' @family geo types
-#' @examples
-#' {
+#' @examples:
+#' '{
 #' "type": "Point",
 #' "coordinates": [100.0, 0.0]
-#' }
+#' }'
 NULL

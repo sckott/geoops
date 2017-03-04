@@ -8,13 +8,13 @@ For type "MultiLineString", the "coordinates" member must be an array of
 LineString coordinate arrays.
 }
 \examples{
-{
+'{
  "type": "MultiLineString",
  "coordinates": [
      [[ -105, 39 ], [ -105, 39 ]],
      [[ -105, 39 ], [ -105, 39 ]]
   ]
-}
+}'
 }
 \seealso{
 Other geo types: \code{\link{FeatureCollection}},

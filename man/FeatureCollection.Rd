@@ -10,7 +10,7 @@ name "features". The value corresponding to "features" is an array. Each
 element in the array is a feature object as defined above.
 }
 \examples{
-{
+'{
   "type": "FeatureCollection",
   "features": [
     {
@@ -24,7 +24,7 @@ element in the array is a feature object as defined above.
       }
     }
   ]
-}
+}'
 }
 \seealso{
 Other geo types: \code{\link{Feature}},

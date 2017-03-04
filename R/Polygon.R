@@ -7,7 +7,7 @@
 #' @name Polygon
 #' @family geo types
 #' @examples
-#' {
+#' '{
 #' "type": "Polygon",
 #' "coordinates": [
 #'   [
@@ -18,5 +18,5 @@
 #'     [100.0, 0.0]
 #'    ]
 #'  ]
-#' }
+#' }'
 NULL
