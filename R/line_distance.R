@@ -3,7 +3,7 @@
 #' FIXME: doesn't support FeatureCollection's yet - fix c++ code
 #'
 #' @export
-#' @param line line to measure
+#' @param line a [LineString] to measure
 #' @param units (character) Can be degrees, radians, miles, or
 #' kilometers (default)
 #' @return Single numeric value

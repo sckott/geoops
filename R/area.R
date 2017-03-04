@@ -2,7 +2,7 @@
 #' in square meters.
 #'
 #' @export
-#' @param x (character) a [data-Feature] or [data-FeatureCollection]
+#' @param x (character) a [Feature] or [FeatureCollection]
 #' @return (numeric) area in square meters
 #' @examples
 #' polygons <- '{

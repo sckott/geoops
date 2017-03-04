@@ -7,16 +7,16 @@
 geo_nearest(target_point, points)
 }
 \arguments{
-\item{target_point}{the reference point (Feature<Point>)}
+\item{target_point}{the reference point \link{Feature}<\link{Point}>}
 
-\item{points}{against input point set (FeatureCollection<Point>)}
+\item{points}{against input point set \link{FeatureCollection}<\link{Point}>}
 }
 \value{
-A (Feature<Point>) the closest point in the set to the reference
-point
+A \link{Feature}<\link{Point}> the closest point in the set to
+the reference point
 }
 \description{
-Takes a reference {@link Point|point} and a FeatureCollection of Features
+Takes a reference \link{Point} and a FeatureCollection of Features
 with Point geometries and returns the point from the FeatureCollection
 closest to the reference. This calculation is geodesic.
 }

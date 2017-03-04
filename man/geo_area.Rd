@@ -8,7 +8,7 @@ in square meters.}
 geo_area(x)
 }
 \arguments{
-\item{x}{(character) a \link{data-Feature} or \link{data-FeatureCollection}}
+\item{x}{(character) a \link{Feature} or \link{FeatureCollection}}
 }
 \value{
 (numeric) area in square meters

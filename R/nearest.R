@@ -1,14 +1,14 @@
 #' Calculate nearest point to a reference point
 #'
-#' Takes a reference {@link Point|point} and a FeatureCollection of Features
+#' Takes a reference [Point] and a FeatureCollection of Features
 #' with Point geometries and returns the point from the FeatureCollection
 #' closest to the reference. This calculation is geodesic.
 #'
 #' @export
-#' @param target_point the reference point (Feature<Point>)
-#' @param points against input point set (FeatureCollection<Point>)
-#' @return A (Feature<Point>) the closest point in the set to the reference
-#' point
+#' @param target_point the reference point [Feature]<[Point]>
+#' @param points against input point set [FeatureCollection]<[Point]>
+#' @return A [Feature]<[Point]> the closest point in the set to
+#' the reference point
 #' @examples
 #' point1 <- '{
 #'   "type": "Feature",

@@ -2,13 +2,13 @@
 % Please edit documentation in R/circle.R
 \name{geo_circle}
 \alias{geo_circle}
-\title{Takes a \link{data-Point} and calculates the circle polygon given a radius
+\title{Takes a \link{Point} and calculates the circle polygon given a radius
 in degrees, radians, miles, or kilometers; and steps for precision.}
 \usage{
 geo_circle(center, radius, steps, units = "kilometers")
 }
 \arguments{
-\item{center}{\link{data-Feature}<\link{data-Point}> center point}
+\item{center}{\link{Feature}<\link{Point}> center point}
 
 \item{radius}{(numeric) radius of the circle}
 
@@ -18,10 +18,10 @@ geo_circle(center, radius, steps, units = "kilometers")
 radians}
 }
 \value{
-\link{data-Feature}<\link{data-Polygon}> circle polygon
+\link{Feature}<\link{Polygon}> circle polygon
 }
 \description{
-Takes a \link{data-Point} and calculates the circle polygon given a radius
+Takes a \link{Point} and calculates the circle polygon given a radius
 in degrees, radians, miles, or kilometers; and steps for precision.
 }
 \examples{

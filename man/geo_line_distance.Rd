@@ -7,7 +7,7 @@
 geo_line_distance(line, units = "kilometers")
 }
 \arguments{
-\item{line}{line to measure}
+\item{line}{a \link{LineString} to measure}
 
 \item{units}{(character) Can be degrees, radians, miles, or
 kilometers (default)}
