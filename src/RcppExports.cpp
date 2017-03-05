@@ -5,6 +5,19 @@
 
 using namespace Rcpp;
 
+// along
+std::string along(std::string x, double dist, std::string units);
+RcppExport SEXP geoops_along(SEXP xSEXP, SEXP distSEXP, SEXP unitsSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< std::string >::type x(xSEXP);
+    Rcpp::traits::input_parameter< double >::type dist(distSEXP);
+    Rcpp::traits::input_parameter< std::string >::type units(unitsSEXP);
+    rcpp_result_gen = Rcpp::wrap(along(x, dist, units));
+    return rcpp_result_gen;
+END_RCPP
+}
 // ringArea
 double ringArea(std::string x);
 RcppExport SEXP geoops_ringArea(SEXP xSEXP) {

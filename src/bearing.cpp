@@ -35,4 +35,4 @@ double bearing(std::string start, std::string end) {
   const double bear = radians2degrees * atan2(a, b);
 
   return bear;
-}
+};
