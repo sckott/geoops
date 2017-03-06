@@ -18,6 +18,24 @@ std::string feature(std::string geometry, std::string properties = "{}") {
   return out;
 };
 
+std::string featureCollection(std::string features) {
+  auto feat = json::parse(features);
+
+  json j;
+  j["type"] = "FeatureCollection";
+  j["features"] = feat;
+  std::string out = j.dump();
+  return out;
+};
+
+// std::string featureCollection2(std::array<> features) {
+//   json j;
+//   j["type"] = "FeatureCollection";
+//   j["features"] = features;
+//   std::string out = j.dump();
+//   return out;
+// };
+
 // [[Rcpp::export]]
 std::string point(std::string coordinates, std::string properties = "{}") {
   auto coords = json::parse(coordinates);

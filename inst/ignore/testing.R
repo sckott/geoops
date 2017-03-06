@@ -1,9 +1,17 @@
 library(Rcpp)
 
-double wgs84_RADIUS = 6378137;
-double wgs84_FLATTENING_DENOM = 298.257223563;
-double wgs84_FLATTENING = 1/wgs84_FLATTENING_DENOM;
-double wgs84_POLAR_RADIUS = wgs84_RADIUS * (1 - wgs84_FLATTENING);
+cppFunction('
+  std::vector<int> fart() {
+    std::vector<int> x = {3, 4};
+    return x;
+  };
+')
+fart()
+
+# double wgs84_RADIUS = 6378137;
+# double wgs84_FLATTENING_DENOM = 298.257223563;
+# double wgs84_FLATTENING = 1/wgs84_FLATTENING_DENOM;
+# double wgs84_POLAR_RADIUS = wgs84_RADIUS * (1 - wgs84_FLATTENING);
 
 cppFunction('
   double fart() {
