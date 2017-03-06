@@ -21,10 +21,12 @@ Package API:
 #>  - geo_bearing
 #>  - geo_bbox
 #>  - in_ring
+#>  - geo_area
 #>  - get_coords
 #>  - version
 #>  - geo_nearest
 #>  - geo_inside
+#>  - geo_along
 #>  - geo_distance
 #>  - geo_destination
 #>  - geo_line_distance
@@ -48,7 +50,7 @@ library("geoops")
 
 ```r
 geoops::version()
-#> [1] "{\"compiler\":{\"c++\":\"201103\",\"family\":\"clang\",\"version\":\"8.0.0 (clang-800.0.42.1)\"},\"copyright\":\"(C) 2013-2017 Niels Lohmann\",\"name\":\"JSON for Modern C++\",\"platform\":\"apple\",\"url\":\"https://github.com/nlohmann/json\",\"version\":{\"major\":2,\"minor\":1,\"patch\":0,\"string\":\"2.1.0\"}}"
+#> [1] "{\"compiler\":{\"c++\":\"201103\",\"family\":\"clang\",\"version\":\"8.0.0 (clang-800.0.42.1)\"},\"copyright\":\"(C) 2013-2017 Niels Lohmann\",\"name\":\"JSON for Modern C++\",\"platform\":\"apple\",\"url\":\"https://github.com/nlohmann/json\",\"version\":{\"major\":2,\"minor\":1,\"patch\":1,\"string\":\"2.1.1\"}}"
 ```
 
 ## distance
@@ -195,9 +197,9 @@ microbenchmark::microbenchmark(
   times = 1000L
 )
 #> Unit: microseconds
-#>    expr    min      lq     mean median      uq      max neval
-#>   rgeos 44.903 52.8115 64.66486 59.878 65.3965 1717.143  1000
-#>  geoops 37.785 42.0840 46.69238 44.112 47.7295  132.332  1000
+#>    expr    min      lq     mean  median      uq      max neval
+#>   rgeos 44.068 51.1795 79.88681 60.1375 77.5725 4696.816  1000
+#>  geoops 34.290 39.7335 52.06457 43.2590 53.0500  326.147  1000
 ```
 
 

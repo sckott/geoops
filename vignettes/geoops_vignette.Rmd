@@ -1,0 +1,164 @@
+---
+title: "Introduction to the geoops package"
+author: "Scott Chamberlain"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    theme: readable
+vignette: >
+  %\VignetteIndexEntry{Introduction to the geoops package}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r echo=FALSE}
+knitr::opts_chunk$set(
+  comment = "#>",
+  collapse = TRUE,
+  warning = FALSE,
+  message = FALSE
+)
+```
+
+`geoops` is an R package.
+
+## Install
+
+If installing `leaflet`
+
+```{r eval=FALSE}
+install.packages("leaflet")
+```
+
+from Github
+
+```{r eval=FALSE}
+devtools::install_github("ropenscilabs/geoops")
+```
+
+```{r}
+library("geoops")
+```
+
+## get json c++ library version info
+
+```{r}
+geoops::version()
+```
+
+## distance
+
+Calculate distance between two GeoJSON points
+
+```{r}
+pt1 <- '{
+  "type": "Feature",
+  "properties": {
+    "marker-color": "#f00"
+   },
+   "geometry": {
+      "type": "Point",
+      "coordinates": [-75.343, 39.984]
+   }
+}'
+#'
+pt2 <- '{
+  "type": "Feature",
+  "properties": {
+     "marker-color": "#0f0"
+   },
+   "geometry": {
+      "type": "Point",
+      "coordinates": [-75.534, 39.123]
+    }
+}'
+```
+
+```{r}
+geo_distance(pt1, pt2)
+```
+
+## bearing
+
+Calculate bearing between two points
+
+```{r}
+geo_bearing(pt1, pt2)
+```
+
+## destination
+
+```{r}
+geo_destination(pt1, 50, 90, 'miles')
+```
+
+## line distance
+
+Calculate length of GeoJSON LineString or Polygon
+
+```{r}
+line <- '{
+  "type": "Feature",
+  "properties": {},
+  "geometry": {
+    "type": "LineString",
+    "coordinates": [
+      [-77.031669, 38.878605],
+      [-77.029609, 38.881946],
+      [-77.020339, 38.884084],
+      [-77.025661, 38.885821],
+      [-77.021884, 38.889563],
+      [-77.019824, 38.892368]
+    ]
+  }
+}'
+geo_line_distance(line, units = "kilometers")
+```
+
+## nearest
+
+Calculate nearest point to a reference point
+
+```{r}
+point1 <- '{
+  "type": "Feature",
+  "properties": {
+     "marker-color": "#0f0"
+   },
+  "geometry": {
+     "type": "Point",
+     "coordinates": [28.965797, 41.010086]
+  }
+}'
+#'
+points <- '{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {},
+      "geometry": {
+        "type": "Point",
+        "coordinates": [28.973865, 41.011122]
+      }
+    }, {
+      "type": "Feature",
+      "properties": {},
+      "geometry": {
+        "type": "Point",
+        "coordinates": [28.948459, 41.024204]
+      }
+    }, {
+      "type": "Feature",
+      "properties": {},
+      "geometry": {
+        "type": "Point",
+        "coordinates": [28.938674, 41.013324]
+      }
+    }
+  ]
+}'
+geo_nearest(point1, points)
+```

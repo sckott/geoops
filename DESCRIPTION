@@ -3,7 +3,7 @@ Type: Package
 Title: 'GeoJSON' Manipulation Operations
 Description: 'GeoJSON' manipulation/calculations/etc, what not,
     stuff, and things.
-Version: 0.0.4.9841
+Version: 0.0.4.9843
 Authors@R: c(person("Scott", "Chamberlain", role = c("aut", "cre"),
     email = "myrmecocystus@gmail.com"))
 License: MIT + file LICENSE
@@ -14,8 +14,11 @@ Imports:
 Suggests:
     roxygen2 (>= 6.0.1),
     testthat,
-    covr
+    covr,
+    knitr,
+    rmarkdown
 LinkingTo: Rcpp
 SystemRequirements: C++11
 Roxygen: list(markdown = TRUE)
+VignetteBuilder: knitr
 RoxygenNote: 6.0.1
