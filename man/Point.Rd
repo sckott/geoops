@@ -8,8 +8,8 @@ For type "Point", the "coordinates" member must be a single position.
 }
 \examples{
 '{
-"type": "Point",
-"coordinates": [100.0, 0.0]
+   "type": "Point",
+   "coordinates": [100.0, 0.0]
 }'
 }
 \seealso{

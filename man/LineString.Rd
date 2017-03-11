@@ -12,11 +12,11 @@ geometry type, it is referred to in the Polygon geometry type definition.
 }
 \examples{
 '{
-"type": "LineString",
-"coordinates": [
-   [100.0, 0.0],
-   [101.0, 1.0]
- ]
+   "type": "LineString",
+   "coordinates": [
+      [100.0, 0.0],
+      [101.0, 1.0]
+   ]
 }'
 }
 \seealso{
