@@ -183,6 +183,18 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// planepoint
+double planepoint(std::string point, std::string triangle);
+RcppExport SEXP geoops_planepoint(SEXP pointSEXP, SEXP triangleSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< std::string >::type point(pointSEXP);
+    Rcpp::traits::input_parameter< std::string >::type triangle(triangleSEXP);
+    rcpp_result_gen = Rcpp::wrap(planepoint(point, triangle));
+    return rcpp_result_gen;
+END_RCPP
+}
 // version
 std::string version();
 RcppExport SEXP geoops_version() {

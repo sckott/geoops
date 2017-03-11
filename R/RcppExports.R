@@ -61,6 +61,10 @@ lineDistance <- function(line, units) {
     .Call('geoops_lineDistance', PACKAGE = 'geoops', line, units)
 }
 
+planepoint <- function(point, triangle) {
+    .Call('geoops_planepoint', PACKAGE = 'geoops', point, triangle)
+}
+
 version <- function() {
     .Call('geoops_version', PACKAGE = 'geoops')
 }

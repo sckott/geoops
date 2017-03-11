@@ -12,7 +12,7 @@
 #' cellSize <- 10
 #' units <- 'miles'
 #'
-#' geo_square_grid(bbox, cellSize, units);
+#' geo_square_grid(bbox, cellSize, units)
 geo_square_grid <- function(bbox, cell_size, units = "kilometers") {
   squareGrid(bbox, cell_size, units)
 }
