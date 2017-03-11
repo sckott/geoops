@@ -65,6 +65,10 @@ planepoint <- function(point, triangle) {
     .Call('geoops_planepoint', PACKAGE = 'geoops', point, triangle)
 }
 
+pointGrid <- function(bbox, cellSize, units) {
+    .Call('geoops_pointGrid', PACKAGE = 'geoops', bbox, cellSize, units)
+}
+
 version <- function() {
     .Call('geoops_version', PACKAGE = 'geoops')
 }

@@ -3,7 +3,7 @@ Type: Package
 Title: 'GeoJSON' Manipulation Operations
 Description: 'GeoJSON' manipulation/calculations/etc, what not,
     stuff, and things.
-Version: 0.0.5.9100
+Version: 0.0.5.9130
 Authors@R: c(person("Scott", "Chamberlain", role = c("aut", "cre"),
     email = "myrmecocystus@gmail.com"))
 License: MIT + file LICENSE

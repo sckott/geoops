@@ -195,6 +195,19 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// pointGrid
+std::string pointGrid(std::vector<double> bbox, double cellSize, std::string units);
+RcppExport SEXP geoops_pointGrid(SEXP bboxSEXP, SEXP cellSizeSEXP, SEXP unitsSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< std::vector<double> >::type bbox(bboxSEXP);
+    Rcpp::traits::input_parameter< double >::type cellSize(cellSizeSEXP);
+    Rcpp::traits::input_parameter< std::string >::type units(unitsSEXP);
+    rcpp_result_gen = Rcpp::wrap(pointGrid(bbox, cellSize, units));
+    return rcpp_result_gen;
+END_RCPP
+}
 // version
 std::string version();
 RcppExport SEXP geoops_version() {

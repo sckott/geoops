@@ -47,6 +47,16 @@ std::string point(std::string coordinates, std::string properties = "{}") {
   return out;
 };
 
+std::string point_numvec(std::vector<double> coordinates, std::string properties = "{}") {
+  // auto coords = json::parse(coordinates);
+  json j;
+  j["type"] = "Point";
+  j["coordinates"] = coordinates;
+  std::string x = j.dump();
+  std::string out = feature(x, properties);
+  return out;
+};
+
 std::string polygon(std::string coordinates, std::string properties = "{}") {
   auto coords = json::parse(coordinates);
   for (int i = 0; i < coords.size(); i++) {
