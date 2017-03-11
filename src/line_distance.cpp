@@ -46,9 +46,6 @@ double lineDistance(std::string line, std::string units) {
     geometry = lnj;
   };
 
-  double d;
-  double i;
-
   if (geometry["type"].dump() == "\"LineString\"") {
     return length(geometry["coordinates"].dump(), units);
   } else if (
