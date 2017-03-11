@@ -14,8 +14,7 @@
 #' cellSize <- 1
 #' units <- 'miles'
 #' x <- geo_pointgrid(extent, cellSize, units)
-#' jsonlite::fromJSON(x)
-#' lawn::view(x)
+#' x
 geo_pointgrid <- function(bbox, cell_size, units = "kilometers") {
   pointGrid(bbox, cell_size, units)
 }
