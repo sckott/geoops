@@ -31,11 +31,6 @@ point <- '{
   }
 }'
 
-point <- '{ type: 'Feature',
-  properties: {},
-  geometry: { type: 'Point', coordinates: [ -75.3221, 39.529 ] }
-}'
-
 triangle <- '{
   "type": "Feature",
   "properties": {
@@ -52,11 +47,6 @@ triangle <- '{
       [-75.1221, 39.57]
     ]]
   }
-}'
-
-features <- '{
-  "type": "FeatureCollection",
-  "features": [triangle, point]
 }'
 
 geo_planepoint(point, triangle)
