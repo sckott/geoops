@@ -61,6 +61,10 @@ lineDistance <- function(line, units) {
     .Call('geoops_lineDistance', PACKAGE = 'geoops', line, units)
 }
 
+midpoint <- function(from, to) {
+    .Call('geoops_midpoint', PACKAGE = 'geoops', from, to)
+}
+
 planepoint <- function(point, triangle) {
     .Call('geoops_planepoint', PACKAGE = 'geoops', point, triangle)
 }

@@ -183,6 +183,18 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// midpoint
+std::string midpoint(std::string from, std::string to);
+RcppExport SEXP geoops_midpoint(SEXP fromSEXP, SEXP toSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< std::string >::type from(fromSEXP);
+    Rcpp::traits::input_parameter< std::string >::type to(toSEXP);
+    rcpp_result_gen = Rcpp::wrap(midpoint(from, to));
+    return rcpp_result_gen;
+END_RCPP
+}
 // planepoint
 double planepoint(std::string point, std::string triangle);
 RcppExport SEXP geoops_planepoint(SEXP pointSEXP, SEXP triangleSEXP) {
