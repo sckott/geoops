@@ -1,11 +1,12 @@
 library(Rcpp)
 
-cppFunction('
-  std::vector<int> fart() {
-    std::vector<int> x = {3, 4};
-    return x;
+cppFunction(plugins = "cpp11", "
+  std::vector< std::vector< std::vector<double> > > fart() {
+    std::vector<double> xx = { 1.4, 4.1 };
+    std::vector< std::vector< std::vector<double> > > zz = {{ xx, xx, xx }};
+    return zz;
   };
-')
+")
 fart()
 
 # double wgs84_RADIUS = 6378137;

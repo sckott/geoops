@@ -51,6 +51,17 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// bbox_polygon
+std::string bbox_polygon(std::vector<double> bbox);
+RcppExport SEXP geoops_bbox_polygon(SEXP bboxSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< std::vector<double> >::type bbox(bboxSEXP);
+    rcpp_result_gen = Rcpp::wrap(bbox_polygon(bbox));
+    return rcpp_result_gen;
+END_RCPP
+}
 // bearing
 double bearing(std::string start, std::string end);
 RcppExport SEXP geoops_bearing(SEXP startSEXP, SEXP endSEXP) {

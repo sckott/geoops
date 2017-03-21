@@ -17,6 +17,10 @@ area <- function(inp) {
     .Call('geoops_area', PACKAGE = 'geoops', inp)
 }
 
+bbox_polygon <- function(bbox) {
+    .Call('geoops_bbox_polygon', PACKAGE = 'geoops', bbox)
+}
+
 bearing <- function(start, end) {
     .Call('geoops_bearing', PACKAGE = 'geoops', start, end)
 }
