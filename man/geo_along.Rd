@@ -39,5 +39,5 @@ line <- '{
   }
 }'
 
-geo_along(line, 1, 'miles')
+geo_along(line, 10, 'kilometers')
 }

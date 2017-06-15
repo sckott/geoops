@@ -241,3 +241,32 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+
+static const R_CallMethodDef CallEntries[] = {
+    {"geoops_along", (DL_FUNC) &geoops_along, 3},
+    {"geoops_ringArea", (DL_FUNC) &geoops_ringArea, 1},
+    {"geoops_geometry", (DL_FUNC) &geoops_geometry, 1},
+    {"geoops_area", (DL_FUNC) &geoops_area, 1},
+    {"geoops_bbox_polygon", (DL_FUNC) &geoops_bbox_polygon, 1},
+    {"geoops_bearing", (DL_FUNC) &geoops_bearing, 2},
+    {"geoops_circle3", (DL_FUNC) &geoops_circle3, 0},
+    {"geoops_destination", (DL_FUNC) &geoops_destination, 4},
+    {"geoops_distance", (DL_FUNC) &geoops_distance, 3},
+    {"geoops_nearest", (DL_FUNC) &geoops_nearest, 2},
+    {"geoops_point", (DL_FUNC) &geoops_point, 2},
+    {"geoops_get_coords", (DL_FUNC) &geoops_get_coords, 1},
+    {"geoops_in_ring", (DL_FUNC) &geoops_in_ring, 2},
+    {"geoops_inside_cpp", (DL_FUNC) &geoops_inside_cpp, 2},
+    {"geoops_fart_cpp", (DL_FUNC) &geoops_fart_cpp, 2},
+    {"geoops_lineDistance", (DL_FUNC) &geoops_lineDistance, 2},
+    {"geoops_midpoint", (DL_FUNC) &geoops_midpoint, 2},
+    {"geoops_planepoint", (DL_FUNC) &geoops_planepoint, 2},
+    {"geoops_pointGrid", (DL_FUNC) &geoops_pointGrid, 3},
+    {"geoops_version", (DL_FUNC) &geoops_version, 0},
+    {NULL, NULL, 0}
+};
+
+RcppExport void R_init_geoops(DllInfo *dll) {
+    R_registerRoutines(dll, NULL, CallEntries, NULL, NULL);
+    R_useDynamicSymbols(dll, FALSE);
+}
