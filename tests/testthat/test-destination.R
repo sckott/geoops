@@ -21,7 +21,7 @@ test_that("destination works well", {
 test_that("destination fails well", {
   expect_error(geo_destination(point1, 50, 90, 'stuff'), "Invalid 'units' input")
   expect_error(geo_destination(point1, 50, "foobar"),
-               "not compatible with requested type")
+               "Not compatible with requested type")
 
   expect_error(geo_destination(),
                "argument \"from\" is missing, with no default")

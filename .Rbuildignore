@@ -8,4 +8,5 @@ cran-comments.md
 man-roxygen
 src/*.h
 notes.md
+.github
 
