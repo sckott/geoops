@@ -231,6 +231,19 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// triangleGrid
+std::string triangleGrid(std::vector<double> bbox, int cellSize, std::string units);
+RcppExport SEXP geoops_triangleGrid(SEXP bboxSEXP, SEXP cellSizeSEXP, SEXP unitsSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< std::vector<double> >::type bbox(bboxSEXP);
+    Rcpp::traits::input_parameter< int >::type cellSize(cellSizeSEXP);
+    Rcpp::traits::input_parameter< std::string >::type units(unitsSEXP);
+    rcpp_result_gen = Rcpp::wrap(triangleGrid(bbox, cellSize, units));
+    return rcpp_result_gen;
+END_RCPP
+}
 // version
 std::string version();
 RcppExport SEXP geoops_version() {
@@ -262,6 +275,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"geoops_midpoint", (DL_FUNC) &geoops_midpoint, 2},
     {"geoops_planepoint", (DL_FUNC) &geoops_planepoint, 2},
     {"geoops_pointGrid", (DL_FUNC) &geoops_pointGrid, 3},
+    {"geoops_triangleGrid", (DL_FUNC) &geoops_triangleGrid, 3},
     {"geoops_version", (DL_FUNC) &geoops_version, 0},
     {NULL, NULL, 0}
 };

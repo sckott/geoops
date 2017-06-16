@@ -1,0 +1,66 @@
+#include <Rcpp.h>
+using namespace Rcpp;
+
+// [[Rcpp::plugins(cpp11)]]
+
+#include "json.h"
+using json = nlohmann::json;
+
+#include "geojson_helpers.h"
+#include "get_coords.h"
+#include "distance.h"
+
+// [[Rcpp::export]]
+std::string triangleGrid(std::vector<double> bbox, int cellSize, std::string units) {
+  json fc;
+  fc["type"] = "FeatureCollection";
+  std::vector<double> v1 = { bbox[0], bbox[1] };
+  std::vector<double> v2 = { bbox[2], bbox[1] };
+  std::vector<double> v3 = { bbox[0], bbox[3] };
+  int xFraction = cellSize / (distance(point_numvec(v1), point_numvec(v2), units));
+  int cellWidth = xFraction * (bbox[2] - bbox[0]);
+  int yFraction = cellSize / (distance(point_numvec(v1), point_numvec(v3), units));
+  int cellHeight = yFraction * (bbox[3] - bbox[1]);
+
+  int xi = 0;
+  double currentX = bbox[0];
+  while (currentX <= bbox[2]) {
+    int yi = 0;
+    double currentY = bbox[1];
+
+    std::vector<double> b1 = { currentX, currentY };
+    std::vector<double> b2 = { currentX + cellWidth, currentY + cellHeight };
+    std::vector<double> b3 = { currentX + cellWidth, currentY };
+    std::vector<double> b4 = { currentX, currentY + cellHeight };
+
+    while (currentY <= bbox[3]) {
+      if (xi % 2 == 0 && yi % 2 == 0) {
+        auto p1 = json::parse(polygon(make_coords(b1, b4, b3, b1)));
+        auto p2 = json::parse(polygon(make_coords(b4, b2, b3, b4)));
+        fc["features"].push_back(p1);
+        fc["features"].push_back(p2);
+      } else if (xi % 2 == 0 && yi % 2 == 1) {
+        auto p1 = json::parse(polygon(make_coords(b1, b2, b3, b1)));
+        auto p2 = json::parse(polygon(make_coords(b1, b4, b2, b1)));
+        fc["features"].push_back(p1);
+        fc["features"].push_back(p2);
+      } else if (yi % 2 == 0 && xi % 2 == 1) {
+        auto p1 = json::parse(polygon(make_coords(b1, b4, b2, b1)));
+        auto p2 = json::parse(polygon(make_coords(b1, b2, b3, b1)));
+        fc["features"].push_back(p1);
+        fc["features"].push_back(p2);
+      } else if (yi % 2 == 1 && xi % 2 == 1) {
+        auto p1 = json::parse(polygon(make_coords(b1, b4, b3, b1)));
+        auto p2 = json::parse(polygon(make_coords(b4, b2, b3, b4)));
+        fc["features"].push_back(p1);
+        fc["features"].push_back(p2);
+      };
+      currentY += cellHeight;
+      yi++;
+    };
+    xi++;
+    currentX += cellWidth;
+  };
+  std::string out = fc.dump();
+  return out;
+};

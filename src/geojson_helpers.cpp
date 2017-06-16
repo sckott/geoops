@@ -56,27 +56,7 @@ std::string point_numvec(std::vector<double> coordinates, std::string properties
   return out;
 };
 
-std::string polygon(std::string coordinates, std::string properties = "{}") {
-  auto coords = json::parse(coordinates);
-  for (int i = 0; i < coords.size(); i++) {
-    json ring = coords[i];
-    if (ring.size() < 5) {
-      throw std::runtime_error("Each LinearRing of a Polygon must have 4 or more Positions");
-    };
-    for (int j = 0; j < ring[ring.size() - 1].size(); j++) {
-      if (ring[ring.size() - 1][j] != ring[0][j]) {
-        throw std::runtime_error("First and last Position are not equivalent");
-      };
-    };
-  };
-
-  std::string polystr = "{\"type\": \"Polygon\", \"coordinates\": " + coordinates + "}";
-  std::string out = feature(polystr, properties);
-  return out;
-};
-
 std::string polygon_numvec(std::vector< std::vector< std::vector<double> > > coords, std::string properties = "{}") {
-  // auto coords = json::parse(coordinates);
   for (int i = 0; i < coords.size(); i++) {
     json ring = coords[i];
     if (ring.size() < 5) {
@@ -92,10 +72,45 @@ std::string polygon_numvec(std::vector< std::vector< std::vector<double> > > coo
   json j;
   j["type"] = "Polygon";
   j["coordinates"] = coords;
-  // std::string polystr = "{\"type\": \"Polygon\", \"coordinates\": " + coords + "}";
   std::string polystr = j.dump();
   std::string out = feature(polystr, properties);
   return out;
+};
+
+std::string polygon(
+    // std::vector< std::vector< std::vector<double> > > coordinates,
+    std::vector<double> coordinates,
+    std::string properties = "{}") {
+
+  // auto coords = json::parse(coordinates);
+  // for (int i = 0; i < coords.size(); i++) {
+  //   json ring = coords[i];
+  //   if (ring.size() < 5) {
+  //     throw std::runtime_error("Each LinearRing of a Polygon must have 4 or more Positions");
+  //   };
+  //   for (int j = 0; j < ring[ring.size() - 1].size(); j++) {
+  //     if (ring[ring.size() - 1][j] != ring[0][j]) {
+  //       throw std::runtime_error("First and last Position are not equivalent");
+  //     };
+  //   };
+  // };
+
+  std::string xx = polygon_numvec(coordinates);
+  // std::string polystr = "{\"type\": \"Polygon\", \"coordinates\": " + coordinates + "}";
+  std::string out = feature(xx, properties);
+  return out;
+};
+
+std::vector< std::vector< std::vector<double> > > make_coords(
+    std::vector<double> lowLeft,
+    std::vector<double> lowRight,
+    std::vector<double> topRight,
+    std::vector<double> topLeft) {
+
+  std::vector< std::vector< std::vector<double> > > coords = {{
+    lowLeft, lowRight, topRight, topLeft, lowLeft
+  }};
+  return coords;
 };
 
 // Convert a distance measurement from radians to a more friendly unit.

@@ -77,6 +77,10 @@ pointGrid <- function(bbox, cellSize, units) {
     .Call('geoops_pointGrid', PACKAGE = 'geoops', bbox, cellSize, units)
 }
 
+triangleGrid <- function(bbox, cellSize, units) {
+    .Call('geoops_triangleGrid', PACKAGE = 'geoops', bbox, cellSize, units)
+}
+
 version <- function() {
     .Call('geoops_version', PACKAGE = 'geoops')
 }
