@@ -6,9 +6,9 @@ using namespace Rcpp;
 #include "json.h"
 using json = nlohmann::json;
 
-#include "geojson_helpers.h"
 #include "get_coords.h"
 #include "distance.h"
+#include "geojson_helpers.h"
 
 // [[Rcpp::export]]
 std::string triangleGrid(std::vector<double> bbox, int cellSize, std::string units) {
@@ -35,23 +35,24 @@ std::string triangleGrid(std::vector<double> bbox, int cellSize, std::string uni
 
     while (currentY <= bbox[3]) {
       if (xi % 2 == 0 && yi % 2 == 0) {
-        auto p1 = json::parse(polygon(make_coords(b1, b4, b3, b1)));
-        auto p2 = json::parse(polygon(make_coords(b4, b2, b3, b4)));
+        // std::vector< std::vector< std::vector<double> > > mc1 = make_coords(b1, b4, b3, b1);
+        json p1 = json::parse(polygon(make_coords(b1, b4, b3, b1)));
+        json p2 = json::parse(polygon(make_coords(b4, b2, b3, b4)));
         fc["features"].push_back(p1);
         fc["features"].push_back(p2);
       } else if (xi % 2 == 0 && yi % 2 == 1) {
-        auto p1 = json::parse(polygon(make_coords(b1, b2, b3, b1)));
-        auto p2 = json::parse(polygon(make_coords(b1, b4, b2, b1)));
+        json p1 = json::parse(polygon(make_coords(b1, b2, b3, b1)));
+        json p2 = json::parse(polygon(make_coords(b1, b4, b2, b1)));
         fc["features"].push_back(p1);
         fc["features"].push_back(p2);
       } else if (yi % 2 == 0 && xi % 2 == 1) {
-        auto p1 = json::parse(polygon(make_coords(b1, b4, b2, b1)));
-        auto p2 = json::parse(polygon(make_coords(b1, b2, b3, b1)));
+        json p1 = json::parse(polygon(make_coords(b1, b4, b2, b1)));
+        json p2 = json::parse(polygon(make_coords(b1, b2, b3, b1)));
         fc["features"].push_back(p1);
         fc["features"].push_back(p2);
       } else if (yi % 2 == 1 && xi % 2 == 1) {
-        auto p1 = json::parse(polygon(make_coords(b1, b4, b3, b1)));
-        auto p2 = json::parse(polygon(make_coords(b4, b2, b3, b4)));
+        json p1 = json::parse(polygon(make_coords(b1, b4, b3, b1)));
+        json p2 = json::parse(polygon(make_coords(b4, b2, b3, b4)));
         fc["features"].push_back(p1);
         fc["features"].push_back(p2);
       };

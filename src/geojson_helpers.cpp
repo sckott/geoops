@@ -78,8 +78,7 @@ std::string polygon_numvec(std::vector< std::vector< std::vector<double> > > coo
 };
 
 std::string polygon(
-    // std::vector< std::vector< std::vector<double> > > coordinates,
-    std::vector<double> coordinates,
+    std::vector< std::vector< std::vector<double> > > coordinates,
     std::string properties = "{}") {
 
   // auto coords = json::parse(coordinates);
