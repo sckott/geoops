@@ -2,6 +2,7 @@
 #'
 #' @export
 #' @param x geojson string
+#' @return a string, with coordinates as a JSON array
 #' @examples \dontrun{
 #' x <- '{"type": "Feature", "geometry": {"type": "Point","coordinates": [1, 2]},"properties": {}}'
 #' get_coords(x)
