@@ -57,10 +57,6 @@ inside_cpp <- function(point, polygon) {
     .Call('geoops_inside_cpp', PACKAGE = 'geoops', point, polygon)
 }
 
-fart_cpp <- function(point, polygon) {
-    .Call('geoops_fart_cpp', PACKAGE = 'geoops', point, polygon)
-}
-
 lineDistance <- function(line, units) {
     .Call('geoops_lineDistance', PACKAGE = 'geoops', line, units)
 }

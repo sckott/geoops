@@ -1,30 +1,18 @@
 library(Rcpp)
 
 cppFunction(plugins = "cpp11", "
-  std::vector< std::vector< std::vector<double> > > fart() {
+  std::vector< std::vector< std::vector<double> > > cheese() {
     std::vector<double> xx = { 1.4, 4.1 };
     std::vector< std::vector< std::vector<double> > > zz = {{ xx, xx, xx }};
     return zz;
   };
 ")
-fart()
+cheese()
 
 # double wgs84_RADIUS = 6378137;
 # double wgs84_FLATTENING_DENOM = 298.257223563;
 # double wgs84_FLATTENING = 1/wgs84_FLATTENING_DENOM;
 # double wgs84_POLAR_RADIUS = wgs84_RADIUS * (1 - wgs84_FLATTENING);
-
-cppFunction('
-  double fart() {
-    double wgs84_RADIUS = 6378137;
-    double wgs84_FLATTENING_DENOM = 298.257223563;
-    double wgs84_FLATTENING = 1/wgs84_FLATTENING_DENOM;
-    double wgs84_POLAR_RADIUS = wgs84_RADIUS * (1 - wgs84_FLATTENING);
-    return wgs84_POLAR_RADIUS;
-  }
-')
-fart()
-
 
 cppFunction('
   std::vector foo() {
@@ -48,17 +36,17 @@ cppFunction('
 foo('nauticalmiles')
 
 cppFunction("
-  double fart() {
+  double cheese() {
     return std::vector<double> v(10'000'007, 0.5);
   };
 ")
-fart()
+cheese()
 
 
 cppFunction('
   std::string fff(std::string p = "") {
     if (p.size() == 0) {
-      std::string f = "fart";
+      std::string f = "cheese";
     } else {
       std::string f = "poo";
     };
@@ -194,27 +182,27 @@ cppFunction(plugins = "cpp11", '
 
 
 cppFunction('
-  double fart(double a) {
+  double cheese(double a) {
     return atan2(sqrt(a), sqrt(1 - a));
   }
 ')
 
 cppFunction('
-  double fart2(double a) {
+  double cheese2(double a) {
     return 2 * atan2(sqrt(a), sqrt(1 - a));
   }
 ')
-fart(0.5)
-fart2(0.5)
-fart(0.4)
-fart(0.3)
+cheese(0.5)
+cheese2(0.5)
+cheese(0.4)
+cheese(0.3)
 
 cppFunction('
   std::string thing(std::string x){
     if (x == "a") {
       throw std::invalid_argument("input must");
     } else {
-      return "fart";
+      return "cheese";
     }
   };
 ')

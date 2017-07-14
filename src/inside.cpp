@@ -66,8 +66,8 @@ bool inside_cpp(String point, String polygon) {
     Rprintf("iterator: %d\n", i);
 
     // check if it is in the outer ring first
-    json fart = polys[0];
-    std::string yy = fart[1].dump();
+    json ff = polys[0];
+    std::string yy = ff[1].dump();
     // Rprintf("%s", yy)
     if (in_ring(xx, yy)) {
       // Rprintf("here");
@@ -75,7 +75,7 @@ bool inside_cpp(String point, String polygon) {
       int k = 1;
       // check for the point in any of the holes
       while (k < polys[i].size() && !in_hole) {
-        // Rprintf("fart");
+        // Rprintf("ff");
         if (in_ring(xx, polys[i][k].dump())) {
           in_hole = true;
         }
@@ -89,29 +89,6 @@ bool inside_cpp(String point, String polygon) {
   return inside_poly;
 }
 
-
-// [[Rcpp::export]]
-bool fart_cpp(String point, String polygon) {
-  std::string xx = get_coords(point);
-  std::string polygons = polygon;
-  auto poly = json::parse(polygons);
-
-  json polys = poly["geometry"]["coordinates"];
-
-  // normalize to multipolygon
-  if (poly["geometry"]["type"].dump() == "\"Polygon\"") {
-    json polysa;
-    polysa.push_back(polys);
-    json polys = polysa;
-    // std::string zz = polys.dump();
-    // return zz;
-  }
-
-  json fart = polys[0];
-  bool vv = fart.is_array();
-  // std::string vv = fart[0].dump();
-  return vv;
-}
 
 // for (var i = 0, insidePoly = false; i < polys.length && !insidePoly; i++) {
 //   // check if it is in the outer ring first

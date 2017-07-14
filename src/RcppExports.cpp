@@ -170,18 +170,6 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// fart_cpp
-bool fart_cpp(String point, String polygon);
-RcppExport SEXP geoops_fart_cpp(SEXP pointSEXP, SEXP polygonSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< String >::type point(pointSEXP);
-    Rcpp::traits::input_parameter< String >::type polygon(polygonSEXP);
-    rcpp_result_gen = Rcpp::wrap(fart_cpp(point, polygon));
-    return rcpp_result_gen;
-END_RCPP
-}
 // lineDistance
 double lineDistance(std::string line, std::string units);
 RcppExport SEXP geoops_lineDistance(SEXP lineSEXP, SEXP unitsSEXP) {
@@ -270,7 +258,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"geoops_get_coords", (DL_FUNC) &geoops_get_coords, 1},
     {"geoops_in_ring", (DL_FUNC) &geoops_in_ring, 2},
     {"geoops_inside_cpp", (DL_FUNC) &geoops_inside_cpp, 2},
-    {"geoops_fart_cpp", (DL_FUNC) &geoops_fart_cpp, 2},
     {"geoops_lineDistance", (DL_FUNC) &geoops_lineDistance, 2},
     {"geoops_midpoint", (DL_FUNC) &geoops_midpoint, 2},
     {"geoops_planepoint", (DL_FUNC) &geoops_planepoint, 2},
