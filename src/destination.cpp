@@ -15,8 +15,11 @@ std::string destination(std::string from, double distance, double bearing, std::
   double degrees2radians = pie / 180;
   double radians2degrees = 180 / pie;
   std::string coordinates1 = get_coords(from);
-  double longitude1 = degrees2radians * coordinates1[0];
-  double latitude1 = degrees2radians * coordinates1[1];
+  auto coords = json::parse(coordinates1);
+
+  double longitude1 = degrees2radians * std::stod(coords[0].dump());
+  double latitude1 = degrees2radians * std::stod(coords[1].dump());
+
   double bearing_rad = degrees2radians * bearing;
 
   double radians = distanceToRadians(distance, units);
