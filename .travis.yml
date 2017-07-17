@@ -12,16 +12,19 @@ matrix:
   include:
     - os: linux
       r: oldrel
+      before_install: mkdir -p ~/.R && echo "CXX1X = g++-6" >> ~/.R/Makevars
     - os: linux
       r: release
+      before_install: mkdir -p ~/.R && echo "CXX11 = g++-6" >> ~/.R/Makevars
     - os: linux
       r: devel
+      before_install: mkdir -p ~/.R && echo "CXX11 = g++-6" >> ~/.R/Makevars
       env: R_CODECOV=true
     - os: osx
-      osx_image: xcode8.1
+      osx_image: xcode8.3
       latex: false
     - os: osx
-      osx_image: xcode6.4
+      osx_image: xcode7.3
       latex: false
 
 addons:
@@ -33,10 +36,6 @@ addons:
     - r-cran-testthat
     - r-cran-covr
     - g++-6
-
-before_install:
-  - mkdir -p ~/.R
-  - if [ "${TRAVIS_OS_NAME}" == "linux" ]; then echo "CXX1X = g++-6" >> ~/.R/Makevars; fi
 
 after_success:
   - if [[ "${R_CODECOV}" ]]; then R -e 'covr::codecov()'; fi
