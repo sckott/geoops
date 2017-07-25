@@ -21,8 +21,9 @@ std::string along(std::string x, double dist, std::string units) {
   else throw std::runtime_error("input must be a LineString, Feature, or Geometry");
 
   double travelled = 0;
-  for (int i = 0; i < coords.size(); i++) {
-    if (dist >= travelled && i == coords.size() - 1) break;
+  int n = coords.size();
+  for (int i = 0; i < n; i++) {
+    if (dist >= travelled && i == n - 1) break;
     else if (travelled >= dist) {
       double overshot = dist - travelled;
       if (!overshot) return point(coords[i].dump());
@@ -36,5 +37,5 @@ std::string along(std::string x, double dist, std::string units) {
       travelled += distance(coords[i].dump(), coords[i + 1].dump(), units);
     };
   };
-  return point(coords[coords.size() - 1].dump());
+  return point(coords[n - 1].dump());
 };

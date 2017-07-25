@@ -12,5 +12,5 @@
 #' get_coords(x)
 #' }
 get_coords <- function(x) {
-  .Call("geoops_get_coords", PACKAGE = "geoops", x)
+  get_coords(x)
 }

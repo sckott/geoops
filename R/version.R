@@ -5,5 +5,5 @@
 #' @examples
 #' version()
 version <- function() {
-  .Call("geoops_version", PACKAGE = "geoops")
+  version_nlohmann_json()
 }

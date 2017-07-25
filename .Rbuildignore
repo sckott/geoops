@@ -6,7 +6,6 @@ README.Rmd
 appveyor.yml
 cran-comments.md
 man-roxygen
-src/*.h
 notes.md
 .github
 

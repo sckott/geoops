@@ -3,14 +3,14 @@ Type: Package
 Title: 'GeoJSON' Manipulation Operations
 Description: 'GeoJSON' manipulation/calculations/etc, what not,
     stuff, and things.
-Version: 0.0.6.9210
+Version: 0.0.6.9211
 Authors@R: c(person("Scott", "Chamberlain", role = c("aut", "cre"),
     email = "myrmecocystus@gmail.com"))
 License: MIT + file LICENSE
 URL: https://github.com/ropenscilabs/geoops
 BugReports: https://github.com/ropenscilabs/geoops/issues
 Imports:
-    Rcpp (>= 0.12.9)
+    Rcpp (>= 0.12.12)
 Suggests:
     roxygen2 (>= 6.0.1),
     testthat,

@@ -9,6 +9,9 @@ get_coords(x)
 \arguments{
 \item{x}{geojson string}
 }
+\value{
+a string, with coordinates as a JSON array
+}
 \description{
 Get coordinates
 }

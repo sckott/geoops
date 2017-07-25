@@ -7,7 +7,7 @@ using namespace Rcpp;
 
 // along
 std::string along(std::string x, double dist, std::string units);
-RcppExport SEXP geoops_along(SEXP xSEXP, SEXP distSEXP, SEXP unitsSEXP) {
+RcppExport SEXP _geoops_along(SEXP xSEXP, SEXP distSEXP, SEXP unitsSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -20,7 +20,7 @@ END_RCPP
 }
 // ringArea
 double ringArea(std::string x);
-RcppExport SEXP geoops_ringArea(SEXP xSEXP) {
+RcppExport SEXP _geoops_ringArea(SEXP xSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -31,7 +31,7 @@ END_RCPP
 }
 // geometry
 double geometry(std::string x);
-RcppExport SEXP geoops_geometry(SEXP xSEXP) {
+RcppExport SEXP _geoops_geometry(SEXP xSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -42,7 +42,7 @@ END_RCPP
 }
 // area
 double area(std::string inp);
-RcppExport SEXP geoops_area(SEXP inpSEXP) {
+RcppExport SEXP _geoops_area(SEXP inpSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -53,7 +53,7 @@ END_RCPP
 }
 // bbox_polygon
 std::string bbox_polygon(std::vector<double> bbox);
-RcppExport SEXP geoops_bbox_polygon(SEXP bboxSEXP) {
+RcppExport SEXP _geoops_bbox_polygon(SEXP bboxSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -64,7 +64,7 @@ END_RCPP
 }
 // bearing
 double bearing(std::string start, std::string end);
-RcppExport SEXP geoops_bearing(SEXP startSEXP, SEXP endSEXP) {
+RcppExport SEXP _geoops_bearing(SEXP startSEXP, SEXP endSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -76,7 +76,7 @@ END_RCPP
 }
 // circle3
 std::string circle3();
-RcppExport SEXP geoops_circle3() {
+RcppExport SEXP _geoops_circle3() {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -86,7 +86,7 @@ END_RCPP
 }
 // destination
 std::string destination(std::string from, double distance, double bearing, std::string units);
-RcppExport SEXP geoops_destination(SEXP fromSEXP, SEXP distanceSEXP, SEXP bearingSEXP, SEXP unitsSEXP) {
+RcppExport SEXP _geoops_destination(SEXP fromSEXP, SEXP distanceSEXP, SEXP bearingSEXP, SEXP unitsSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -100,7 +100,7 @@ END_RCPP
 }
 // distance
 double distance(std::string start, std::string end, std::string units);
-RcppExport SEXP geoops_distance(SEXP startSEXP, SEXP endSEXP, SEXP unitsSEXP) {
+RcppExport SEXP _geoops_distance(SEXP startSEXP, SEXP endSEXP, SEXP unitsSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -113,7 +113,7 @@ END_RCPP
 }
 // nearest
 std::string nearest(std::string target_point, std::string points);
-RcppExport SEXP geoops_nearest(SEXP target_pointSEXP, SEXP pointsSEXP) {
+RcppExport SEXP _geoops_nearest(SEXP target_pointSEXP, SEXP pointsSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -125,7 +125,7 @@ END_RCPP
 }
 // point
 std::string point(std::string coordinates, std::string properties);
-RcppExport SEXP geoops_point(SEXP coordinatesSEXP, SEXP propertiesSEXP) {
+RcppExport SEXP _geoops_point(SEXP coordinatesSEXP, SEXP propertiesSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -137,7 +137,7 @@ END_RCPP
 }
 // get_coords
 std::string get_coords(std::string x);
-RcppExport SEXP geoops_get_coords(SEXP xSEXP) {
+RcppExport SEXP _geoops_get_coords(SEXP xSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -148,7 +148,7 @@ END_RCPP
 }
 // in_ring
 bool in_ring(String pt, String ring);
-RcppExport SEXP geoops_in_ring(SEXP ptSEXP, SEXP ringSEXP) {
+RcppExport SEXP _geoops_in_ring(SEXP ptSEXP, SEXP ringSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -160,7 +160,7 @@ END_RCPP
 }
 // inside_cpp
 bool inside_cpp(String point, String polygon);
-RcppExport SEXP geoops_inside_cpp(SEXP pointSEXP, SEXP polygonSEXP) {
+RcppExport SEXP _geoops_inside_cpp(SEXP pointSEXP, SEXP polygonSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -172,7 +172,7 @@ END_RCPP
 }
 // lineDistance
 double lineDistance(std::string line, std::string units);
-RcppExport SEXP geoops_lineDistance(SEXP lineSEXP, SEXP unitsSEXP) {
+RcppExport SEXP _geoops_lineDistance(SEXP lineSEXP, SEXP unitsSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -184,7 +184,7 @@ END_RCPP
 }
 // midpoint
 std::string midpoint(std::string from, std::string to);
-RcppExport SEXP geoops_midpoint(SEXP fromSEXP, SEXP toSEXP) {
+RcppExport SEXP _geoops_midpoint(SEXP fromSEXP, SEXP toSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -196,7 +196,7 @@ END_RCPP
 }
 // planepoint
 double planepoint(std::string point, std::string triangle);
-RcppExport SEXP geoops_planepoint(SEXP pointSEXP, SEXP triangleSEXP) {
+RcppExport SEXP _geoops_planepoint(SEXP pointSEXP, SEXP triangleSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -208,7 +208,7 @@ END_RCPP
 }
 // pointGrid
 std::string pointGrid(std::vector<double> bbox, double cellSize, std::string units);
-RcppExport SEXP geoops_pointGrid(SEXP bboxSEXP, SEXP cellSizeSEXP, SEXP unitsSEXP) {
+RcppExport SEXP _geoops_pointGrid(SEXP bboxSEXP, SEXP cellSizeSEXP, SEXP unitsSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -221,7 +221,7 @@ END_RCPP
 }
 // triangleGrid
 std::string triangleGrid(std::vector<double> bbox, int cellSize, std::string units);
-RcppExport SEXP geoops_triangleGrid(SEXP bboxSEXP, SEXP cellSizeSEXP, SEXP unitsSEXP) {
+RcppExport SEXP _geoops_triangleGrid(SEXP bboxSEXP, SEXP cellSizeSEXP, SEXP unitsSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -232,38 +232,38 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// version
-std::string version();
-RcppExport SEXP geoops_version() {
+// version_nlohmann_json
+std::string version_nlohmann_json();
+RcppExport SEXP _geoops_version_nlohmann_json() {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    rcpp_result_gen = Rcpp::wrap(version());
+    rcpp_result_gen = Rcpp::wrap(version_nlohmann_json());
     return rcpp_result_gen;
 END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
-    {"geoops_along", (DL_FUNC) &geoops_along, 3},
-    {"geoops_ringArea", (DL_FUNC) &geoops_ringArea, 1},
-    {"geoops_geometry", (DL_FUNC) &geoops_geometry, 1},
-    {"geoops_area", (DL_FUNC) &geoops_area, 1},
-    {"geoops_bbox_polygon", (DL_FUNC) &geoops_bbox_polygon, 1},
-    {"geoops_bearing", (DL_FUNC) &geoops_bearing, 2},
-    {"geoops_circle3", (DL_FUNC) &geoops_circle3, 0},
-    {"geoops_destination", (DL_FUNC) &geoops_destination, 4},
-    {"geoops_distance", (DL_FUNC) &geoops_distance, 3},
-    {"geoops_nearest", (DL_FUNC) &geoops_nearest, 2},
-    {"geoops_point", (DL_FUNC) &geoops_point, 2},
-    {"geoops_get_coords", (DL_FUNC) &geoops_get_coords, 1},
-    {"geoops_in_ring", (DL_FUNC) &geoops_in_ring, 2},
-    {"geoops_inside_cpp", (DL_FUNC) &geoops_inside_cpp, 2},
-    {"geoops_lineDistance", (DL_FUNC) &geoops_lineDistance, 2},
-    {"geoops_midpoint", (DL_FUNC) &geoops_midpoint, 2},
-    {"geoops_planepoint", (DL_FUNC) &geoops_planepoint, 2},
-    {"geoops_pointGrid", (DL_FUNC) &geoops_pointGrid, 3},
-    {"geoops_triangleGrid", (DL_FUNC) &geoops_triangleGrid, 3},
-    {"geoops_version", (DL_FUNC) &geoops_version, 0},
+    {"_geoops_along", (DL_FUNC) &_geoops_along, 3},
+    {"_geoops_ringArea", (DL_FUNC) &_geoops_ringArea, 1},
+    {"_geoops_geometry", (DL_FUNC) &_geoops_geometry, 1},
+    {"_geoops_area", (DL_FUNC) &_geoops_area, 1},
+    {"_geoops_bbox_polygon", (DL_FUNC) &_geoops_bbox_polygon, 1},
+    {"_geoops_bearing", (DL_FUNC) &_geoops_bearing, 2},
+    {"_geoops_circle3", (DL_FUNC) &_geoops_circle3, 0},
+    {"_geoops_destination", (DL_FUNC) &_geoops_destination, 4},
+    {"_geoops_distance", (DL_FUNC) &_geoops_distance, 3},
+    {"_geoops_nearest", (DL_FUNC) &_geoops_nearest, 2},
+    {"_geoops_point", (DL_FUNC) &_geoops_point, 2},
+    {"_geoops_get_coords", (DL_FUNC) &_geoops_get_coords, 1},
+    {"_geoops_in_ring", (DL_FUNC) &_geoops_in_ring, 2},
+    {"_geoops_inside_cpp", (DL_FUNC) &_geoops_inside_cpp, 2},
+    {"_geoops_lineDistance", (DL_FUNC) &_geoops_lineDistance, 2},
+    {"_geoops_midpoint", (DL_FUNC) &_geoops_midpoint, 2},
+    {"_geoops_planepoint", (DL_FUNC) &_geoops_planepoint, 2},
+    {"_geoops_pointGrid", (DL_FUNC) &_geoops_pointGrid, 3},
+    {"_geoops_triangleGrid", (DL_FUNC) &_geoops_triangleGrid, 3},
+    {"_geoops_version_nlohmann_json", (DL_FUNC) &_geoops_version_nlohmann_json, 0},
     {NULL, NULL, 0}
 };
 

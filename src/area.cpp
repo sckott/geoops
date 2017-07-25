@@ -44,7 +44,8 @@ double ringArea(std::string x) {
   double area = 0;
 
   auto coords = json::parse(x);
-  double coordsLength = coords.size();
+  int n = coords.size();
+  double coordsLength = n;
 
   if (coordsLength > 2) {
     for (int i = 0; i < coordsLength; i++) {
@@ -78,10 +79,11 @@ double polygonArea(std::string coords) {
   double area = 0;
 
   auto obj = json::parse(coords);
+  int n = obj.size();
 
-  if (obj.size() > 0) {
+  if (n > 0) {
     area += std::abs(ringArea(obj[0].dump()));
-    for (int i = 1; i < obj.size(); i++) {
+    for (int i = 1; i < n; i++) {
       area -= std::abs(ringArea(obj[i].dump()));
     };
   };
@@ -106,12 +108,14 @@ double geometry(std::string x) {
   auto obj = json::parse(x);
 
   int tt = geotypes[obj["type"]];
+  int coordn = obj["coordinates"].size();
+  int objn = obj["geometries"].size();
 
   switch (tt) {
     case 1:
       return polygonArea(obj["coordinates"].dump());
     case 2:
-      for (int i = 0; i < obj["coordinates"].size(); i++) {
+      for (int i = 0; i < coordn; i++) {
         area += polygonArea(obj["coordinates"][i].dump());
       };
       return area;
@@ -121,10 +125,12 @@ double geometry(std::string x) {
     case 6:
       return 0;
     case 7:
-      for (i = 0; i < obj["geometries"].size(); i++) {
+      for (i = 0; i < objn; i++) {
         area += geometry(obj["geometries"][i]);
       };
       return area;
+    default:
+      throw std::runtime_error("Unimplemented GeoJSON type");
   };
 };
 

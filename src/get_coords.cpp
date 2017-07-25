@@ -27,6 +27,8 @@ std::string get_coords(std::string x) {
     ) {
       std::string out = j["coordinates"].dump();
       return out;
+    } else {
+      throw std::runtime_error("get_coords problem ...");
     }
   }
 }
