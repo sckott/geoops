@@ -77,25 +77,28 @@ std::string polygon_numvec(std::vector< std::vector< std::vector<double> > > coo
   return out;
 };
 
-std::string polygon(
-    std::vector< std::vector< std::vector<double> > > coordinates,
-    std::string properties = "{}") {
+std::string polygon_numvec2(std::vector< std::vector< std::vector<double> > > coords) {
+  for (int i = 0; i < coords.size(); i++) {
+    json ring = coords[i];
+    if (ring.size() < 5) {
+      throw std::runtime_error("Each LinearRing of a Polygon must have 4 or more Positions");
+    };
+    for (int j = 0; j < ring[ring.size() - 1].size(); j++) {
+      if (ring[ring.size() - 1][j] != ring[0][j]) {
+        throw std::runtime_error("First and last Position are not equivalent");
+      };
+    };
+  };
 
-  // auto coords = json::parse(coordinates);
-  // for (int i = 0; i < coords.size(); i++) {
-  //   json ring = coords[i];
-  //   if (ring.size() < 5) {
-  //     throw std::runtime_error("Each LinearRing of a Polygon must have 4 or more Positions");
-  //   };
-  //   for (int j = 0; j < ring[ring.size() - 1].size(); j++) {
-  //     if (ring[ring.size() - 1][j] != ring[0][j]) {
-  //       throw std::runtime_error("First and last Position are not equivalent");
-  //     };
-  //   };
-  // };
+  json j;
+  j["type"] = "Polygon";
+  j["coordinates"] = coords;
+  std::string out = j.dump();
+  return out;
+};
 
-  std::string xx = polygon_numvec(coordinates);
-  // std::string polystr = "{\"type\": \"Polygon\", \"coordinates\": " + coordinates + "}";
+std::string polygon(std::vector< std::vector< std::vector<double> > > coordinates, std::string properties = "{}") {
+  std::string xx = polygon_numvec2(coordinates);
   std::string out = feature(xx, properties);
   return out;
 };

@@ -23,15 +23,14 @@ Package API:
 #>  - geo_bbox_polygon
 #>  - geo_pointgrid
 #>  - geo_bbox
-#>  - in_ring
 #>  - geo_area
 #>  - get_coords
 #>  - version
 #>  - geo_nearest
-#>  - geo_inside
 #>  - geo_along
 #>  - geo_distance
 #>  - geo_destination
+#>  - geo_trianglegrid
 #>  - geo_planepoint
 #>  - geo_line_distance
 ```
@@ -107,7 +106,7 @@ geo_bearing(pt1, pt2)
 
 ```r
 geo_destination(pt1, 50, 90, 'miles')
-#> [1] "{\"geometry\":{\"coordinates\":[92.023032,44.995433],\"type\":\"Point\"},\"properties\":{},\"type\":\"Feature\"}"
+#> [1] "{\"geometry\":{\"coordinates\":[-74.398884,39.98017],\"type\":\"Point\"},\"properties\":{},\"type\":\"Feature\"}"
 ```
 
 ## line distance
@@ -201,9 +200,9 @@ microbenchmark::microbenchmark(
   times = 1000L
 )
 #> Unit: microseconds
-#>    expr    min      lq     mean  median      uq      max neval
-#>   rgeos 38.335 44.2405 62.86717 47.2015 56.5025  815.583  1000
-#>  geoops 32.462 37.7850 51.98544 39.9220 46.8975 1322.670  1000
+#>    expr    min     lq      mean  median     uq       max neval
+#>   rgeos 39.049 52.496 169.40400 69.7365 99.964 73766.943  1000
+#>  geoops 30.992 37.932  65.07915 48.7760 75.158  1470.005  1000
 ```
 
 ## Example use case

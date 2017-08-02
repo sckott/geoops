@@ -10,11 +10,9 @@
 #' radians, miles, or kilometers (default)
 #' @return [FeatureCollection]<[Polygon]> grid of polygons
 #' @examples
-#' extent <- c(-96, 31, -84, 40)
-#' cell_size <- 10
-#' units <- "miles"
-#' x <- geo_trianglegrid(extent, cell_size, units)
-#' x
+#' geo_trianglegrid(c(-77.3876, 38.7198, -76.9482, 39.0277), 3, "miles")
+#' geo_trianglegrid(c(-77.3876, 38.7198, -76.9482, 39.0277), 10, "miles")
+#' geo_trianglegrid(c(-77.3876, 38.7198, -76.9482, 39.0277), 30, "miles")
 geo_trianglegrid <- function(bbox, cell_size, units = "kilometers") {
   triangleGrid(bbox, cell_size, units)
 }
