@@ -49,12 +49,12 @@ get_coords <- function(x) {
     .Call('_geoops_get_coords', PACKAGE = 'geoops', x)
 }
 
-in_ring <- function(pt, ring) {
-    .Call('_geoops_in_ring', PACKAGE = 'geoops', pt, ring)
+in_ring <- function(pt, ring, ignoreBoundary = FALSE) {
+    .Call('_geoops_in_ring', PACKAGE = 'geoops', pt, ring, ignoreBoundary)
 }
 
-inside_cpp <- function(point, polygon) {
-    .Call('_geoops_inside_cpp', PACKAGE = 'geoops', point, polygon)
+inside_cpp <- function(point, polygon, ignoreBoundary) {
+    .Call('_geoops_inside_cpp', PACKAGE = 'geoops', point, polygon, ignoreBoundary)
 }
 
 lineDistance <- function(line, units) {

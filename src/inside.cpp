@@ -8,23 +8,40 @@ using json = nlohmann::json;
 
 #include "get_coords.h"
 
+bool in_bbox(std::vector<double> pt, std::vector<double> bbox) {
+  bool out = bbox[0] <= pt[0] && bbox[1] <= pt[1] && bbox[2] >= pt[0] && bbox[3] >= pt[1];
+  return out;
+}
+
+std::vector<double> slicer(std::vector<double> v, int begin, int end) {
+  std::vector<double> v1(v.begin() + begin, v.end() - end);
+  return v1;
+}
+
 // [[Rcpp::export]]
-bool in_ring(String pt, String ring) {
+bool in_ring(std::string pt, std::string ring, bool ignoreBoundary = false) {
   std::string pts = pt;
   std::string rings = ring;
   auto ptj = json::parse(pts);
   auto ringj = json::parse(rings);
-
   bool isInside = false;
-  int j = ringj.size() - 1;
-  for (int i = 0; i < ringj.size(); j = i++) {
+  int rsize = ringj.size();
+  // if (ring[0][0] == ring[rsize- 1][0] && ring[0][1] == ring[rsize - 1][1]) {
+  //   std::vector<double> ring2 = slicer(ring, 0, 1);
+  // };
+  int j = rsize - 1;
+  for (int i = 0; i < rsize; j = i++) {
     double xi = ringj[i][0];
     double yi = ringj[i][1];
     double xj = ringj[j][0];
     double yj = ringj[j][1];
 
-    double ptj0 = ptj[0];
-    double ptj1 = ptj[1];
+    bool onBoundary = (pt[1] * (xi - xj) + yi * (xj - pt[0]) + yj * (pt[0] - xi) == 0) &&
+      ((xi - pt[0]) * (xj - pt[0]) <= 0) && ((yi - pt[1]) * (yj - pt[1]) <= 0);
+    if (onBoundary) return !ignoreBoundary;
+
+    double ptj0 = pt[0];
+    double ptj1 = pt[1];
 
     bool yibool = yi > ptj1;
     bool yjbool = yj > ptj1;
@@ -40,22 +57,24 @@ bool in_ring(String pt, String ring) {
   return isInside;
 }
 
-
 // [[Rcpp::export]]
-bool inside_cpp(String point, String polygon) {
+bool inside_cpp(std::string point, std::string polygon, bool ignoreBoundary) {
   std::string xx = get_coords(point);
+  auto xxj = json::parse(xx);
   std::string polygons = polygon;
   auto poly = json::parse(polygons);
+  std::vector<double> bbox = poly["bbox"];
 
   json polys = poly["geometry"]["coordinates"];
+
+  // Quick elimination if point is not inside bbox
+  if (in_bbox(xxj, bbox) == false) return false;
 
   // normalize to multipolygon
   if (poly["geometry"]["type"].dump() == "\"Polygon\"") {
     json polysa;
     polysa.push_back(polys);
     json polys = polysa;
-    // std::string zz = polys.dump();
-    // return zz;
   }
 
   // std::string vv = polys.dump();

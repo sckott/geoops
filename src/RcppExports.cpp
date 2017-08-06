@@ -147,26 +147,28 @@ BEGIN_RCPP
 END_RCPP
 }
 // in_ring
-bool in_ring(String pt, String ring);
-RcppExport SEXP _geoops_in_ring(SEXP ptSEXP, SEXP ringSEXP) {
+bool in_ring(std::string pt, std::string ring, bool ignoreBoundary);
+RcppExport SEXP _geoops_in_ring(SEXP ptSEXP, SEXP ringSEXP, SEXP ignoreBoundarySEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< String >::type pt(ptSEXP);
-    Rcpp::traits::input_parameter< String >::type ring(ringSEXP);
-    rcpp_result_gen = Rcpp::wrap(in_ring(pt, ring));
+    Rcpp::traits::input_parameter< std::string >::type pt(ptSEXP);
+    Rcpp::traits::input_parameter< std::string >::type ring(ringSEXP);
+    Rcpp::traits::input_parameter< bool >::type ignoreBoundary(ignoreBoundarySEXP);
+    rcpp_result_gen = Rcpp::wrap(in_ring(pt, ring, ignoreBoundary));
     return rcpp_result_gen;
 END_RCPP
 }
 // inside_cpp
-bool inside_cpp(String point, String polygon);
-RcppExport SEXP _geoops_inside_cpp(SEXP pointSEXP, SEXP polygonSEXP) {
+bool inside_cpp(std::string point, std::string polygon, bool ignoreBoundary);
+RcppExport SEXP _geoops_inside_cpp(SEXP pointSEXP, SEXP polygonSEXP, SEXP ignoreBoundarySEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< String >::type point(pointSEXP);
-    Rcpp::traits::input_parameter< String >::type polygon(polygonSEXP);
-    rcpp_result_gen = Rcpp::wrap(inside_cpp(point, polygon));
+    Rcpp::traits::input_parameter< std::string >::type point(pointSEXP);
+    Rcpp::traits::input_parameter< std::string >::type polygon(polygonSEXP);
+    Rcpp::traits::input_parameter< bool >::type ignoreBoundary(ignoreBoundarySEXP);
+    rcpp_result_gen = Rcpp::wrap(inside_cpp(point, polygon, ignoreBoundary));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -256,8 +258,8 @@ static const R_CallMethodDef CallEntries[] = {
     {"_geoops_nearest", (DL_FUNC) &_geoops_nearest, 2},
     {"_geoops_point", (DL_FUNC) &_geoops_point, 2},
     {"_geoops_get_coords", (DL_FUNC) &_geoops_get_coords, 1},
-    {"_geoops_in_ring", (DL_FUNC) &_geoops_in_ring, 2},
-    {"_geoops_inside_cpp", (DL_FUNC) &_geoops_inside_cpp, 2},
+    {"_geoops_in_ring", (DL_FUNC) &_geoops_in_ring, 3},
+    {"_geoops_inside_cpp", (DL_FUNC) &_geoops_inside_cpp, 3},
     {"_geoops_lineDistance", (DL_FUNC) &_geoops_lineDistance, 2},
     {"_geoops_midpoint", (DL_FUNC) &_geoops_midpoint, 2},
     {"_geoops_planepoint", (DL_FUNC) &_geoops_planepoint, 2},
