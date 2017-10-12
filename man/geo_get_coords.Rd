@@ -23,5 +23,7 @@ x <- '{"type": "Point", "coordinates": [1, 2]}'
 geo_get_coords(x)
 x <- '[0, 5]'
 geo_get_coords(x)
+# x <- '[5]'
+# geo_get_coords(x)
 }
 }

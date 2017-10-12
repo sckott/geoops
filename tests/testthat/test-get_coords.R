@@ -14,3 +14,7 @@ test_that("get_coords works", {
   expect_equal(jsonlite::fromJSON(bb), 1:2)
   expect_equal(jsonlite::fromJSON(cc), c(0, 5))
 })
+
+test_that("fails well", {
+  expect_error(geo_get_coords('[5]'), "coordinates must only contain numbers")
+})

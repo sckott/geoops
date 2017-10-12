@@ -32,7 +32,7 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   warning = FALSE,
   message = FALSE,
-  fig.path = "inst/img/"
+  fig.path = "tools/img/"
 )
 ```
 
@@ -42,7 +42,7 @@ knitr::opts_chunk$set(
 
 This package is alpha stage, expect bugs and changes.
 
-see also: 
+see also:
 
 * [geofilter](https://github.com/ropenscilabs/geofilter)
 * [geojson](https://github.com/ropensci/geojson)
@@ -55,6 +55,14 @@ cat(paste(" -", paste(getNamespaceExports("geoops"), collapse = "\n - ")))
 
 
 ## Installation
+
+Stable version
+
+```{r eval=FALSE}
+install.packages("geoops")
+```
+
+Dev version
 
 ```{r eval=FALSE}
 devtools::install_github("ropenscilabs/geoops")
@@ -236,18 +244,18 @@ Visualize some of the polygons, all of them
 
 ```{r}
 library(leaflet)
-leaflet() %>% 
-  addTiles() %>% 
-  addGeoJSON(geojson = x) %>% 
+leaflet() %>%
+  addTiles() %>%
+  addGeoJSON(geojson = x) %>%
   setView(lng = -123, lat = 45, zoom = 7)
 ```
 
 Just one of them
 
 ```{r}
-leaflet() %>% 
-  addTiles() %>% 
-  addGeoJSON(geojson = polys[1]) %>% 
+leaflet() %>%
+  addTiles() %>%
+  addGeoJSON(geojson = polys[1]) %>%
   setView(lng = -122.7, lat = 45.48, zoom = 13)
 ```
 </details>
@@ -260,7 +268,7 @@ leaflet() %>%
 * Please [report any issues or bugs](https://github.com/ropenscilabs/geoops/issues).
 * License: MIT
 * Get citation information for `geoops` in R doing `citation(package = 'geoops')`
-* Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.md). 
+* Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.md).
 By participating in this project you agree to abide by its terms.
 
 [![ropensci_footer](https://ropensci.org/public_images/github_footer.png)](https://ropensci.org)

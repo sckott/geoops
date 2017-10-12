@@ -9,7 +9,7 @@ geoops
 
 This package is alpha stage, expect bugs and changes.
 
-see also: 
+see also:
 
 * [geofilter](https://github.com/ropenscilabs/geofilter)
 * [geojson](https://github.com/ropensci/geojson)
@@ -24,7 +24,7 @@ Package API:
 #>  - geo_pointgrid
 #>  - geo_bbox
 #>  - geo_area
-#>  - get_coords
+#>  - geo_get_coords
 #>  - version
 #>  - geo_nearest
 #>  - geo_along
@@ -37,6 +37,15 @@ Package API:
 
 
 ## Installation
+
+Stable version
+
+
+```r
+install.packages("geoops")
+```
+
+Dev version
 
 
 ```r
@@ -53,7 +62,7 @@ library("geoops")
 
 ```r
 geoops::version()
-#> [1] "{\"compiler\":{\"c++\":\"201103\",\"family\":\"clang\",\"version\":\"8.1.0 (clang-802.0.42)\"},\"copyright\":\"(C) 2013-2017 Niels Lohmann\",\"name\":\"JSON for Modern C++\",\"platform\":\"apple\",\"url\":\"https://github.com/nlohmann/json\",\"version\":{\"major\":2,\"minor\":1,\"patch\":1,\"string\":\"2.1.1\"}}"
+#> [1] "{\"compiler\":{\"c++\":\"201103\",\"family\":\"clang\",\"version\":\"9.0.0 (clang-900.0.37)\"},\"copyright\":\"(C) 2013-2017 Niels Lohmann\",\"name\":\"JSON for Modern C++\",\"platform\":\"apple\",\"url\":\"https://github.com/nlohmann/json\",\"version\":{\"major\":2,\"minor\":1,\"patch\":1,\"string\":\"2.1.1\"}}"
 ```
 
 ## distance
@@ -200,9 +209,9 @@ microbenchmark::microbenchmark(
   times = 1000L
 )
 #> Unit: microseconds
-#>    expr    min     lq      mean  median     uq       max neval
-#>   rgeos 39.049 52.496 169.40400 69.7365 99.964 73766.943  1000
-#>  geoops 30.992 37.932  65.07915 48.7760 75.158  1470.005  1000
+#>    expr    min     lq     mean  median      uq       max neval
+#>   rgeos 39.898 79.681 177.7165 92.8215 109.727 48105.679  1000
+#>  geoops 31.951 63.509 101.2215 73.0830  81.875  7944.201  1000
 ```
 
 ## Example use case
@@ -239,32 +248,32 @@ Visualize area of the polygons as a histogram
 hist(areas, main = "")
 ```
 
-![plot of chunk unnamed-chunk-17](inst/img/unnamed-chunk-17-1.png)
+![plot of chunk unnamed-chunk-18](tools/img/unnamed-chunk-18-1.png)
 
 Visualize some of the polygons, all of them
 
 
 ```r
 library(leaflet)
-leaflet() %>% 
-  addTiles() %>% 
-  addGeoJSON(geojson = x) %>% 
+leaflet() %>%
+  addTiles() %>%
+  addGeoJSON(geojson = x) %>%
   setView(lng = -123, lat = 45, zoom = 7)
 ```
 
-![plot of chunk unnamed-chunk-18](inst/img/unnamed-chunk-18-1.png)
+![plot of chunk unnamed-chunk-19](tools/img/unnamed-chunk-19-1.png)
 
 Just one of them
 
 
 ```r
-leaflet() %>% 
-  addTiles() %>% 
-  addGeoJSON(geojson = polys[1]) %>% 
+leaflet() %>%
+  addTiles() %>%
+  addGeoJSON(geojson = polys[1]) %>%
   setView(lng = -122.7, lat = 45.48, zoom = 13)
 ```
 
-![plot of chunk unnamed-chunk-19](inst/img/unnamed-chunk-19-1.png)
+![plot of chunk unnamed-chunk-20](tools/img/unnamed-chunk-20-1.png)
 </details>
 
 
@@ -275,7 +284,7 @@ leaflet() %>%
 * Please [report any issues or bugs](https://github.com/ropenscilabs/geoops/issues).
 * License: MIT
 * Get citation information for `geoops` in R doing `citation(package = 'geoops')`
-* Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.md). 
+* Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.md).
 By participating in this project you agree to abide by its terms.
 
 [![ropensci_footer](https://ropensci.org/public_images/github_footer.png)](https://ropensci.org)

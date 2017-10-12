@@ -10,6 +10,8 @@
 #' geo_get_coords(x)
 #' x <- '[0, 5]'
 #' geo_get_coords(x)
+#' # x <- '[5]'
+#' # geo_get_coords(x)
 #' }
 geo_get_coords <- function(x) {
   jsonlite::fromJSON(get_coords(x))
