@@ -4,6 +4,9 @@ geoops
 
 
 [![Build Status](https://travis-ci.org/ropenscilabs/geoops.svg?branch=master)](https://travis-ci.org/ropenscilabs/geoops)
+[![codecov](https://codecov.io/gh/ropenscilabs/geoops/branch/master/graph/badge.svg)](https://codecov.io/gh/ropenscilabs/geoops)
+[![rstudio mirror downloads](https://cranlogs.r-pkg.org/badges/geoops)](https://github.com/metacran/cranlogs.app)
+[![cran version](https://www.r-pkg.org/badges/version/geoops)](https://cran.r-project.org/package=geoops)
 
 `geoops` does spatial operations on geojson
 

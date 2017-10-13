@@ -45,20 +45,13 @@ std::string get_coords(std::string x) {
     std::string out = j["coordinates"].dump();
     std::string res = check_contain(out);
     return res;
-    // Checks if coordinates contains a number
-    // if (contains_number(out)) {
-    //   return out;
-    // } else {
-    //   throw std::runtime_error("No valid coordinates");
-    // };
   } else if (j["geometry"]["coordinates"].is_array()) {
     // feature
     std::string out = j["geometry"]["coordinates"].dump();
     // return out;
     std::string res = check_contain(out);
     return res;
+  } else {
+    throw std::runtime_error("No valid coordinates");
   };
-
-  // std::string res = check_contain(out);
-  // return res;
 };
