@@ -10,10 +10,14 @@ geo_get_coords(x)
 \item{x}{geojson string}
 }
 \value{
-a numeric vector with coordinates
+a character vector with coordinates as JSON
 }
 \description{
 Get coordinates
+}
+\details{
+You can use \code{jsonlite} to convert the output to R
+objects
 }
 \examples{
 \dontrun{
@@ -23,7 +27,5 @@ x <- '{"type": "Point", "coordinates": [1, 2]}'
 geo_get_coords(x)
 x <- '[0, 5]'
 geo_get_coords(x)
-# x <- '[5]'
-# geo_get_coords(x)
 }
 }
