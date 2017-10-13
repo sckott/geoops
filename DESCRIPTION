@@ -1,11 +1,13 @@
 Package: geoops
 Type: Package
-Title: 'GeoJSON' Manipulation Operations
-Description: 'GeoJSON' manipulation/calculations/etc, what not,
-    stuff, and things.
+Title: 'GeoJSON' Topology Calculations and Operations
+Description: Tools for doing calculations and manipulations on 'GeoJSON',
+    a geospatial data interchange format (<https://tools.ietf.org/html/rfc7946>).
 Version: 0.1.0
-Authors@R: c(person("Scott", "Chamberlain", role = c("aut", "cre"),
-    email = "myrmecocystus@gmail.com"))
+Authors@R: c(
+		person("Scott", "Chamberlain", role = c("aut", "cre"), email = "myrmecocystus@gmail.com"),
+		person("Niels", "Lohmann", role = "cph")
+	)
 License: MIT + file LICENSE
 URL: https://github.com/ropenscilabs/geoops
 BugReports: https://github.com/ropenscilabs/geoops/issues
