@@ -212,9 +212,9 @@ microbenchmark::microbenchmark(
   times = 1000L
 )
 #> Unit: microseconds
-#>    expr    min     lq     mean  median      uq       max neval
-#>   rgeos 39.898 79.681 177.7165 92.8215 109.727 48105.679  1000
-#>  geoops 31.951 63.509 101.2215 73.0830  81.875  7944.201  1000
+#>    expr    min     lq     mean  median     uq       max neval
+#>   rgeos 39.146 44.789 77.48731 48.8320 55.079 21581.389  1000
+#>  geoops 33.128 37.907 43.13834 40.0285 43.604   128.519  1000
 ```
 
 ## Example use case
