@@ -8,11 +8,28 @@ geoops
 [![rstudio mirror downloads](https://cranlogs.r-pkg.org/badges/geoops)](https://github.com/metacran/cranlogs.app)
 [![cran version](https://www.r-pkg.org/badges/version/geoops)](https://cran.r-project.org/package=geoops)
 
-`geoops` does spatial operations on geojson
+`geoops` does spatial operations on GeoJSON.
+
+`geoops` is inspired by the JS library [turf](http://turfjs.org/). It's
+tagline is _Advanced geospatial analysis for browsers and node_.
+Turf works only with GeoJSON, as does `geoops`. I don't know JS that well,
+but it's easy enough to understand the language, so I've been porting
+Turf to C++ wrapped up in R. The C++ so we can have fast performance. We've
+also wrapped the Turf JS library itself in the package
+[lawn](https://github.com/ropensci/lawn), but we should be able to get better
+performance out of C++.
+
+`geoops` has a ways to go to include all the methods that Turf has, but
+we'll get there eventually.
 
 This package is alpha stage, expect bugs and changes.
 
-see also:
+All data is expected to be in WGS-84.
+
+We use a library from [Niels Lohmann](https://github.com/nlohmann/json)
+for working with JSON in C++.
+
+See also:
 
 * [geofilter](https://github.com/ropenscilabs/geofilter)
 * [geojson](https://github.com/ropensci/geojson)
@@ -212,9 +229,9 @@ microbenchmark::microbenchmark(
   times = 1000L
 )
 #> Unit: microseconds
-#>    expr    min     lq     mean  median     uq       max neval
-#>   rgeos 39.146 44.789 77.48731 48.8320 55.079 21581.389  1000
-#>  geoops 33.128 37.907 43.13834 40.0285 43.604   128.519  1000
+#>    expr    min      lq     mean  median     uq       max neval
+#>   rgeos 38.531 45.0870 80.47333 49.1035 54.786 23196.568  1000
+#>  geoops 33.425 37.8765 43.77398 39.5580 42.680   483.714  1000
 ```
 
 ## Example use case
