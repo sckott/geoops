@@ -17,14 +17,10 @@ matrix:
       r: release
       before_install: mkdir -p ~/.R && echo "CXX11 = g++-6" >> ~/.R/Makevars
       env: R_CODECOV=true
-    - os: linux
-      r: devel
-      compiler: gcc
-      before_install: mkdir -p ~/.R && echo "CXX11 = g++-6" >> ~/.R/Makevars
-    - os: linux
-      r: devel
-      compiler: clang
-      before_install: mkdir -p ~/.R && echo "CXX11 = g++-6" >> ~/.R/Makevars
+    - os: osx
+      r: oldrel
+      osx_image: xcode8.3
+      latex: false
 
 addons:
   apt:
