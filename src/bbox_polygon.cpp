@@ -1,8 +1,6 @@
 #include <Rcpp.h>
 using namespace Rcpp;
 
-// [[Rcpp::plugins(cpp11)]]
-
 #include "geojson_helpers.h"
 
 // [[Rcpp::export]]
