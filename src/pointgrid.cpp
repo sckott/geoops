@@ -1,5 +1,4 @@
 #include <Rcpp.h>
-using namespace Rcpp;
 
 #include "json.h"
 using json = nlohmann::json;

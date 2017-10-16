@@ -1,5 +1,4 @@
 #include <Rcpp.h>
-using namespace Rcpp;
 
 #include "json.h"
 using json = nlohmann::json;
@@ -32,7 +31,7 @@ using json = nlohmann::json;
 
 // [[Rcpp::export]]
 std::string circle3() {
-  List v;
+  Rcpp::List v;
   v.push_back("a");
   v.push_back("b");
   v.push_back("c");

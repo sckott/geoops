@@ -1,5 +1,4 @@
 #include <Rcpp.h>
-using namespace Rcpp;
 
 #include "json.h"
 using json = nlohmann::json;
@@ -138,7 +137,7 @@ double area(std::string inp) {
 
   if (x["type"] == "FeatureCollection") {
     double sum = 0;
-    for (int i = 0; i < x["features"].size(); i++) {
+    for (unsigned int i = 0; i < x["features"].size(); i++) {
       if (x["features"][i]["geometry"].size() > 0) {
         sum += geometry(x["features"][i]["geometry"].dump());
       };

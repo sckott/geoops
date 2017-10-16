@@ -1,5 +1,4 @@
 #include <Rcpp.h>
-using namespace Rcpp;
 
 #include "json.h"
 using json = nlohmann::json;
@@ -55,12 +54,12 @@ std::string point_numvec(std::vector<double> coordinates, std::string properties
 };
 
 std::string polygon_numvec(std::vector< std::vector< std::vector<double> > > coords, std::string properties = "{}") {
-  for (int i = 0; i < coords.size(); i++) {
+  for (unsigned int i = 0; i < coords.size(); i++) {
     json ring = coords[i];
     if (ring.size() < 5) {
       throw std::runtime_error("Each LinearRing of a Polygon must have 4 or more Positions");
     };
-    for (int j = 0; j < ring[ring.size() - 1].size(); j++) {
+    for (unsigned int j = 0; j < ring[ring.size() - 1].size(); j++) {
       if (ring[ring.size() - 1][j] != ring[0][j]) {
         throw std::runtime_error("First and last Position are not equivalent");
       };
@@ -76,12 +75,12 @@ std::string polygon_numvec(std::vector< std::vector< std::vector<double> > > coo
 };
 
 std::string polygon_numvec2(std::vector< std::vector< std::vector<double> > > coords) {
-  for (int i = 0; i < coords.size(); i++) {
+  for (unsigned int i = 0; i < coords.size(); i++) {
     json ring = coords[i];
     if (ring.size() < 5) {
       throw std::runtime_error("Each LinearRing of a Polygon must have 4 or more Positions");
     };
-    for (int j = 0; j < ring[ring.size() - 1].size(); j++) {
+    for (unsigned int j = 0; j < ring[ring.size() - 1].size(); j++) {
       if (ring[ring.size() - 1][j] != ring[0][j]) {
         throw std::runtime_error("First and last Position are not equivalent");
       };

@@ -1,6 +1,4 @@
 #include <Rcpp.h>
-using namespace Rcpp;
-
 
 #include "json.h"
 using json = nlohmann::json;
@@ -45,7 +43,7 @@ std::string nearest(std::string target_point, std::string points) {
   std::string pp = points;
   auto k = json::parse(pp);
 
-  for (int i = 0; i < k["features"].size(); i++) {
+  for (unsigned int i = 0; i < k["features"].size(); i++) {
     double distanceToPoint = distance(j.dump(), k["features"][i].dump(), "miles");
     if (distanceToPoint < minDist) {
       nearestPoint = k["features"][i].dump();

@@ -1,5 +1,4 @@
 #include <Rcpp.h>
-using namespace Rcpp;
 
 #include "json.h"
 using json = nlohmann::json;
@@ -79,7 +78,7 @@ bool inside_cpp(std::string point, std::string polygon, bool ignoreBoundary) {
   // return vv;
 
   bool inside_poly = false;
-  for (int i = 0; i < polys.size() && !inside_poly; i++) {
+  for (unsigned int i = 0; i < polys.size() && !inside_poly; i++) {
     Rprintf("iterator: %d\n", i);
 
     // check if it is in the outer ring first
@@ -89,7 +88,7 @@ bool inside_cpp(std::string point, std::string polygon, bool ignoreBoundary) {
     if (in_ring(xx, yy)) {
       // Rprintf("here");
       bool in_hole = false;
-      int k = 1;
+      unsigned int k = 1;
       // check for the point in any of the holes
       while (k < polys[i].size() && !in_hole) {
         // Rprintf("ff");

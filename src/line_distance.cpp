@@ -1,6 +1,4 @@
 #include <Rcpp.h>
-using namespace Rcpp;
-
 
 #include "json.h"
 using json = nlohmann::json;
@@ -16,7 +14,7 @@ double length(std::string coords, std::string units) {
   auto prevCoordsjson = json::parse(prevCoords);
   auto curCoordsjson = json::parse(curCoords);
   json temp;
-  for (int i = 1; i < c1.size(); i++) {
+  for (unsigned int i = 1; i < c1.size(); i++) {
     curCoordsjson["geometry"]["coordinates"] = c1[i];
     travelled += distance(prevCoordsjson.dump(), curCoordsjson.dump(), units);
     temp = prevCoordsjson;
@@ -51,14 +49,14 @@ double lineDistance(std::string line, std::string units) {
     geometry["type"].dump() == "\"MultiLineString\""
   ) {
     double d = 0;
-    for (int i = 0; i < geometry["coordinates"].size(); i++) {
+    for (unsigned int i = 0; i < geometry["coordinates"].size(); i++) {
       d += length(geometry["coordinates"][i].dump(), units);
     };
     return d;
   } else if (geometry["type"].dump() == "\"MultiPolygon\"") {
     double d = 0;
-    for (int i = 0; i < geometry["coordinates"].size(); i++) {
-      for (int j = 0; j < geometry["coordinates"][i].size(); j++) {
+    for (unsigned int i = 0; i < geometry["coordinates"].size(); i++) {
+      for (unsigned int j = 0; j < geometry["coordinates"][i].size(); j++) {
         d += length(geometry["coordinates"][i][j].dump(), units);
       };
     };
