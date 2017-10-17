@@ -1,11 +1,11 @@
 #' Calculate a destination
 #'
 #' @export
-#' @param from (character) from starting point
-#' @param distance (numeric) distance from the starting point
+#' @param from (character) from starting [Feature]<[Point]>
+#' @param distance (numeric) distance from the starting [Feature]<[Point]>
 #' @param bearing (numeric) ranging from -180 to 180
 #' @param units (character) miles, kilometers, degrees, or radians
-#' @return (character) destination point
+#' @return (character) destination [Feature]<[Point]>
 #' @examples
 #' point <- '{
 #'   "type": "Feature",

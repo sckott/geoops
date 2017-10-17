@@ -7,9 +7,9 @@
 geo_bearing(point1, point2)
 }
 \arguments{
-\item{point1}{start geojson \link{Point}}
+\item{point1}{start geojson \link{Feature}<\link{Point}>}
 
-\item{point2}{end geojson \link{Point}}
+\item{point2}{end geojson \link{Feature}<\link{Point}>}
 }
 \value{
 (number) bearing in decimal degrees

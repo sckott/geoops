@@ -1,11 +1,12 @@
 #' Calculate distance between two GeoJSON points
 #'
 #' @export
-#' @param from Origin point
-#' @param to Destination point
+#' @param from Origin [Feature]<[Point]>
+#' @param to Destination [Feature]<[Point]>
 #' @param units (character) Can be degrees, radians, miles, or
 #' kilometers (default)
-#' @return Single numeric value
+#' @return the distance, a single numeric value, in units given
+#' in `units` parameter
 #' @examples
 #' point1 <- '{
 #'   "type": "Feature",

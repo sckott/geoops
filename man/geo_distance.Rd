@@ -7,15 +7,16 @@
 geo_distance(from, to, units = "kilometers")
 }
 \arguments{
-\item{from}{Origin point}
+\item{from}{Origin \link{Feature}<\link{Point}>}
 
-\item{to}{Destination point}
+\item{to}{Destination \link{Feature}<\link{Point}>}
 
 \item{units}{(character) Can be degrees, radians, miles, or
 kilometers (default)}
 }
 \value{
-Single numeric value
+the distance, a single numeric value, in units given
+in \code{units} parameter
 }
 \description{
 Calculate distance between two GeoJSON points

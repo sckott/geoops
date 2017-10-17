@@ -2,7 +2,6 @@
 
 export(geo_along)
 export(geo_area)
-export(geo_bbox)
 export(geo_bbox_polygon)
 export(geo_bearing)
 export(geo_destination)

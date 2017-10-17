@@ -7,16 +7,16 @@
 geo_destination(from, distance, bearing, units = "kilometers")
 }
 \arguments{
-\item{from}{(character) from starting point}
+\item{from}{(character) from starting \link{Feature}<\link{Point}>}
 
-\item{distance}{(numeric) distance from the starting point}
+\item{distance}{(numeric) distance from the starting \link{Feature}<\link{Point}>}
 
 \item{bearing}{(numeric) ranging from -180 to 180}
 
 \item{units}{(character) miles, kilometers, degrees, or radians}
 }
 \value{
-(character) destination point
+(character) destination \link{Feature}<\link{Point}>
 }
 \description{
 Calculate a destination

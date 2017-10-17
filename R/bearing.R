@@ -1,8 +1,8 @@
 #' Calculate bearing
 #'
 #' @export
-#' @param point1 start geojson [Point]
-#' @param point2 end geojson [Point]
+#' @param point1 start geojson [Feature]<[Point]>
+#' @param point2 end geojson [Feature]<[Point]>
 #' @return (number) bearing in decimal degrees
 #' @examples
 #' point1 <- '{
