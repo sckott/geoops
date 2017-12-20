@@ -42,7 +42,6 @@ Package API:
 #>  - geo_midpoint
 #>  - geo_bbox_polygon
 #>  - geo_pointgrid
-#>  - geo_bbox
 #>  - geo_area
 #>  - geo_get_coords
 #>  - version
@@ -82,7 +81,7 @@ library("geoops")
 
 ```r
 geoops::version()
-#> [1] "{\"compiler\":{\"c++\":\"201103\",\"family\":\"clang\",\"version\":\"9.0.0 (clang-900.0.37)\"},\"copyright\":\"(C) 2013-2017 Niels Lohmann\",\"name\":\"JSON for Modern C++\",\"platform\":\"apple\",\"url\":\"https://github.com/nlohmann/json\",\"version\":{\"major\":2,\"minor\":1,\"patch\":1,\"string\":\"2.1.1\"}}"
+#> [1] "{\"compiler\":{\"c++\":\"201103\",\"family\":\"clang\",\"version\":\"9.0.0 (clang-900.0.39.2)\"},\"copyright\":\"(C) 2013-2017 Niels Lohmann\",\"name\":\"JSON for Modern C++\",\"platform\":\"apple\",\"url\":\"https://github.com/nlohmann/json\",\"version\":{\"major\":3,\"minor\":0,\"patch\":0,\"string\":\"3.0.0\"}}"
 ```
 
 ## distance
@@ -214,6 +213,8 @@ geo_nearest(point1, points)
 
 ## comparison to rgeos
 
+### distance
+
 
 ```r
 library(rgeos)
@@ -226,12 +227,35 @@ rgeospt2 <- rgeos::readWKT("POINT(2 2)")
 microbenchmark::microbenchmark(
   rgeos = rgeos::gDistance(rgeospt1, rgeospt2),
   geoops = geoops::geo_distance(pt1, pt2, units = "miles"),
-  times = 1000L
+  times = 10000L
 )
 #> Unit: microseconds
-#>    expr    min      lq     mean  median     uq       max neval
-#>   rgeos 38.531 45.0870 80.47333 49.1035 54.786 23196.568  1000
-#>  geoops 33.425 37.8765 43.77398 39.5580 42.680   483.714  1000
+#>    expr    min      lq     mean  median      uq       max neval
+#>   rgeos 25.309 28.7050 44.00719 30.5135 34.0175 41640.998 10000
+#>  geoops 26.614 29.2905 36.67071 30.6755 34.3395  1798.585 10000
+```
+
+### nearest
+
+
+```r
+point1 <- '{"type":["Feature"],"properties":{"marker-color":["#0f0"]},"geometry":{"type":["Point"],"coordinates":[28.9658,41.0101]}}'
+point2 <- '{"type":["FeatureCollection"],"features":[{"type":"Feature","properties":{},"geometry":{"type":"Point","coordinates":[28.9739,41.0111]}},{"type":"Feature","properties":{},"geometry":{"type":"Point","coordinates":[28.9485,41.0242]}},{"type":"Feature","properties":{},"geometry":{"type":"Point","coordinates":[28.9387,41.0133]}}]}'
+g1 <- readWKT("MULTILINESTRING((34 54, 60 34), (0 10, 50 10, 100 50))")
+g2 <- readWKT("POINT(100 30)")
+```
+
+
+```r
+microbenchmark::microbenchmark(
+  rgeos = rgeos::gNearestPoints(g1, g2),
+  geoops = geoops::geo_nearest(point1, points),
+  times = 10000L
+)
+#> Unit: microseconds
+#>    expr     min       lq     mean   median       uq       max neval
+#>   rgeos 371.256 395.4455 488.6030 420.7625 498.8065 13011.500 10000
+#>  geoops 100.243 110.7230 135.4224 125.2550 138.5870  1440.605 10000
 ```
 
 ## Example use case
@@ -268,7 +292,7 @@ Visualize area of the polygons as a histogram
 hist(areas, main = "")
 ```
 
-![plot of chunk unnamed-chunk-18](tools/img/unnamed-chunk-18-1.png)
+![plot of chunk unnamed-chunk-20](tools/img/unnamed-chunk-20-1.png)
 
 Visualize some of the polygons, all of them
 
@@ -276,24 +300,24 @@ Visualize some of the polygons, all of them
 ```r
 library(leaflet)
 leaflet() %>%
-  addTiles() %>%
+  addProviderTiles(provider = "OpenStreetMap.Mapnik") %>%
   addGeoJSON(geojson = x) %>%
   setView(lng = -123, lat = 45, zoom = 7)
 ```
 
-![plot of chunk unnamed-chunk-19](tools/img/unnamed-chunk-19-1.png)
+![plot of chunk unnamed-chunk-21](tools/img/unnamed-chunk-21-1.png)
 
 Just one of them
 
 
 ```r
 leaflet() %>%
-  addTiles() %>%
+  addProviderTiles(provider = "OpenStreetMap.Mapnik") %>%
   addGeoJSON(geojson = polys[1]) %>%
   setView(lng = -122.7, lat = 45.48, zoom = 13)
 ```
 
-![plot of chunk unnamed-chunk-20](tools/img/unnamed-chunk-20-1.png)
+![plot of chunk unnamed-chunk-22](tools/img/unnamed-chunk-22-1.png)
 </details>
 
 

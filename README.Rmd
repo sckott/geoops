@@ -216,6 +216,8 @@ geo_nearest(point1, points)
 
 ## comparison to rgeos
 
+### distance
+
 ```{r}
 library(rgeos)
 rgeospt1 <- rgeos::readWKT("POINT(0.5 0.5)")
@@ -226,7 +228,24 @@ rgeospt2 <- rgeos::readWKT("POINT(2 2)")
 microbenchmark::microbenchmark(
   rgeos = rgeos::gDistance(rgeospt1, rgeospt2),
   geoops = geoops::geo_distance(pt1, pt2, units = "miles"),
-  times = 1000L
+  times = 10000L
+)
+```
+
+### nearest
+
+```{r}
+point1 <- '{"type":["Feature"],"properties":{"marker-color":["#0f0"]},"geometry":{"type":["Point"],"coordinates":[28.9658,41.0101]}}'
+point2 <- '{"type":["FeatureCollection"],"features":[{"type":"Feature","properties":{},"geometry":{"type":"Point","coordinates":[28.9739,41.0111]}},{"type":"Feature","properties":{},"geometry":{"type":"Point","coordinates":[28.9485,41.0242]}},{"type":"Feature","properties":{},"geometry":{"type":"Point","coordinates":[28.9387,41.0133]}}]}'
+g1 <- readWKT("MULTILINESTRING((34 54, 60 34), (0 10, 50 10, 100 50))")
+g2 <- readWKT("POINT(100 30)")
+```
+
+```{r}
+microbenchmark::microbenchmark(
+  rgeos = rgeos::gNearestPoints(g1, g2),
+  geoops = geoops::geo_nearest(point1, points),
+  times = 10000L
 )
 ```
 
@@ -265,7 +284,7 @@ Visualize some of the polygons, all of them
 ```{r}
 library(leaflet)
 leaflet() %>%
-  addTiles() %>%
+  addProviderTiles(provider = "OpenStreetMap.Mapnik") %>%
   addGeoJSON(geojson = x) %>%
   setView(lng = -123, lat = 45, zoom = 7)
 ```
@@ -274,7 +293,7 @@ Just one of them
 
 ```{r}
 leaflet() %>%
-  addTiles() %>%
+  addProviderTiles(provider = "OpenStreetMap.Mapnik") %>%
   addGeoJSON(geojson = polys[1]) %>%
   setView(lng = -122.7, lat = 45.48, zoom = 13)
 ```
