@@ -1,7 +1,7 @@
 ## Test environments
 
-* local OS X install, R 3.4.2 patched
-* ubuntu 12.04 (on travis-ci), R 3.4.2
+* local OS X install, R 3.4.3 patched
+* ubuntu 12.04 (on travis-ci), R 3.4.3
 * win-builder (devel and release)
 
 ## R CMD check results
@@ -20,7 +20,8 @@ There are no reverse dependencies.
 
 ---
 
-This version includes bug fixes for failing checks on CRAN.
+This version includes an update to the C++ JSON library bundled
+with the package.
 
 Thanks!
 Scott Chamberlain

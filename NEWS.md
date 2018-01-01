@@ -1,3 +1,11 @@
+geoops 0.1.6
+============
+
+### IMPROVEMENTS
+
+* Updated json C++ library from [v2.1.1](https://github.com/nlohmann/json/releases/tag/v2.1.1) to [v3.0.1](https://github.com/nlohmann/json/releases/tag/v3.0.1). ([#15](https://github.com/ropenscilabs/geoops/issues/15))
+
+
 geoops 0.1.2
 ============
 
