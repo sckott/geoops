@@ -1,5 +1,3 @@
-# R for travis: see documentation at https://docs.travis-ci.com/user/languages/r
-
 language: r
 cache: packages
 sudo: required
@@ -17,6 +15,9 @@ matrix:
       r: release
       before_install: mkdir -p ~/.R && echo "CXX11 = g++-6" >> ~/.R/Makevars
       env: R_CODECOV=true
+    - os: linux
+      r: devel
+      before_install: mkdir -p ~/.R && echo "CXX1X = g++-6" >> ~/.R/Makevars
     - os: osx
       r: oldrel
       osx_image: xcode8.3
