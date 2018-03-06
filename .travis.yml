@@ -8,16 +8,16 @@ r_github_packages:
 
 matrix:
   include:
-    - os: linux
-      r: oldrel
-      before_install: mkdir -p ~/.R && echo "CXX1X = g++-6" >> ~/.R/Makevars
+    # - os: linux
+    #   r: oldrel
+    #   before_install: mkdir -p ~/.R && echo "CXX1X = g++-6" >> ~/.R/Makevars
     - os: linux
       r: release
       before_install: mkdir -p ~/.R && echo "CXX11 = g++-6" >> ~/.R/Makevars
       env: R_CODECOV=true
-    - os: linux
-      r: devel
-      before_install: mkdir -p ~/.R && echo "CXX1X = g++-6" >> ~/.R/Makevars
+    # - os: linux
+    #   r: devel
+    #   before_install: mkdir -p ~/.R && echo "CXX1X = g++-6" >> ~/.R/Makevars
     - os: osx
       r: oldrel
       osx_image: xcode8.3
