@@ -1,9 +1,10 @@
-geoops 0.1.6
+geoops 0.2.0
 ============
 
 ### IMPROVEMENTS
 
-* Updated json C++ library from [v2.1.1](https://github.com/nlohmann/json/releases/tag/v2.1.1) to [v3.0.1](https://github.com/nlohmann/json/releases/tag/v3.0.1). ([#15](https://github.com/ropenscilabs/geoops/issues/15))
+* Don't ignore pragma warnings in `json.h`
+* Updated json C++ library from [v2.1.1](https://github.com/nlohmann/json/releases/tag/v2.1.1) to [v3.1.1](https://github.com/nlohmann/json/releases/tag/v3.1.1). ([#15](https://github.com/ropenscilabs/geoops/issues/15))
 
 
 geoops 0.1.2
