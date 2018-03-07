@@ -36,8 +36,8 @@ knitr::opts_chunk$set(
 )
 ```
 
-[![Build Status](https://travis-ci.org/ropenscilabs/geoops.svg?branch=master)](https://travis-ci.org/ropenscilabs/geoops)
-[![codecov](https://codecov.io/gh/ropenscilabs/geoops/branch/master/graph/badge.svg)](https://codecov.io/gh/ropenscilabs/geoops)
+[![Build Status](https://travis-ci.org/ropensci/geoops.svg?branch=master)](https://travis-ci.org/ropensci/geoops)
+[![codecov](https://codecov.io/gh/ropensci/geoops/branch/master/graph/badge.svg)](https://codecov.io/gh/ropensci/geoops)
 [![rstudio mirror downloads](https://cranlogs.r-pkg.org/badges/geoops)](https://github.com/metacran/cranlogs.app)
 [![cran version](https://www.r-pkg.org/badges/version/geoops)](https://cran.r-project.org/package=geoops)
 
@@ -64,7 +64,7 @@ for working with JSON in C++.
 
 See also:
 
-* [geofilter](https://github.com/ropenscilabs/geofilter)
+* [geofilter](https://github.com/ropensci/geofilter)
 * [geojson](https://github.com/ropensci/geojson)
 
 Package API:
@@ -85,7 +85,7 @@ install.packages("geoops")
 Dev version
 
 ```{r eval=FALSE}
-devtools::install_github("ropenscilabs/geoops")
+devtools::install_github("ropensci/geoops")
 ```
 
 ```{r}
@@ -304,7 +304,7 @@ leaflet() %>%
 
 ## Meta
 
-* Please [report any issues or bugs](https://github.com/ropenscilabs/geoops/issues).
+* Please [report any issues or bugs](https://github.com/ropensci/geoops/issues).
 * License: MIT
 * Get citation information for `geoops` in R doing `citation(package = 'geoops')`
 * Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.md).

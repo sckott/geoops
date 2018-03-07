@@ -1,20 +1,23 @@
 {
-  "@context": ["http://purl.org/codemeta/2.0", "http://schema.org"],
+  "@context": [
+    "http://purl.org/codemeta/2.0",
+    "http://schema.org"
+  ],
   "@type": "SoftwareSourceCode",
   "identifier": "geoops",
   "description": "Tools for doing calculations and manipulations on 'GeoJSON',\n    a 'geospatial' data interchange format (<https://tools.ietf.org/html/rfc7946>).\n    'GeoJSON' is also valid 'JSON'.",
   "name": "geoops: 'GeoJSON' Topology Calculations and Operations",
-  "codeRepository": "https://github.com/ropenscilabs/geoops",
+  "codeRepository": "https://github.com/ropensci/geoops",
   "issueTracker": "https://github.com/ropenscilabs/geoops/issues",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "0.1.6",
+  "version": "0.1.7.9210",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
-    "version": "3.4.3",
+    "version": "3.4.4",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 3.4.3 Patched (2018-01-01 r74017)",
+  "runtimePlatform": "R version 3.4.4 beta (2018-03-05 r74359)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -103,8 +106,8 @@
       }
     }
   ],
-  "contIntegration": "https://travis-ci.org/ropenscilabs/geoops",
-  "releaseNotes": "https://github.com/ropenscilabs/geoops/blob/master/NEWS.md",
-  "readme": "https://github.com/ropenscilabs/geoops/blob/master/README.md",
-  "fileSize": "832.913KB"
+  "contIntegration": "https://travis-ci.org/ropensci/geoops",
+  "releaseNotes": "https://github.com/ropensci/geoops/blob/master/NEWS.md",
+  "readme": "https://github.com/ropensci/geoops/blob/master/README.md",
+  "fileSize": "847.857KB"
 }
