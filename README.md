@@ -81,7 +81,7 @@ library("geoops")
 
 ```r
 geoops::version()
-#> [1] "{\"compiler\":{\"c++\":\"201103\",\"family\":\"clang\",\"version\":\"9.0.0 (clang-900.0.39.2)\"},\"copyright\":\"(C) 2013-2017 Niels Lohmann\",\"name\":\"JSON for Modern C++\",\"platform\":\"apple\",\"url\":\"https://github.com/nlohmann/json\",\"version\":{\"major\":3,\"minor\":0,\"patch\":0,\"string\":\"3.0.0\"}}"
+#> [1] "{\"compiler\":{\"c++\":\"201103\",\"family\":\"clang\",\"version\":\"9.0.0 (clang-900.0.39.2)\"},\"copyright\":\"(C) 2013-2017 Niels Lohmann\",\"name\":\"JSON for Modern C++\",\"platform\":\"apple\",\"url\":\"https://github.com/nlohmann/json\",\"version\":{\"major\":3,\"minor\":1,\"patch\":1,\"string\":\"3.1.1\"}}"
 ```
 
 ## distance
@@ -230,9 +230,9 @@ microbenchmark::microbenchmark(
   times = 10000L
 )
 #> Unit: microseconds
-#>    expr    min      lq     mean  median      uq       max neval
-#>   rgeos 25.309 28.7050 44.00719 30.5135 34.0175 41640.998 10000
-#>  geoops 26.614 29.2905 36.67071 30.6755 34.3395  1798.585 10000
+#>    expr    min      lq     mean  median      uq      max neval
+#>   rgeos 25.166 28.2415 35.69903 29.4915 31.7615 18693.60 10000
+#>  geoops 23.240 24.9910 33.07648 26.5655 28.7375 41458.95 10000
 ```
 
 ### nearest
@@ -253,9 +253,9 @@ microbenchmark::microbenchmark(
   times = 10000L
 )
 #> Unit: microseconds
-#>    expr     min       lq     mean   median       uq       max neval
-#>   rgeos 371.256 395.4455 488.6030 420.7625 498.8065 13011.500 10000
-#>  geoops 100.243 110.7230 135.4224 125.2550 138.5870  1440.605 10000
+#>    expr     min       lq     mean   median      uq       max neval
+#>   rgeos 370.119 391.0525 463.1019 406.9535 453.951 14023.597 10000
+#>  geoops  85.386  94.9875 113.6604 108.6060 117.964  1083.361 10000
 ```
 
 ## Example use case
