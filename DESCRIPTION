@@ -4,14 +4,14 @@ Title: 'GeoJSON' Topology Calculations and Operations
 Description: Tools for doing calculations and manipulations on 'GeoJSON',
     a 'geospatial' data interchange format (<https://tools.ietf.org/html/rfc7946>).
     'GeoJSON' is also valid 'JSON'.
-Version: 0.1.7.9210
+Version: 0.1.8
 Authors@R: c(
 		person("Scott", "Chamberlain", role = c("aut", "cre"), email = "myrmecocystus+r@gmail.com"),
 		person("Niels", "Lohmann", role = "cph")
 	)
 License: MIT + file LICENSE
-URL: https://github.com/ropenscilabs/geoops
-BugReports: https://github.com/ropenscilabs/geoops/issues
+URL: https://github.com/ropensci/geoops
+BugReports: https://github.com/ropensci/geoops/issues
 Imports:
     Rcpp (>= 0.12.12)
 Suggests:
