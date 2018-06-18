@@ -1,7 +1,16 @@
+geoops 0.2.0
+============
+
+### MINOR IMPROVEMENTS
+
+* update C++ JSON library `nlohmann/json` to `v3.1.2`
+* add `jsonlite` to Suggests for use in test suite
+
+
 geoops 0.1.8
 ============
 
-### IMPROVEMENTS
+### MINOR IMPROVEMENTS
 
 * Don't ignore pragma warnings in `json.h`
 * Updated json C++ library from [v2.1.1](https://github.com/nlohmann/json/releases/tag/v2.1.1) to [v3.1.1](https://github.com/nlohmann/json/releases/tag/v3.1.1). ([#15](https://github.com/ropensci/geoops/issues/15))

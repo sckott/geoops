@@ -1,7 +1,7 @@
 ## Test environments
 
-* local OS X install, R 3.4.4
-* ubuntu 12.04 (on travis-ci), R 3.4.4
+* local OS X install, R 3.5.0
+* ubuntu 14.04 (on travis-ci), R 3.5.0
 * win-builder (devel and release)
 
 ## R CMD check results
@@ -20,8 +20,7 @@ There are no reverse dependencies.
 
 ---
 
-This version includes an update to the C++ JSON library bundled
-with the package and to no longer ignore pragma warnings.
+This version adds jsonlite to Suggests for use in test suite and updates internal C++ lib to a new version.
 
 Thanks!
 Scott Chamberlain
