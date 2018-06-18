@@ -3,8 +3,10 @@ geoops
 
 
 
+[![Project Status: Active - The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
 [![Build Status](https://travis-ci.org/ropensci/geoops.svg?branch=master)](https://travis-ci.org/ropensci/geoops)
 [![codecov](https://codecov.io/gh/ropensci/geoops/branch/master/graph/badge.svg)](https://codecov.io/gh/ropensci/geoops)
+[![cran checks](https://cranchecks.info/badges/worst/geoops)](https://cranchecks.info/pkgs/geoops)
 [![rstudio mirror downloads](https://cranlogs.r-pkg.org/badges/geoops)](https://github.com/metacran/cranlogs.app)
 [![cran version](https://www.r-pkg.org/badges/version/geoops)](https://cran.r-project.org/package=geoops)
 
@@ -81,7 +83,7 @@ library("geoops")
 
 ```r
 geoops::version()
-#> [1] "{\"compiler\":{\"c++\":\"201103\",\"family\":\"clang\",\"version\":\"9.0.0 (clang-900.0.39.2)\"},\"copyright\":\"(C) 2013-2017 Niels Lohmann\",\"name\":\"JSON for Modern C++\",\"platform\":\"apple\",\"url\":\"https://github.com/nlohmann/json\",\"version\":{\"major\":3,\"minor\":1,\"patch\":1,\"string\":\"3.1.1\"}}"
+#> [1] "{\"compiler\":{\"c++\":\"201103\",\"family\":\"clang\",\"version\":\"10.0.0 (clang-1000.10.25.5)\"},\"copyright\":\"(C) 2013-2017 Niels Lohmann\",\"name\":\"JSON for Modern C++\",\"platform\":\"apple\",\"url\":\"https://github.com/nlohmann/json\",\"version\":{\"major\":3,\"minor\":1,\"patch\":2,\"string\":\"3.1.2\"}}"
 ```
 
 ## distance
@@ -231,8 +233,8 @@ microbenchmark::microbenchmark(
 )
 #> Unit: microseconds
 #>    expr    min      lq     mean  median      uq      max neval
-#>   rgeos 25.166 28.2415 35.69903 29.4915 31.7615 18693.60 10000
-#>  geoops 23.240 24.9910 33.07648 26.5655 28.7375 41458.95 10000
+#>   rgeos 31.780 34.6845 41.64295 35.9510 37.8825 3582.783 10000
+#>  geoops 25.588 26.9945 31.30968 28.9785 30.1410 1816.468 10000
 ```
 
 ### nearest
@@ -253,9 +255,9 @@ microbenchmark::microbenchmark(
   times = 10000L
 )
 #> Unit: microseconds
-#>    expr     min       lq     mean   median      uq       max neval
-#>   rgeos 370.119 391.0525 463.1019 406.9535 453.951 14023.597 10000
-#>  geoops  85.386  94.9875 113.6604 108.6060 117.964  1083.361 10000
+#>    expr     min       lq     mean   median       uq       max neval
+#>   rgeos 412.753 433.4635 529.4310 447.8365 511.4355 45261.304 10000
+#>  geoops  92.894 101.9460 123.2057 116.4675 125.4725  2189.419 10000
 ```
 
 ## Example use case
@@ -328,7 +330,7 @@ leaflet() %>%
 * Please [report any issues or bugs](https://github.com/ropensci/geoops/issues).
 * License: MIT
 * Get citation information for `geoops` in R doing `citation(package = 'geoops')`
-* Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.md).
+* Please note that this project is released with a [Contributor Code of Conduct](CODE_OFCONDUCT.md).
 By participating in this project you agree to abide by its terms.
 
-[![ropensci_footer](http://ropensci.org/public_images/github_footer.png)](https://ropensci.org)
+[![ropensci_footer](https://ropensci.org/public_images/github_footer.png)](https://ropensci.org)
