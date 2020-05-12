@@ -1,5 +1,5 @@
 ---
-title: "Introduction to the geoops package"
+title: "Introduction to geoops"
 author: "Scott Chamberlain"
 date: "`r Sys.Date()`"
 output:
@@ -8,7 +8,7 @@ output:
     toc_float: true
     theme: readable
 vignette: >
-  %\VignetteIndexEntry{Introduction to the geoops package}
+  %\VignetteIndexEntry{Introduction to geoops}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -35,7 +35,7 @@ install.packages("geoops")
 Or, the development version
 
 ```{r eval=FALSE}
-devtools::install_github("ropensci/geoops")
+remotes::install_github("ropensci/geoops")
 ```
 
 ```{r}

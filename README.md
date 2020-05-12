@@ -24,8 +24,6 @@ performance out of C++.
 `geoops` has a ways to go to include all the methods that Turf has, but
 we'll get there eventually.
 
-This package is alpha stage, expect bugs and changes.
-
 All data is expected to be in WGS-84.
 
 We use a library from [Niels Lohmann](https://github.com/nlohmann/json)
@@ -70,7 +68,7 @@ Dev version
 
 
 ```r
-devtools::install_github("ropensci/geoops")
+remotes::install_github("ropensci/geoops")
 ```
 
 
@@ -78,139 +76,7 @@ devtools::install_github("ropensci/geoops")
 library("geoops")
 ```
 
-## get json c++ library version info
-
-
-```r
-geoops::version()
-#> [1] "{\"compiler\":{\"c++\":\"201103\",\"family\":\"clang\",\"version\":\"7.0.0 (tags/RELEASE_700/final)\"},\"copyright\":\"(C) 2013-2017 Niels Lohmann\",\"name\":\"JSON for Modern C++\",\"platform\":\"apple\",\"url\":\"https://github.com/nlohmann/json\",\"version\":{\"major\":3,\"minor\":1,\"patch\":2,\"string\":\"3.1.2\"}}"
-```
-
-## distance
-
-Calculate distance between two GeoJSON points
-
-
-```r
-pt1 <- '{
-  "type": "Feature",
-  "properties": {
-    "marker-color": "#f00"
-   },
-   "geometry": {
-      "type": "Point",
-      "coordinates": [-75.343, 39.984]
-   }
-}'
-#'
-pt2 <- '{
-  "type": "Feature",
-  "properties": {
-     "marker-color": "#0f0"
-   },
-   "geometry": {
-      "type": "Point",
-      "coordinates": [-75.534, 39.123]
-    }
-}'
-```
-
-
-```r
-geo_distance(pt1, pt2)
-#> [1] 97.15958
-```
-
-## bearing
-
-Calculate bearing between two points
-
-
-```r
-geo_bearing(pt1, pt2)
-#> [1] -170.233
-```
-
-## destination
-
-
-```r
-geo_destination(pt1, 50, 90, 'miles')
-#> [1] "{\"geometry\":{\"coordinates\":[-74.398884,39.98017],\"type\":\"Point\"},\"properties\":{},\"type\":\"Feature\"}"
-```
-
-## line distance
-
-Calculate length of GeoJSON LineString or Polygon
-
-
-```r
-line <- '{
-  "type": "Feature",
-  "properties": {},
-  "geometry": {
-    "type": "LineString",
-    "coordinates": [
-      [-77.031669, 38.878605],
-      [-77.029609, 38.881946],
-      [-77.020339, 38.884084],
-      [-77.025661, 38.885821],
-      [-77.021884, 38.889563],
-      [-77.019824, 38.892368]
-    ]
-  }
-}'
-geo_line_distance(line, units = "kilometers")
-#> [1] 2.637684
-```
-
-## nearest
-
-Calculate nearest point to a reference point
-
-
-```r
-point1 <- '{
-  "type": "Feature",
-  "properties": {
-     "marker-color": "#0f0"
-   },
-  "geometry": {
-     "type": "Point",
-     "coordinates": [28.965797, 41.010086]
-  }
-}'
-#'
-points <- '{
-  "type": "FeatureCollection",
-  "features": [
-    {
-      "type": "Feature",
-      "properties": {},
-      "geometry": {
-        "type": "Point",
-        "coordinates": [28.973865, 41.011122]
-      }
-    }, {
-      "type": "Feature",
-      "properties": {},
-      "geometry": {
-        "type": "Point",
-        "coordinates": [28.948459, 41.024204]
-      }
-    }, {
-      "type": "Feature",
-      "properties": {},
-      "geometry": {
-        "type": "Point",
-        "coordinates": [28.938674, 41.013324]
-      }
-    }
-  ]
-}'
-geo_nearest(point1, points)
-#> [1] "{\"geometry\":{\"coordinates\":[28.973865,41.011122],\"type\":\"Point\"},\"properties\":{},\"type\":\"Feature\"}"
-```
+See the vignette (link here) to get started.
 
 
 ## comparison to rgeos
@@ -231,10 +97,7 @@ microbenchmark::microbenchmark(
   geoops = geoops::geo_distance(pt1, pt2, units = "miles"),
   times = 10000L
 )
-#> Unit: microseconds
-#>    expr    min      lq     mean  median      uq      max neval
-#>   rgeos 22.335 24.3820 33.39057 25.4460 30.2025 3212.125 10000
-#>  geoops 27.409 29.2695 36.28886 30.3145 33.2040 1944.217 10000
+#> Error in distance(from, to, units): object 'pt1' not found
 ```
 
 ### nearest
@@ -254,10 +117,7 @@ microbenchmark::microbenchmark(
   geoops = geoops::geo_nearest(point1, points),
   times = 10000L
 )
-#> Unit: microseconds
-#>    expr     min       lq     mean   median       uq      max neval
-#>   rgeos 434.612 455.6475 573.2750 481.3005 590.3295 7444.381 10000
-#>  geoops  96.375 108.3820 135.2267 125.5055 137.8740 1979.747 10000
+#> Error in nearest(target_point, points): Expecting a single string value: [type=closure; extent=1].
 ```
 
 ## Example use case
@@ -294,7 +154,7 @@ Visualize area of the polygons as a histogram
 hist(areas, main = "")
 ```
 
-![plot of chunk unnamed-chunk-20](tools/img/unnamed-chunk-20-1.png)
+![plot of chunk unnamed-chunk-13](man/figures/unnamed-chunk-13-1.png)
 
 Visualize some of the polygons, all of them
 
@@ -307,7 +167,7 @@ leaflet() %>%
   setView(lng = -123, lat = 45, zoom = 7)
 ```
 
-![plot of chunk unnamed-chunk-21](tools/img/unnamed-chunk-21-1.png)
+![plot of chunk unnamed-chunk-14](man/figures/unnamed-chunk-14-1.png)
 
 Just one of them
 
@@ -319,7 +179,7 @@ leaflet() %>%
   setView(lng = -122.7, lat = 45.48, zoom = 13)
 ```
 
-![plot of chunk unnamed-chunk-22](tools/img/unnamed-chunk-22-1.png)
+![plot of chunk unnamed-chunk-15](man/figures/unnamed-chunk-15-1.png)
 </details>
 
 
