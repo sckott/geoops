@@ -34,10 +34,8 @@ clean:
 attributes:
 	${RSCRIPT} -e 'library(methods); Rcpp::compileAttributes()'
 
-README.md: README.Rmd
-	${RSCRIPT} -e "library(methods); knitr::knit('$<')"
-	sed -i.bak 's/[[:space:]]*$$//' README.md
-	rm -f $@.bak
+readme:
+	${RSCRIPT} -e "knitr::knit('README.Rmd')"
 
 # No real targets!
 .PHONY: all test document install
