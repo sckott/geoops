@@ -10,3 +10,4 @@ notes.md
 .github
 ^Makefile$
 ^codemeta\.json$
+^local_docker_testing.txt$

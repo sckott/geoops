@@ -6,3 +6,4 @@ src/*.so
 src/*.a
 notes.md
 src/json_old.h
+local_docker_testing.txt
