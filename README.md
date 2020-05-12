@@ -85,6 +85,8 @@ See the vignette (link here) to get started.
 
 
 ```r
+pt1 <- '{"type":"Feature","properties":{"marker-color":"#f00"},"geometry":{"type":"Point","coordinates":[-75.343,39.984]}}'
+pt2 <- '{"type":"Feature","properties":{"marker-color":"#0f0"},"geometry":{"type":"Point","coordinates":[-75.534,39.123]}}'
 library(rgeos)
 rgeospt1 <- rgeos::readWKT("POINT(0.5 0.5)")
 rgeospt2 <- rgeos::readWKT("POINT(2 2)")
@@ -97,7 +99,10 @@ microbenchmark::microbenchmark(
   geoops = geoops::geo_distance(pt1, pt2, units = "miles"),
   times = 10000L
 )
-#> Error in distance(from, to, units): object 'pt1' not found
+#> Unit: microseconds
+#>    expr    min      lq     mean median      uq      max neval
+#>   rgeos 21.760 23.6035 30.83318 24.624 26.3135 2319.244 10000
+#>  geoops 26.537 28.2300 34.62435 29.197 31.0280 1832.971 10000
 ```
 
 ### nearest
@@ -106,6 +111,7 @@ microbenchmark::microbenchmark(
 ```r
 point1 <- '{"type":["Feature"],"properties":{"marker-color":["#0f0"]},"geometry":{"type":["Point"],"coordinates":[28.9658,41.0101]}}'
 point2 <- '{"type":["FeatureCollection"],"features":[{"type":"Feature","properties":{},"geometry":{"type":"Point","coordinates":[28.9739,41.0111]}},{"type":"Feature","properties":{},"geometry":{"type":"Point","coordinates":[28.9485,41.0242]}},{"type":"Feature","properties":{},"geometry":{"type":"Point","coordinates":[28.9387,41.0133]}}]}'
+points <- '{"type":"FeatureCollection","features":[{"type":"Feature","properties":{},"geometry":{"type":"Point","coordinates":[28.9739,41.0111]}},{"type":"Feature","properties":{},"geometry":{"type":"Point","coordinates":[28.9485,41.0242]}},{"type":"Feature","properties":{},"geometry":{"type":"Point","coordinates":[28.9387,41.0133]}}]}'
 g1 <- readWKT("MULTILINESTRING((34 54, 60 34), (0 10, 50 10, 100 50))")
 g2 <- readWKT("POINT(100 30)")
 ```
@@ -117,7 +123,10 @@ microbenchmark::microbenchmark(
   geoops = geoops::geo_nearest(point1, points),
   times = 10000L
 )
-#> Error in nearest(target_point, points): Expecting a single string value: [type=closure; extent=1].
+#> Unit: microseconds
+#>    expr     min       lq     mean   median      uq      max neval
+#>   rgeos 431.286 447.3355 509.7163 456.3305 482.744 4203.958 10000
+#>  geoops  93.712 103.5920 119.5577 119.4810 124.537 1803.711 10000
 ```
 
 ## Example use case
