@@ -7,7 +7,7 @@
 geo_pointgrid(bbox, cell_size, units = "kilometers")
 }
 \arguments{
-\item{bbox}{extent in \code{[minX, minY, maxX, maxY]} order}
+\item{bbox}{extent in \verb{[minX, minY, maxX, maxY]} order}
 
 \item{cell_size}{(numeric) the distance across each cell}
 

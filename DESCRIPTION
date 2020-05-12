@@ -4,7 +4,7 @@ Title: 'GeoJSON' Topology Calculations and Operations
 Description: Tools for doing calculations and manipulations on 'GeoJSON',
     a 'geospatial' data interchange format (<https://tools.ietf.org/html/rfc7946>).
     'GeoJSON' is also valid 'JSON'.
-Version: 0.2.0.9100
+Version: 0.2.1.91
 Authors@R: c(
 		person("Scott", "Chamberlain", role = c("aut", "cre"), email = "myrmecocystus+r@gmail.com"),
 		person("Niels", "Lohmann", role = "cph")
@@ -15,7 +15,7 @@ BugReports: https://github.com/ropensci/geoops/issues
 Imports:
     Rcpp (>= 0.12.12)
 Suggests:
-    roxygen2 (>= 6.0.1),
+    roxygen2 (>= 7.1.0),
     testthat,
     knitr,
     rmarkdown,
@@ -24,7 +24,8 @@ LinkingTo: Rcpp
 SystemRequirements: C++11
 Roxygen: list(markdown = TRUE)
 VignetteBuilder: knitr
-RoxygenNote: 6.0.1
+Encoding: UTF-8
+RoxygenNote: 7.1.0
 X-schema.org-applicationCategory: Geospatial
 X-schema.org-keywords: geojson, geospatial, conversion, data, bbox, coordinates, distance, bearing
 X-schema.org-isPartOf: https://ropensci.org

@@ -29,10 +29,15 @@ be included as a member of the feature object with the name "id".
 }'
 }
 \seealso{
-Other geo types: \code{\link{FeatureCollection}},
-  \code{\link{GeometryCollection}},
-  \code{\link{LineString}}, \code{\link{MultiLineString}},
-  \code{\link{MultiPoint}}, \code{\link{MultiPolygon}},
-  \code{\link{Point}}, \code{\link{Polygon}},
-  \code{\link{geojson-types}}
+Other geo types: 
+\code{\link{FeatureCollection}},
+\code{\link{GeometryCollection}},
+\code{\link{LineString}},
+\code{\link{MultiLineString}},
+\code{\link{MultiPoint}},
+\code{\link{MultiPolygon}},
+\code{\link{Point}},
+\code{\link{Polygon}},
+\code{\link{geojson-types}}
 }
+\concept{geo types}

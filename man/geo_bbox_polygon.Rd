@@ -7,7 +7,7 @@
 geo_bbox_polygon(bbox)
 }
 \arguments{
-\item{bbox}{extent in \code{[minX, minY, maxX, maxY]} order}
+\item{bbox}{extent in \verb{[minX, minY, maxX, maxY]} order}
 }
 \value{
 \link{Feature}<\link{Polygon}> a Polygon representation of the bounding box

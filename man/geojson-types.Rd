@@ -30,9 +30,15 @@ be a bounding box array (see 4. Bounding Boxes).
 }
 
 \seealso{
-Other geo types: \code{\link{FeatureCollection}},
-  \code{\link{Feature}}, \code{\link{GeometryCollection}},
-  \code{\link{LineString}}, \code{\link{MultiLineString}},
-  \code{\link{MultiPoint}}, \code{\link{MultiPolygon}},
-  \code{\link{Point}}, \code{\link{Polygon}}
+Other geo types: 
+\code{\link{FeatureCollection}},
+\code{\link{Feature}},
+\code{\link{GeometryCollection}},
+\code{\link{LineString}},
+\code{\link{MultiLineString}},
+\code{\link{MultiPoint}},
+\code{\link{MultiPolygon}},
+\code{\link{Point}},
+\code{\link{Polygon}}
 }
+\concept{geo types}
