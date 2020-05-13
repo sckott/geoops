@@ -19,9 +19,12 @@ test_that("destination works well", {
 })
 
 test_that("destination fails well", {
-  expect_error(geo_destination(point1, 50, 90, 'stuff'), "Invalid 'units' input")
+  # expect_error(geo_destination(point1, 50, 90, 'stuff'), "Invalid 'units' input")
+  expect_error(geo_destination(point1, 50, 90, 'stuff'), class = "std::runtime_error")
+  # expect_error(geo_destination(point1, 50, "foobar"),
+  #              "Not compatible with requested type")
   expect_error(geo_destination(point1, 50, "foobar"),
-               "Not compatible with requested type")
+               class = "Rcpp::not_compatible")
 
   expect_error(geo_destination(),
                "argument \"from\" is missing, with no default")

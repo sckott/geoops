@@ -23,7 +23,9 @@ test_that("geo_trianglegrid works", {
 
 test_that("geo_trianglegrid fails well", {
   expect_error(geo_trianglegrid(extent, cellSize, 5),
-               "Expecting a single string value")
+    class = "Rcpp::not_compatible")
+               # "Expecting a single string value")
   expect_error(geo_trianglegrid(extent, 'asdf', 'miles'),
-               "Not compatible with requested type")
+    class = "Rcpp::not_compatible")
+               # "Not compatible with requested type")
 })

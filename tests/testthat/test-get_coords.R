@@ -16,5 +16,6 @@ test_that("get_coords works", {
 })
 
 test_that("fails well", {
-  expect_error(geo_get_coords('[5]'), "coordinates must only contain numbers")
+  # expect_error(geo_get_coords('[5]'), "coordinates must only contain numbers")
+  expect_error(geo_get_coords('[5]'), class = "std::runtime_error")
 })

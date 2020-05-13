@@ -44,7 +44,8 @@ badline <- '{
 test_that("line_distance fails well", {
   expect_error(
     geo_line_distance(badline),
-    "input must be a LineString, "
+    class = "std::runtime_error"
+    # "input must be a LineString, "
   )
 
   expect_error(
