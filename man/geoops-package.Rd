@@ -7,7 +7,7 @@
 \title{geoops}
 \description{
 Tools for doing calculations and manipulations on GeoJSON,
-a 'geospatial' data interchange format (\url{https://tools.ietf.org/html/rfc7946}).
+a 'geospatial' data interchange format (https://tools.ietf.org/html/rfc7946).
 GeoJSON is also valid JSON.
 }
 \examples{
