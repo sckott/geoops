@@ -1273,19 +1273,19 @@ struct position_t
 #endif
 
 JSON_HEDLEY_DIAGNOSTIC_PUSH
-#if JSON_HEDLEY_HAS_WARNING("-Wpedantic")
-    #pragma clang diagnostic ignored "-Wpedantic"
-#endif
-#if JSON_HEDLEY_HAS_WARNING("-Wc++98-compat-pedantic") && defined(__cplusplus)
-    #pragma clang diagnostic ignored "-Wc++98-compat-pedantic"
-#endif
-#if JSON_HEDLEY_GCC_HAS_WARNING("-Wvariadic-macros",4,0,0)
-    #if defined(__clang__)
-        #pragma clang diagnostic ignored "-Wvariadic-macros"
-    #elif defined(JSON_HEDLEY_GCC_VERSION)
-        #pragma GCC diagnostic ignored "-Wvariadic-macros"
-    #endif
-#endif
+// #if JSON_HEDLEY_HAS_WARNING("-Wpedantic")
+//     #pragma clang diagnostic ignored "-Wpedantic"
+// #endif
+// #if JSON_HEDLEY_HAS_WARNING("-Wc++98-compat-pedantic") && defined(__cplusplus)
+//     #pragma clang diagnostic ignored "-Wc++98-compat-pedantic"
+// #endif
+// #if JSON_HEDLEY_GCC_HAS_WARNING("-Wvariadic-macros",4,0,0)
+//     #if defined(__clang__)
+//         #pragma clang diagnostic ignored "-Wvariadic-macros"
+//     #elif defined(JSON_HEDLEY_GCC_VERSION)
+//         #pragma GCC diagnostic ignored "-Wvariadic-macros"
+//     #endif
+// #endif
 #if defined(JSON_HEDLEY_NON_NULL)
     #undef JSON_HEDLEY_NON_NULL
 #endif
@@ -3766,11 +3766,11 @@ auto get(const nlohmann::detail::iteration_proxy_value<IteratorType>& i) -> decl
 // And see https://github.com/nlohmann/json/pull/1391
 namespace std
 {
-#if defined(__clang__)
-    // Fix: https://github.com/nlohmann/json/issues/1401
-    #pragma clang diagnostic push
-    #pragma clang diagnostic ignored "-Wmismatched-tags"
-#endif
+// #if defined(__clang__)
+//     // Fix: https://github.com/nlohmann/json/issues/1401
+//     #pragma clang diagnostic push
+//     #pragma clang diagnostic ignored "-Wmismatched-tags"
+// #endif
 template <typename IteratorType>
 class tuple_size<::nlohmann::detail::iteration_proxy_value<IteratorType>>
             : public std::integral_constant<std::size_t, 2> {};
@@ -3783,9 +3783,9 @@ class tuple_element<N, ::nlohmann::detail::iteration_proxy_value<IteratorType >>
                      get<N>(std::declval <
                             ::nlohmann::detail::iteration_proxy_value<IteratorType >> ()));
 };
-#if defined(__clang__)
-    #pragma clang diagnostic pop
-#endif
+// #if defined(__clang__)
+//     #pragma clang diagnostic pop
+// #endif
 } // namespace std
 
 // #include <nlohmann/detail/meta/cpp_future.hpp>
