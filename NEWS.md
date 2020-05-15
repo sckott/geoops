@@ -1,3 +1,12 @@
+geoops 0.3.0
+============
+
+### MINOR IMPROVEMENTS
+
+* upgrade c++ json library to 3.7.3 (#19)
+* warnings on cran checks - gone now after upgrade of json library (see above line) (#18)
+
+
 geoops 0.2.0
 ============
 

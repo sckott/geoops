@@ -8,16 +8,16 @@
   "description": "Tools for doing calculations and manipulations on 'GeoJSON',\n    a 'geospatial' data interchange format (<https://tools.ietf.org/html/rfc7946>).\n    'GeoJSON' is also valid 'JSON'.",
   "name": "geoops: 'GeoJSON' Topology Calculations and Operations",
   "codeRepository": "https://github.com/ropensci/geoops",
-  "issueTracker": "https://github.com/ropenscilabs/geoops/issues",
+  "issueTracker": "https://github.com/ropensci/geoops/issues",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "0.1.7.9210",
+  "version": "0.3.0",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
-    "version": "3.4.4",
+    "version": "4.0.0",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 3.4.4 beta (2018-03-05 r74359)",
+  "runtimePlatform": "R version 4.0.0 (2020-04-24)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -39,24 +39,27 @@
       "familyName": "Lohmann"
     }
   ],
-  "maintainer": {
-    "@type": "Person",
-    "givenName": "Scott",
-    "familyName": "Chamberlain",
-    "email": "myrmecocystus+r@gmail.com"
-  },
+  "maintainer": [
+    {
+      "@type": "Person",
+      "givenName": "Scott",
+      "familyName": "Chamberlain",
+      "email": "myrmecocystus+r@gmail.com"
+    }
+  ],
   "softwareSuggestions": [
     {
       "@type": "SoftwareApplication",
       "identifier": "roxygen2",
       "name": "roxygen2",
-      "version": "6.0.1",
+      "version": ">= 7.1.0",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
-        "name": "Central R Archive Network (CRAN)",
+        "name": "Comprehensive R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
-      }
+      },
+      "sameAs": "https://CRAN.R-project.org/package=roxygen2"
     },
     {
       "@type": "SoftwareApplication",
@@ -65,9 +68,10 @@
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
-        "name": "Central R Archive Network (CRAN)",
+        "name": "Comprehensive R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
-      }
+      },
+      "sameAs": "https://CRAN.R-project.org/package=testthat"
     },
     {
       "@type": "SoftwareApplication",
@@ -76,9 +80,10 @@
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
-        "name": "Central R Archive Network (CRAN)",
+        "name": "Comprehensive R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
-      }
+      },
+      "sameAs": "https://CRAN.R-project.org/package=knitr"
     },
     {
       "@type": "SoftwareApplication",
@@ -87,9 +92,22 @@
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
-        "name": "Central R Archive Network (CRAN)",
+        "name": "Comprehensive R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
-      }
+      },
+      "sameAs": "https://CRAN.R-project.org/package=rmarkdown"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "jsonlite",
+      "name": "jsonlite",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=jsonlite"
     }
   ],
   "softwareRequirements": [
@@ -97,17 +115,29 @@
       "@type": "SoftwareApplication",
       "identifier": "Rcpp",
       "name": "Rcpp",
-      "version": "0.12.12",
+      "version": ">= 0.12.12",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
-        "name": "Central R Archive Network (CRAN)",
+        "name": "Comprehensive R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
-      }
+      },
+      "sameAs": "https://CRAN.R-project.org/package=Rcpp"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "https://sysreqs.r-hub.io/get/cxx11"
     }
   ],
   "contIntegration": "https://travis-ci.org/ropensci/geoops",
   "releaseNotes": "https://github.com/ropensci/geoops/blob/master/NEWS.md",
   "readme": "https://github.com/ropensci/geoops/blob/master/README.md",
-  "fileSize": "847.857KB"
+  "fileSize": "785.948KB",
+  "relatedLink": "https://docs.ropensci.org/geoops",
+  "contributor": {},
+  "funder": {},
+  "applicationCategory": "Geospatial",
+  "isPartOf": "https://ropensci.org",
+  "keywords": ["geojson", "geospatial", "conversion", "data", "bbox", "coordinates", "distance", "bearing", "rstats", "polygon", "r", "r-package"],
+  "developmentStatus": "https://www.repostatus.org/#active"
 }
