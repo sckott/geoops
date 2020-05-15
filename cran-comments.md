@@ -14,7 +14,8 @@ There are no reverse dependencies.
 
 ---
 
-This version upgrades the bundled json library, and 
+This version upgrades the bundled json library, which fixes warnings from the previous json
+library version.
 
 Thanks!
 Scott Chamberlain
