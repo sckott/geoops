@@ -12,13 +12,13 @@ geoops
 
 `geoops` does spatial operations on GeoJSON.
 
-`geoops` is inspired by the JS library [turf](http://turfjs.org/). It's
+`geoops` is inspired by the JS library turf (http://turfjs.org/). It's
 tagline is _Advanced geospatial analysis for browsers and node_.
 Turf works only with GeoJSON, as does `geoops`. I don't know JS that well,
 but it's easy enough to understand the language, so I've been porting
 Turf to C++ wrapped up in R. The C++ so we can have fast performance. We've
 also wrapped the Turf JS library itself in the package
-[lawn](https://github.com/ropensci/lawn), but we should be able to get better
+lawn (https://github.com/ropensci/lawn), but we should be able to get better
 performance out of C++.
 
 `geoops` has a ways to go to include all the methods that Turf has, but
@@ -26,13 +26,12 @@ we'll get there eventually.
 
 All data is expected to be in WGS-84.
 
-We use a library from [Niels Lohmann](https://github.com/nlohmann/json)
+We use a library from Niels Lohmann (https://github.com/nlohmann/json)
 for working with JSON in C++.
 
 See also:
 
-* [geofilter](https://github.com/ropensci/geofilter)
-* [geojson](https://github.com/ropensci/geojson)
+* geojson: https://github.com/ropensci/geojson
 
 Package API:
 
@@ -100,9 +99,9 @@ microbenchmark::microbenchmark(
   times = 10000L
 )
 #> Unit: microseconds
-#>    expr    min      lq     mean median      uq      max neval
-#>   rgeos 21.760 23.6035 30.83318 24.624 26.3135 2319.244 10000
-#>  geoops 26.537 28.2300 34.62435 29.197 31.0280 1832.971 10000
+#>    expr    min      lq     mean  median      uq      max neval
+#>   rgeos 22.005 23.5830 34.04165 24.8870 26.3565 5739.353 10000
+#>  geoops 27.915 29.3065 36.29756 30.4395 31.8790 1905.728 10000
 ```
 
 ### nearest
@@ -124,9 +123,9 @@ microbenchmark::microbenchmark(
   times = 10000L
 )
 #> Unit: microseconds
-#>    expr     min       lq     mean   median      uq      max neval
-#>   rgeos 431.286 447.3355 509.7163 456.3305 482.744 4203.958 10000
-#>  geoops  93.712 103.5920 119.5577 119.4810 124.537 1803.711 10000
+#>    expr     min       lq     mean   median       uq      max neval
+#>   rgeos 430.517 445.1615 516.2902 452.5940 466.8535 6744.664 10000
+#>  geoops 100.337 110.3815 127.0119 126.6695 131.2805 2202.392 10000
 ```
 
 ## Example use case
