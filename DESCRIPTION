@@ -4,7 +4,7 @@ Title: 'GeoJSON' Topology Calculations and Operations
 Description: Tools for doing calculations and manipulations on 'GeoJSON',
     a 'geospatial' data interchange format (<https://tools.ietf.org/html/rfc7946>).
     'GeoJSON' is also valid 'JSON'.
-Version: 0.3.0
+Version: 0.3.0.91
 Authors@R: c(
 		person("Scott", "Chamberlain", role = c("aut", "cre"), email = "myrmecocystus+r@gmail.com"),
 		person("Niels", "Lohmann", role = "cph")
