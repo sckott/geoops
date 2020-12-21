@@ -37,8 +37,8 @@ knitr::opts_chunk$set(
 ```
 
 [![Project Status: Active - The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
-![R-CMD-check](https://github.com/ropensci/geoops/workflows/R-CMD-check/badge.svg)
-[![codecov](https://codecov.io/gh/ropensci/geoops/branch/master/graph/badge.svg)](https://codecov.io/gh/ropensci/geoops)
+![R-CMD-check](https://github.com/sckott/geoops/workflows/R-CMD-check/badge.svg)
+[![codecov](https://codecov.io/gh/sckott/geoops/branch/master/graph/badge.svg)](https://codecov.io/gh/sckott/geoops)
 [![cran checks](https://cranchecks.info/badges/worst/geoops)](https://cranchecks.info/pkgs/geoops)
 [![rstudio mirror downloads](https://cranlogs.r-pkg.org/badges/geoops)](https://github.com/metacran/cranlogs.app)
 [![cran version](https://www.r-pkg.org/badges/version/geoops)](https://cran.r-project.org/package=geoops)
@@ -84,7 +84,7 @@ install.packages("geoops")
 Dev version
 
 ```{r eval=FALSE}
-remotes::install_github("ropensci/geoops")
+remotes::install_github("sckott/geoops")
 ```
 
 ```{r}
@@ -187,12 +187,10 @@ leaflet() %>%
 
 ## Meta
 
-* Please [report any issues or bugs](https://github.com/ropensci/geoops/issues).
+* Please [report any issues or bugs](https://github.com/sckott/geoops/issues).
 * License: MIT
 * Get citation information for `geoops` in R doing `citation(package = 'geoops')`
 * Please note that this project is released with a [Contributor Code of Conduct][coc].
 By participating in this project you agree to abide by its terms.
 
-[![ropensci_footer](https://ropensci.org/public_images/github_footer.png)](https://ropensci.org)
-
-[coc]: https://github.com/ropensci/geoops/blob/master/CODE_OF_CONDUCT.md
+[coc]: https://github.com/sckott/geoops/blob/master/CODE_OF_CONDUCT.md

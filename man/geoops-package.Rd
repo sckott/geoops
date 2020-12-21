@@ -39,6 +39,6 @@ geo_distance(pt1, pt2)
 
 }
 \author{
-Scott Chamberlain \email{myrmecocystus+r@gmail.com}
+Scott Chamberlain
 }
 \keyword{package}

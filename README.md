@@ -4,8 +4,8 @@ geoops
 
 
 [![Project Status: Active - The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
-![R-CMD-check](https://github.com/ropensci/geoops/workflows/R-CMD-check/badge.svg)
-[![codecov](https://codecov.io/gh/ropensci/geoops/branch/master/graph/badge.svg)](https://codecov.io/gh/ropensci/geoops)
+![R-CMD-check](https://github.com/sckott/geoops/workflows/R-CMD-check/badge.svg)
+[![codecov](https://codecov.io/gh/sckott/geoops/branch/master/graph/badge.svg)](https://codecov.io/gh/sckott/geoops)
 [![cran checks](https://cranchecks.info/badges/worst/geoops)](https://cranchecks.info/pkgs/geoops)
 [![rstudio mirror downloads](https://cranlogs.r-pkg.org/badges/geoops)](https://github.com/metacran/cranlogs.app)
 [![cran version](https://www.r-pkg.org/badges/version/geoops)](https://cran.r-project.org/package=geoops)
@@ -67,7 +67,7 @@ Dev version
 
 
 ```r
-remotes::install_github("ropensci/geoops")
+remotes::install_github("sckott/geoops")
 ```
 
 
@@ -99,9 +99,9 @@ microbenchmark::microbenchmark(
   times = 10000L
 )
 #> Unit: microseconds
-#>    expr    min      lq     mean  median      uq      max neval
-#>   rgeos 22.005 23.5830 34.04165 24.8870 26.3565 5739.353 10000
-#>  geoops 27.915 29.3065 36.29756 30.4395 31.8790 1905.728 10000
+#>    expr    min      lq     mean median      uq      max neval
+#>   rgeos 24.096 25.5240 29.45499 26.835 27.8475 1923.960 10000
+#>  geoops 27.826 29.3715 32.47806 30.294 31.4760 3126.253 10000
 ```
 
 ### nearest
@@ -123,9 +123,9 @@ microbenchmark::microbenchmark(
   times = 10000L
 )
 #> Unit: microseconds
-#>    expr     min       lq     mean   median       uq      max neval
-#>   rgeos 430.517 445.1615 516.2902 452.5940 466.8535 6744.664 10000
-#>  geoops 100.337 110.3815 127.0119 126.6695 131.2805 2202.392 10000
+#>    expr     min       lq     mean   median       uq       max neval
+#>   rgeos 435.978 452.3660 535.2996 461.2875 495.9435 44073.248 10000
+#>  geoops  99.798 110.8965 129.7795 127.7090 132.6170  5960.852 10000
 ```
 
 ## Example use case
@@ -195,12 +195,10 @@ leaflet() %>%
 
 ## Meta
 
-* Please [report any issues or bugs](https://github.com/ropensci/geoops/issues).
+* Please [report any issues or bugs](https://github.com/sckott/geoops/issues).
 * License: MIT
 * Get citation information for `geoops` in R doing `citation(package = 'geoops')`
 * Please note that this project is released with a [Contributor Code of Conduct][coc].
 By participating in this project you agree to abide by its terms.
 
-[![ropensci_footer](https://ropensci.org/public_images/github_footer.png)](https://ropensci.org)
-
-[coc]: https://github.com/ropensci/geoops/blob/master/CODE_OF_CONDUCT.md
+[coc]: https://github.com/sckott/geoops/blob/master/CODE_OF_CONDUCT.md

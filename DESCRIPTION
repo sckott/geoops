@@ -10,8 +10,8 @@ Authors@R: c(
 		person("Niels", "Lohmann", role = "cph")
 	)
 License: MIT + file LICENSE
-URL: https://docs.ropensci.org/geoops, https://github.com/ropensci/geoops
-BugReports: https://github.com/ropensci/geoops/issues
+URL: https://github.com/sckott/geoops
+BugReports: https://github.com/sckott/geoops/issues
 Imports:
     Rcpp (>= 0.12.12)
 Suggests:
@@ -25,7 +25,6 @@ SystemRequirements: C++11
 Roxygen: list(markdown = TRUE)
 VignetteBuilder: knitr
 Encoding: UTF-8
-RoxygenNote: 7.1.0
+RoxygenNote: 7.1.1
 X-schema.org-applicationCategory: Geospatial
 X-schema.org-keywords: geojson, geospatial, conversion, data, bbox, coordinates, distance, bearing
-X-schema.org-isPartOf: https://ropensci.org
