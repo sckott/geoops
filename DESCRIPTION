@@ -10,7 +10,7 @@ Authors@R: c(
 		person("Niels", "Lohmann", role = "cph")
 	)
 License: MIT + file LICENSE
-URL: https://github.com/sckott/geoops
+URL: https://github.com/sckott/geoops, https://sckott.github.io/geoops/
 BugReports: https://github.com/sckott/geoops/issues
 Imports:
     Rcpp (>= 0.12.12)

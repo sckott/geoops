@@ -12,3 +12,7 @@ notes.md
 ^codemeta\.json$
 ^local_docker_testing.txt$
 ^LICENSE\.md$
+^\.github$
+^_pkgdown\.yml$
+^docs$
+^pkgdown$
