@@ -17,7 +17,7 @@ line <- '{
 }'
 
 test_that("geo_along works", {
-  aa <- geo_along(line, 10, 'kilometers')
+  aa <- geo_along(line, 10, "kilometers")
   aaa <- jsonlite::fromJSON(aa)
 
   expect_is(aa, "character")

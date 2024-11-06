@@ -24,7 +24,7 @@
 #'   }
 #' }'
 #'
-#' geo_along(line, 10, 'kilometers')
+#' geo_along(line, 10, "kilometers")
 geo_along <- function(line, distance, units) {
   along(line, distance, units)
 }

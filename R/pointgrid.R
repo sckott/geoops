@@ -12,7 +12,7 @@
 #' @examples
 #' extent <- c(-70.823364, -33.553984, -70.473175, -33.302986)
 #' cellSize <- 1
-#' units <- 'miles'
+#' units <- "miles"
 #' x <- geo_pointgrid(extent, cellSize, units)
 #' x
 geo_pointgrid <- function(bbox, cell_size, units = "kilometers") {

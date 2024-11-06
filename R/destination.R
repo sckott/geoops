@@ -17,8 +17,8 @@
 #'       "coordinates": [-75.343, 39.984]
 #'    }
 #' }'
-#' geo_destination(point, 50, 90, 'miles')
+#' geo_destination(point, 50, 90, "miles")
 #' geo_destination(point, 200, 90)
-geo_destination <- function(from, distance, bearing, units = 'kilometers') {
+geo_destination <- function(from, distance, bearing, units = "kilometers") {
   destination(from, distance, bearing, units)
 }

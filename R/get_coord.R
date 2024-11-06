@@ -10,7 +10,7 @@
 #' geo_get_coords(x)
 #' x <- '{"type": "Point", "coordinates": [1, 2]}'
 #' geo_get_coords(x)
-#' x <- '[0, 5]'
+#' x <- "[0, 5]"
 #' geo_get_coords(x)
 #' }
 geo_get_coords <- function(x) {

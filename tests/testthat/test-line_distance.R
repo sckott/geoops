@@ -21,8 +21,8 @@ test_that("destination works well", {
   expect_type(geo_line_distance(line), "double")
   expect_gt(geo_line_distance(line), 0)
 
-  expect_gte(geo_line_distance(line, 'miles'), 1.6)
-  expect_lte(geo_line_distance(line, 'radians'), 0.001)
+  expect_gte(geo_line_distance(line, "miles"), 1.6)
+  expect_lte(geo_line_distance(line, "radians"), 0.001)
 })
 
 badline <- '{

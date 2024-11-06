@@ -91,7 +91,7 @@ geo_bearing(pt1, pt2)
 ## destination
 
 ```{r}
-geo_destination(pt1, 50, 90, 'miles')
+geo_destination(pt1, 50, 90, "miles")
 ```
 
 ## line distance
