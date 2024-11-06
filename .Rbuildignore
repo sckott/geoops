@@ -11,3 +11,4 @@ notes.md
 ^Makefile$
 ^codemeta\.json$
 ^local_docker_testing.txt$
+^LICENSE\.md$
