@@ -31,8 +31,8 @@ be a bounding box array (see 4. Bounding Boxes).
 
 \seealso{
 Other geo types: 
-\code{\link{FeatureCollection}},
 \code{\link{Feature}},
+\code{\link{FeatureCollection}},
 \code{\link{GeometryCollection}},
 \code{\link{LineString}},
 \code{\link{MultiLineString}},

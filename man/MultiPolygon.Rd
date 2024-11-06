@@ -19,8 +19,8 @@ Polygon coordinate arrays.
 }
 \seealso{
 Other geo types: 
-\code{\link{FeatureCollection}},
 \code{\link{Feature}},
+\code{\link{FeatureCollection}},
 \code{\link{GeometryCollection}},
 \code{\link{LineString}},
 \code{\link{MultiLineString}},

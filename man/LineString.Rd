@@ -21,8 +21,8 @@ geometry type, it is referred to in the Polygon geometry type definition.
 }
 \seealso{
 Other geo types: 
-\code{\link{FeatureCollection}},
 \code{\link{Feature}},
+\code{\link{FeatureCollection}},
 \code{\link{GeometryCollection}},
 \code{\link{MultiLineString}},
 \code{\link{MultiPoint}},

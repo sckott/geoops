@@ -38,6 +38,14 @@ pt2 <- '{
 geo_distance(pt1, pt2)
 
 }
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/sckott/geoops}
+  \item Report bugs at \url{https://github.com/sckott/geoops/issues}
+}
+
+}
 \author{
 Scott Chamberlain
 }

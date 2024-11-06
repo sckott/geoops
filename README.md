@@ -37,7 +37,20 @@ Package API:
 
 
 ```
-#> Error in loadNamespace(name): there is no package called 'geoops'
+#>  - geo_bearing
+#>  - geo_midpoint
+#>  - geo_bbox_polygon
+#>  - geo_pointgrid
+#>  - geo_area
+#>  - geo_get_coords
+#>  - version
+#>  - geo_nearest
+#>  - geo_along
+#>  - geo_distance
+#>  - geo_destination
+#>  - geo_trianglegrid
+#>  - geo_planepoint
+#>  - geo_line_distance
 ```
 
 
@@ -60,13 +73,14 @@ remotes::install_github("sckott/geoops")
 
 ``` r
 library("geoops")
-#> Error in library("geoops"): there is no package called 'geoops'
 ```
 
 See the vignette (link here) to get started.
 
 
 ## comparison to rgeos
+
+FIXME!!! remove `rgeos` stuff as that pkg is gone
 
 ### distance
 
@@ -75,11 +89,8 @@ See the vignette (link here) to get started.
 pt1 <- '{"type":"Feature","properties":{"marker-color":"#f00"},"geometry":{"type":"Point","coordinates":[-75.343,39.984]}}'
 pt2 <- '{"type":"Feature","properties":{"marker-color":"#0f0"},"geometry":{"type":"Point","coordinates":[-75.534,39.123]}}'
 library(rgeos)
-#> Error in library(rgeos): there is no package called 'rgeos'
 rgeospt1 <- rgeos::readWKT("POINT(0.5 0.5)")
-#> Error in loadNamespace(x): there is no package called 'rgeos'
 rgeospt2 <- rgeos::readWKT("POINT(2 2)")
-#> Error in loadNamespace(x): there is no package called 'rgeos'
 ```
 
 
@@ -89,7 +100,6 @@ microbenchmark::microbenchmark(
   geoops = geoops::geo_distance(pt1, pt2, units = "miles"),
   times = 10000L
 )
-#> Error in loadNamespace(x): there is no package called 'microbenchmark'
 ```
 
 ### nearest
@@ -100,9 +110,7 @@ point1 <- '{"type":["Feature"],"properties":{"marker-color":["#0f0"]},"geometry"
 point2 <- '{"type":["FeatureCollection"],"features":[{"type":"Feature","properties":{},"geometry":{"type":"Point","coordinates":[28.9739,41.0111]}},{"type":"Feature","properties":{},"geometry":{"type":"Point","coordinates":[28.9485,41.0242]}},{"type":"Feature","properties":{},"geometry":{"type":"Point","coordinates":[28.9387,41.0133]}}]}'
 points <- '{"type":"FeatureCollection","features":[{"type":"Feature","properties":{},"geometry":{"type":"Point","coordinates":[28.9739,41.0111]}},{"type":"Feature","properties":{},"geometry":{"type":"Point","coordinates":[28.9485,41.0242]}},{"type":"Feature","properties":{},"geometry":{"type":"Point","coordinates":[28.9387,41.0133]}}]}'
 g1 <- readWKT("MULTILINESTRING((34 54, 60 34), (0 10, 50 10, 100 50))")
-#> Error in readWKT("MULTILINESTRING((34 54, 60 34), (0 10, 50 10, 100 50))"): could not find function "readWKT"
 g2 <- readWKT("POINT(100 30)")
-#> Error in readWKT("POINT(100 30)"): could not find function "readWKT"
 ```
 
 
@@ -112,7 +120,6 @@ microbenchmark::microbenchmark(
   geoops = geoops::geo_nearest(point1, points),
   times = 10000L
 )
-#> Error in loadNamespace(x): there is no package called 'microbenchmark'
 ```
 
 ## Example use case
@@ -132,9 +139,7 @@ Break each polygon into separate JSON string
 
 ``` r
 library("jqr")
-#> Error in library("jqr"): there is no package called 'jqr'
 polys <- unclass(jq(x, ".features[]"))
-#> Error in jq(x, ".features[]"): could not find function "jq"
 ```
 
 Using `geo_area`, calculate the area of the polygon
@@ -142,7 +147,6 @@ Using `geo_area`, calculate the area of the polygon
 
 ``` r
 areas <- vapply(polys, geo_area, 1, USE.NAMES = FALSE)
-#> Error: object 'geo_area' not found
 ```
 
 Visualize area of the polygons as a histogram
@@ -150,21 +154,22 @@ Visualize area of the polygons as a histogram
 
 ``` r
 hist(areas, main = "")
-#> Error: object 'areas' not found
 ```
+
+![plot of chunk unnamed-chunk-13](man/figures/unnamed-chunk-13-1.png)
 
 Visualize some of the polygons, all of them
 
 
 ``` r
 library(leaflet)
-#> Error in library(leaflet): there is no package called 'leaflet'
 leaflet() %>%
   addProviderTiles(provider = "OpenStreetMap.Mapnik") %>%
   addGeoJSON(geojson = x) %>%
   setView(lng = -123, lat = 45, zoom = 7)
-#> Error in leaflet() %>% addProviderTiles(provider = "OpenStreetMap.Mapnik") %>% : could not find function "%>%"
 ```
+
+![plot of chunk unnamed-chunk-14](man/figures/unnamed-chunk-14-1.png)
 
 Just one of them
 
@@ -174,8 +179,9 @@ leaflet() %>%
   addProviderTiles(provider = "OpenStreetMap.Mapnik") %>%
   addGeoJSON(geojson = polys[1]) %>%
   setView(lng = -122.7, lat = 45.48, zoom = 13)
-#> Error in leaflet() %>% addProviderTiles(provider = "OpenStreetMap.Mapnik") %>% : could not find function "%>%"
 ```
+
+![plot of chunk unnamed-chunk-15](man/figures/unnamed-chunk-15-1.png)
 </details>
 
 
