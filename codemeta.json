@@ -1,29 +1,19 @@
 {
-  "@context": [
-    "http://purl.org/codemeta/2.0",
-    "http://schema.org"
-  ],
+  "@context": "https://doi.org/10.5063/schema/codemeta-2.0",
   "@type": "SoftwareSourceCode",
   "identifier": "geoops",
-  "description": "Tools for doing calculations and manipulations on 'GeoJSON',\n    a 'geospatial' data interchange format (<https://tools.ietf.org/html/rfc7946>).\n    'GeoJSON' is also valid 'JSON'.",
+  "description": "Tools for doing calculations and manipulations on 'GeoJSON', a 'geospatial' data interchange format (<https://tools.ietf.org/html/rfc7946>). 'GeoJSON' is also valid 'JSON'.",
   "name": "geoops: 'GeoJSON' Topology Calculations and Operations",
-  "codeRepository": "https://github.com/ropensci/geoops",
-  "issueTracker": "https://github.com/ropensci/geoops/issues",
+  "codeRepository": "https://github.com/sckott/geoops",
+  "issueTracker": "https://github.com/sckott/geoops/issues",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "0.3.0",
+  "version": "0.3.0.91",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
-    "version": "4.0.0",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 4.0.0 (2020-04-24)",
-  "provider": {
-    "@id": "https://cran.r-project.org",
-    "@type": "Organization",
-    "name": "Central R Archive Network (CRAN)",
-    "url": "https://cran.r-project.org"
-  },
+  "runtimePlatform": "R version 4.4.1 (2024-06-14)",
   "author": [
     {
       "@type": "Person",
@@ -110,8 +100,8 @@
       "sameAs": "https://CRAN.R-project.org/package=jsonlite"
     }
   ],
-  "softwareRequirements": [
-    {
+  "softwareRequirements": {
+    "1": {
       "@type": "SoftwareApplication",
       "identifier": "Rcpp",
       "name": "Rcpp",
@@ -124,20 +114,9 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=Rcpp"
     },
-    {
-      "@type": "SoftwareApplication",
-      "identifier": "https://sysreqs.r-hub.io/get/cxx11"
-    }
-  ],
-  "contIntegration": "https://travis-ci.org/ropensci/geoops",
-  "releaseNotes": "https://github.com/ropensci/geoops/blob/master/NEWS.md",
-  "readme": "https://github.com/ropensci/geoops/blob/master/README.md",
-  "fileSize": "785.979KB",
-  "relatedLink": "https://docs.ropensci.org/geoops",
-  "contributor": {},
-  "funder": {},
+    "SystemRequirements": "C++11"
+  },
   "applicationCategory": "Geospatial",
-  "isPartOf": "https://ropensci.org",
-  "keywords": ["geojson", "geospatial", "conversion", "data", "bbox", "coordinates", "distance", "bearing", "rstats", "polygon", "r", "r-package"],
-  "developmentStatus": "https://www.repostatus.org/#active"
+  "keywords": ["geojson", "geospatial", "conversion", "data", "bbox", "coordinates", "distance", "bearing"],
+  "fileSize": "34182.956KB"
 }

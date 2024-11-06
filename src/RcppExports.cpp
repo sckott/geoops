@@ -5,6 +5,11 @@
 
 using namespace Rcpp;
 
+#ifdef RCPP_USE_GLOBAL_ROSTREAM
+Rcpp::Rostream<true>&  Rcpp::Rcout = Rcpp::Rcpp_cout_get();
+Rcpp::Rostream<false>& Rcpp::Rcerr = Rcpp::Rcpp_cerr_get();
+#endif
+
 // along
 std::string along(std::string x, double dist, std::string units);
 RcppExport SEXP _geoops_along(SEXP xSEXP, SEXP distSEXP, SEXP unitsSEXP) {

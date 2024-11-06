@@ -5,7 +5,7 @@ geoops
 
 [![Project Status: Active - The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 ![R-CMD-check](https://github.com/sckott/geoops/workflows/R-CMD-check/badge.svg)
-[![codecov](https://codecov.io/gh/sckott/geoops/branch/master/graph/badge.svg)](https://codecov.io/gh/sckott/geoops)
+[![codecov](https://codecov.io/gh/sckott/geoops/branch/main/graph/badge.svg)](https://codecov.io/gh/sckott/geoops)
 [![cran checks](https://cranchecks.info/badges/worst/geoops)](https://cranchecks.info/pkgs/geoops)
 [![rstudio mirror downloads](https://cranlogs.r-pkg.org/badges/geoops)](https://github.com/metacran/cranlogs.app)
 [![cran version](https://www.r-pkg.org/badges/version/geoops)](https://cran.r-project.org/package=geoops)
@@ -37,20 +37,7 @@ Package API:
 
 
 ```
-#>  - geo_bearing
-#>  - geo_midpoint
-#>  - geo_bbox_polygon
-#>  - geo_pointgrid
-#>  - geo_area
-#>  - geo_get_coords
-#>  - version
-#>  - geo_nearest
-#>  - geo_along
-#>  - geo_distance
-#>  - geo_destination
-#>  - geo_trianglegrid
-#>  - geo_planepoint
-#>  - geo_line_distance
+#> Error in loadNamespace(name): there is no package called 'geoops'
 ```
 
 
@@ -59,20 +46,21 @@ Package API:
 Stable version
 
 
-```r
+``` r
 install.packages("geoops")
 ```
 
 Dev version
 
 
-```r
+``` r
 remotes::install_github("sckott/geoops")
 ```
 
 
-```r
+``` r
 library("geoops")
+#> Error in library("geoops"): there is no package called 'geoops'
 ```
 
 See the vignette (link here) to get started.
@@ -83,49 +71,48 @@ See the vignette (link here) to get started.
 ### distance
 
 
-```r
+``` r
 pt1 <- '{"type":"Feature","properties":{"marker-color":"#f00"},"geometry":{"type":"Point","coordinates":[-75.343,39.984]}}'
 pt2 <- '{"type":"Feature","properties":{"marker-color":"#0f0"},"geometry":{"type":"Point","coordinates":[-75.534,39.123]}}'
 library(rgeos)
+#> Error in library(rgeos): there is no package called 'rgeos'
 rgeospt1 <- rgeos::readWKT("POINT(0.5 0.5)")
+#> Error in loadNamespace(x): there is no package called 'rgeos'
 rgeospt2 <- rgeos::readWKT("POINT(2 2)")
+#> Error in loadNamespace(x): there is no package called 'rgeos'
 ```
 
 
-```r
+``` r
 microbenchmark::microbenchmark(
   rgeos = rgeos::gDistance(rgeospt1, rgeospt2),
   geoops = geoops::geo_distance(pt1, pt2, units = "miles"),
   times = 10000L
 )
-#> Unit: microseconds
-#>    expr    min      lq     mean median      uq      max neval
-#>   rgeos 24.096 25.5240 29.45499 26.835 27.8475 1923.960 10000
-#>  geoops 27.826 29.3715 32.47806 30.294 31.4760 3126.253 10000
+#> Error in loadNamespace(x): there is no package called 'microbenchmark'
 ```
 
 ### nearest
 
 
-```r
+``` r
 point1 <- '{"type":["Feature"],"properties":{"marker-color":["#0f0"]},"geometry":{"type":["Point"],"coordinates":[28.9658,41.0101]}}'
 point2 <- '{"type":["FeatureCollection"],"features":[{"type":"Feature","properties":{},"geometry":{"type":"Point","coordinates":[28.9739,41.0111]}},{"type":"Feature","properties":{},"geometry":{"type":"Point","coordinates":[28.9485,41.0242]}},{"type":"Feature","properties":{},"geometry":{"type":"Point","coordinates":[28.9387,41.0133]}}]}'
 points <- '{"type":"FeatureCollection","features":[{"type":"Feature","properties":{},"geometry":{"type":"Point","coordinates":[28.9739,41.0111]}},{"type":"Feature","properties":{},"geometry":{"type":"Point","coordinates":[28.9485,41.0242]}},{"type":"Feature","properties":{},"geometry":{"type":"Point","coordinates":[28.9387,41.0133]}}]}'
 g1 <- readWKT("MULTILINESTRING((34 54, 60 34), (0 10, 50 10, 100 50))")
+#> Error in readWKT("MULTILINESTRING((34 54, 60 34), (0 10, 50 10, 100 50))"): could not find function "readWKT"
 g2 <- readWKT("POINT(100 30)")
+#> Error in readWKT("POINT(100 30)"): could not find function "readWKT"
 ```
 
 
-```r
+``` r
 microbenchmark::microbenchmark(
   rgeos = rgeos::gNearestPoints(g1, g2),
   geoops = geoops::geo_nearest(point1, points),
   times = 10000L
 )
-#> Unit: microseconds
-#>    expr     min       lq     mean   median       uq       max neval
-#>   rgeos 435.978 452.3660 535.2996 461.2875 495.9435 44073.248 10000
-#>  geoops  99.798 110.8965 129.7795 127.7090 132.6170  5960.852 10000
+#> Error in loadNamespace(x): there is no package called 'microbenchmark'
 ```
 
 ## Example use case
@@ -135,7 +122,7 @@ microbenchmark::microbenchmark(
 Get some GeoJSON data, a FeatureCollection of Polygons
 
 
-```r
+``` r
 file <- system.file("examples/zillow_or.geojson", package = "geoops")
 x <- paste0(readLines(file), collapse = "")
 ```
@@ -143,51 +130,52 @@ x <- paste0(readLines(file), collapse = "")
 Break each polygon into separate JSON string
 
 
-```r
+``` r
 library("jqr")
+#> Error in library("jqr"): there is no package called 'jqr'
 polys <- unclass(jq(x, ".features[]"))
+#> Error in jq(x, ".features[]"): could not find function "jq"
 ```
 
 Using `geo_area`, calculate the area of the polygon
 
 
-```r
+``` r
 areas <- vapply(polys, geo_area, 1, USE.NAMES = FALSE)
+#> Error: object 'geo_area' not found
 ```
 
 Visualize area of the polygons as a histogram
 
 
-```r
+``` r
 hist(areas, main = "")
+#> Error: object 'areas' not found
 ```
-
-![plot of chunk unnamed-chunk-13](man/figures/unnamed-chunk-13-1.png)
 
 Visualize some of the polygons, all of them
 
 
-```r
+``` r
 library(leaflet)
+#> Error in library(leaflet): there is no package called 'leaflet'
 leaflet() %>%
   addProviderTiles(provider = "OpenStreetMap.Mapnik") %>%
   addGeoJSON(geojson = x) %>%
   setView(lng = -123, lat = 45, zoom = 7)
+#> Error in leaflet() %>% addProviderTiles(provider = "OpenStreetMap.Mapnik") %>% : could not find function "%>%"
 ```
-
-![plot of chunk unnamed-chunk-14](man/figures/unnamed-chunk-14-1.png)
 
 Just one of them
 
 
-```r
+``` r
 leaflet() %>%
   addProviderTiles(provider = "OpenStreetMap.Mapnik") %>%
   addGeoJSON(geojson = polys[1]) %>%
   setView(lng = -122.7, lat = 45.48, zoom = 13)
+#> Error in leaflet() %>% addProviderTiles(provider = "OpenStreetMap.Mapnik") %>% : could not find function "%>%"
 ```
-
-![plot of chunk unnamed-chunk-15](man/figures/unnamed-chunk-15-1.png)
 </details>
 
 
@@ -201,4 +189,4 @@ leaflet() %>%
 * Please note that this project is released with a [Contributor Code of Conduct][coc].
 By participating in this project you agree to abide by its terms.
 
-[coc]: https://github.com/sckott/geoops/blob/master/CODE_OF_CONDUCT.md
+[coc]: https://github.com/sckott/geoops/blob/main/CODE_OF_CONDUCT.md

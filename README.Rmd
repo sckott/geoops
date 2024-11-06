@@ -38,7 +38,7 @@ knitr::opts_chunk$set(
 
 [![Project Status: Active - The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 ![R-CMD-check](https://github.com/sckott/geoops/workflows/R-CMD-check/badge.svg)
-[![codecov](https://codecov.io/gh/sckott/geoops/branch/master/graph/badge.svg)](https://codecov.io/gh/sckott/geoops)
+[![codecov](https://codecov.io/gh/sckott/geoops/branch/main/graph/badge.svg)](https://codecov.io/gh/sckott/geoops)
 [![cran checks](https://cranchecks.info/badges/worst/geoops)](https://cranchecks.info/pkgs/geoops)
 [![rstudio mirror downloads](https://cranlogs.r-pkg.org/badges/geoops)](https://github.com/metacran/cranlogs.app)
 [![cran version](https://www.r-pkg.org/badges/version/geoops)](https://cran.r-project.org/package=geoops)
@@ -193,4 +193,4 @@ leaflet() %>%
 * Please note that this project is released with a [Contributor Code of Conduct][coc].
 By participating in this project you agree to abide by its terms.
 
-[coc]: https://github.com/sckott/geoops/blob/master/CODE_OF_CONDUCT.md
+[coc]: https://github.com/sckott/geoops/blob/main/CODE_OF_CONDUCT.md
