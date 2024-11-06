@@ -2,13 +2,11 @@
 % Please edit documentation in R/geoops-package.R
 \docType{package}
 \name{geoops-package}
-\alias{geoops-package}
 \alias{geoops}
-\title{geoops}
+\alias{geoops-package}
+\title{geoops: 'GeoJSON' Topology Calculations and Operations}
 \description{
-Tools for doing calculations and manipulations on GeoJSON,
-a 'geospatial' data interchange format (https://tools.ietf.org/html/rfc7946).
-GeoJSON is also valid JSON.
+Tools for doing calculations and manipulations on 'GeoJSON', a 'geospatial' data interchange format (\url{https://tools.ietf.org/html/rfc7946}). 'GeoJSON' is also valid 'JSON'.
 }
 \examples{
 library("geoops")
@@ -36,7 +34,6 @@ pt2 <- '{
     }
 }'
 geo_distance(pt1, pt2)
-
 }
 \seealso{
 Useful links:
@@ -47,6 +44,12 @@ Useful links:
 
 }
 \author{
-Scott Chamberlain
+\strong{Maintainer}: Scott Chamberlain \email{myrmecocystus+r@gmail.com}
+
+Other contributors:
+\itemize{
+  \item Niels Lohmann [copyright holder]
 }
-\keyword{package}
+
+}
+\keyword{internal}

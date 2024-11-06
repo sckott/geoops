@@ -1,9 +1,3 @@
-#' @title geoops
-#'
-#' @description Tools for doing calculations and manipulations on GeoJSON,
-#' a 'geospatial' data interchange format (https://tools.ietf.org/html/rfc7946).
-#' GeoJSON is also valid JSON.
-#'
 #' @examples
 #' library("geoops")
 #'
@@ -30,12 +24,12 @@
 #'     }
 #' }'
 #' geo_distance(pt1, pt2)
-#'
+#' @keywords internal
+"_PACKAGE"
+
+## usethis namespace: start
 #' @useDynLib geoops
 #' @importFrom Rcpp sourceCpp
-#' @name geoops-package
-#' @aliases geoops
-#' @docType package
-#' @keywords package
-#' @author Scott Chamberlain
+## usethis namespace: end
 NULL
+
