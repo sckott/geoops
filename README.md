@@ -3,12 +3,9 @@ geoops
 
 
 
-[![Project Status: Active - The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
-![R-CMD-check](https://github.com/sckott/geoops/workflows/R-CMD-check/badge.svg)
+[![Project Status: Unsupported – The project has reached a stable, usable state but the author(s) have ceased all work on it. A new maintainer may be desired.](https://www.repostatus.org/badges/latest/unsupported.svg)](https://www.repostatus.org/#unsupported)
+[![R-CMD-check](https://github.com/sckott/geoops/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/sckott/geoops/actions/workflows/R-CMD-check.yaml)
 [![codecov](https://codecov.io/gh/sckott/geoops/branch/main/graph/badge.svg)](https://codecov.io/gh/sckott/geoops)
-[![cran checks](https://cranchecks.info/badges/worst/geoops)](https://cranchecks.info/pkgs/geoops)
-[![rstudio mirror downloads](https://cranlogs.r-pkg.org/badges/geoops)](https://github.com/metacran/cranlogs.app)
-[![cran version](https://www.r-pkg.org/badges/version/geoops)](https://cran.r-project.org/package=geoops)
 
 `geoops` does spatial operations on GeoJSON.
 
